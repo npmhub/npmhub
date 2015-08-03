@@ -76,48 +76,46 @@ appAPI.ready(function($) {
 
     if (pkg.dependencies === undefined) {
       depList.append("<li class='empty'>No dependencies found in package.json</li>")
-      return;
     }
-
-    var depNames = Object.keys(pkg.dependencies);
-
-    for (var i in depNames) {
-      var name = depNames[i];
-      var depUrl = "http://npm-registry-cors-proxy.herokuapp.com/" + name
-
-      depList.append("<li id='dep-" + name + "'><a href='https://npmjs.org/package/" + name + "'>" + name + "</a>&nbsp;&nbsp;</li>");
-
-      appAPI.request.get(depUrl, function(data) {
-        var dep = JSON.parse(data);
-        $("#dep-"+dep.name).append(dep.description)
-        applyStyles()
-      });
+    else {
+      var depNames = Object.keys(pkg.dependencies);
+  
+      for (var i in depNames) {
+        var name = depNames[i];
+        var depUrl = "http://npm-registry-cors-proxy.herokuapp.com/" + name
+  
+        depList.append("<li id='dep-" + name + "'><a href='https://npmjs.org/package/" + name + "'>" + name + "</a>&nbsp;&nbsp;</li>");
+  
+        appAPI.request.get(depUrl, function(data) {
+          var dep = JSON.parse(data);
+          $("#dep-"+dep.name).append(dep.description)
+          applyStyles()
+        });
+      }
     }
-
     // Dev Dependencies
     // -------------------------------------------------------------------------------
 
     if (pkg.devDependencies === undefined) {
       devDepList.append("<li class='empty'>No devDependencies found in package.json</li>")
-      return;
     }
-
-    var depNames = Object.keys(pkg.devDependencies);
-
-    for (var i in depNames) {
-      var name = depNames[i];
-      var depUrl = "http://npm-registry-cors-proxy.herokuapp.com/" + name
-      console.log(depUrl)
-
-      devDepList.append("<li id='devDep-" + name + "'><a href='https://npmjs.org/package/" + name + "'>" + name + "</a>&nbsp;&nbsp;</li>");
-
-      appAPI.request.get(depUrl, function(data) {
-        var dep = JSON.parse(data);
-        $("#devDep-"+dep.name).append(dep.description)
-        applyStyles()
-      });
+    else {
+      var depNames = Object.keys(pkg.devDependencies);
+  
+      for (var i in depNames) {
+        var name = depNames[i];
+        var depUrl = "http://npm-registry-cors-proxy.herokuapp.com/" + name
+        console.log(depUrl)
+  
+        devDepList.append("<li id='devDep-" + name + "'><a href='https://npmjs.org/package/" + name + "'>" + name + "</a>&nbsp;&nbsp;</li>");
+  
+        appAPI.request.get(depUrl, function(data) {
+          var dep = JSON.parse(data);
+          $("#devDep-"+dep.name).append(dep.description)
+          applyStyles()
+        });
+      }
     }
-
   });
 
 
