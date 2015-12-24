@@ -15,12 +15,13 @@ appAPI.ready(function($) {
   var user = pathParts[1]
   var repo = pathParts[2]
   var pkgUrl = "http://github-raw-cors-proxy.herokuapp.com/" + user + "/" + repo + "/blob/master/package.json"
+  var appendSelector = $('.container').hasClass('experiment-repo-nav') ? '.container.experiment-repo-nav' : '#js-repo-pjax-container';
 
   // Set up list containers and headings
-  $('#js-repo-pjax-container').append("<h2>npm dependencies</h2>")
-  $('#js-repo-pjax-container').append("<ol id='deps' class='deps'></ol>")
-  $('#js-repo-pjax-container').append("<h2>npm devDependencies</h2>")
-  $('#js-repo-pjax-container').append("<ol id='devDeps' class='deps'></ol>")
+  $(appendSelector).append("<h2>npm dependencies</h2>")
+  $(appendSelector).append("<ol id='deps' class='deps'></ol>")
+  $(appendSelector).append("<h2>npm devDependencies</h2>")
+  $(appendSelector).append("<ol id='devDeps' class='deps'></ol>")
 
   var depList = $("#deps")
   var devDepList = $("#devDeps")
