@@ -102,7 +102,7 @@ appAPI.ready(function ($) {
     // -------------------------------------------------------------------------------
 
     if (pkg.devDependencies === undefined) {
-      $devDepsList.append("<li class='empty'>None found in in package.json</li>")
+      $devDepsList.append("<li class='empty'>None found in package.json</li>")
       applyStyles()
     } else {
       var depNames = Object.keys(pkg.devDependencies)
