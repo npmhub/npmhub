@@ -7,7 +7,7 @@ appAPI.ready(function ($) {
   if (!pathParts) return
 
   // Does the repo have a package.json?
-  if (!$('table.files').text().match(/package\.json/)) return
+  if (!$('.files [title="package.json"]').length) return
 
   // Assemble API URL for fetching raw json from github
   var user = pathParts[1]
@@ -15,26 +15,31 @@ appAPI.ready(function ($) {
   var pkgUrl = 'http://github-raw-cors-proxy.herokuapp.com/' + user + '/' + repo + '/blob/master/package.json'
 
   // Set up list containers and headings
-  $('#readme').append("<h2 id='dependencies' class='npm-hub-heading'>Dependencies</h2>")
-  $('#readme').append("<ol id='depsList' class='deps'></ol>")
-  $('#readme').append("<h2 id='dev-dependencies' class='npm-hub-heading'>Dev Dependencies</h2>")
-  $('#readme').append("<ol id='devDepsList' class='deps'></ol>")
+  var $template = $('#readme').clone().empty().removeAttr('id');
 
-  var $depsList = $('#depsList')
-  var $devDepsList = $('#devDepsList')
+  var $depsList = $("<ol class='deps markdown-body'>");
+  var $devDepsList = $("<ol class='deps markdown-body'>");
+
+  $template.clone()
+  .append('<h3>Dependencies', $depsList)
+  .appendTo('.repository-content');
+
+  $template.clone()
+  .append('<h3>Dev dependencies', $devDepsList)
+  .appendTo('.repository-content');
 
   function applyStyles () {
     $('.deps').css({
       listStyle: 'none',
-      margin: '10px 0 10px 0'
+      padding: 0
     })
 
     $('.deps > li').css({
-      padding: '10px 0',
+      padding: '10px',
       borderBottom: '1px solid #DDD'
     })
 
-    $('.deps > li:last').css({
+    $('.deps > li:last-child').css({
       borderBottom: 'none'
     })
 
@@ -55,10 +60,6 @@ appAPI.ready(function ($) {
     $('.deps > li > span.count em').css({
       color: '#000',
       fontStyle: 'normal'
-    })
-
-    $('.npm-hub-heading').css({
-      paddingTop: '20px'
     })
 
     $('li.empty').css({
