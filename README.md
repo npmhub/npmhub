@@ -10,4 +10,4 @@ npm-hub was created with [Crossrider](http://crossrider.com/), a platform for au
 
 Here's what npm-hub looks like:
 
-![http://crossrider.com/system/media1s/36212/original/Screen_Shot_2013-07-01_at_8.05.34_AM.png](http://crossrider.com/system/media1s/36212/original/Screen_Shot_2013-07-01_at_8.05.34_AM.png)
+![npm-hub on Chrome](assets/npm-hub-screenshot.png)
