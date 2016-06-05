@@ -89,8 +89,8 @@ appAPI.ready(function ($) {
           var dep = JSON.parse(data)
           $('#dep-' + dep.name).append(dep.description)
 
-          if (dep.repository && dep.repository.url) {
-            $('#dep-' + dep.name).append(" <a href='" + dep.repository.url + "'>(repo)</a>")
+          if (dep.repository) {
+            $('#dep-' + dep.name).append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
           }
           applyStyles()
         })
@@ -116,8 +116,8 @@ appAPI.ready(function ($) {
         appAPI.request.get(depUrl, function (data) {
           var dep = JSON.parse(data)
           $('#devDep-' + dep.name).append(dep.description)
-          if (dep.repository && dep.repository.url) {
-            $('#devDep-' + dep.name).append(" <a href='" + dep.repository.url + "'>(repo)</a>")
+          if (dep.repository) {
+            $('#devDep-' + dep.name).append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
           }
           applyStyles()
         })
