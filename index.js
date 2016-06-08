@@ -43,25 +43,6 @@ appAPI.ready(function ($) {
       borderBottom: 'none'
     })
 
-    $('.deps > li > span').css({
-      display: 'inline-block'
-    })
-
-    $('.deps > li > span.name').css({
-      minWidth: '500px',
-      maxWidth: '600px'
-    })
-
-    $('.deps > li > span.count').css({
-      color: '#999',
-      minWidth: '100px'
-    })
-
-    $('.deps > li > span.count em').css({
-      color: '#000',
-      fontStyle: 'normal'
-    })
-
     $('li.empty').css({
       opacity: '0.6'
     })
