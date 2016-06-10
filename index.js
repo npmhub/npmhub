@@ -21,11 +21,11 @@ appAPI.ready(function ($) {
   var $devDepsList = $("<ol class='deps markdown-body'>");
 
   $template.clone()
-  .append('<h3>Dependencies', $depsList)
+  .append('<h3 id="dependencies">Dependencies', $depsList)
   .appendTo('.repository-content');
 
   $template.clone()
-  .append('<h3>Dev dependencies', $devDepsList)
+  .append('<h3 id="dev-dependencies">Dev dependencies', $devDepsList)
   .appendTo('.repository-content');
 
   $('<style>').appendTo('head').html(
