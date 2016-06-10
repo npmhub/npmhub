@@ -28,26 +28,25 @@ appAPI.ready(function ($) {
   .append('<h3>Dev dependencies', $devDepsList)
   .appendTo('.repository-content');
 
-  function applyStyles () {
-    $('.deps').css({
-      listStyle: 'none',
-      padding: 0
-    })
+  $('<style>').appendTo('head').html(
+    '.deps {' +
+      'list-style: none;' +
+      'padding: 0 !important;' +
+    '}' +
 
-    $('.deps > li').css({
-      padding: '10px',
-      borderBottom: '1px solid #DDD'
-    })
+    '.deps > li {' +
+      'padding: 10px;' +
+      'border-bottom: 1px solid #DDD;' +
+    '}' +
 
-    $('.deps > li:last-child').css({
-      borderBottom: 'none'
-    })
+    '.deps > li:last-child {' +
+      'border-bottom: none;' +
+    '}' +
 
-    $('li.empty').css({
-      opacity: '0.6'
-    })
-
-  }
+    'li.empty {' +
+      'opacity: 0.6;' +
+    '}'
+  );
 
   appAPI.request.get(pkgUrl, function (data) {
     var pkg = JSON.parse(data)
@@ -57,7 +56,6 @@ appAPI.ready(function ($) {
 
     if (pkg.dependencies === undefined) {
       $depsList.append("<li class='empty'>None found in package.json</li>")
-      applyStyles()
     } else {
       var depNames = Object.keys(pkg.dependencies)
 
@@ -74,7 +72,6 @@ appAPI.ready(function ($) {
           if (dep.repository && dep.repository.url) {
             $('#dep-' + dep.name).append(" <a href='" + dep.repository.url + "'>(repo)</a>")
           }
-          applyStyles()
         })
       }
     }
@@ -85,7 +82,6 @@ appAPI.ready(function ($) {
 
     if (pkg.devDependencies === undefined) {
       $devDepsList.append("<li class='empty'>None found in package.json</li>")
-      applyStyles()
     } else {
       var depNames = Object.keys(pkg.devDependencies)
 
@@ -101,7 +97,6 @@ appAPI.ready(function ($) {
           if (dep.repository && dep.repository.url) {
             $('#devDep-' + dep.name).append(" <a href='" + dep.repository.url + "'>(repo)</a>")
           }
-          applyStyles()
         })
       }
     }
