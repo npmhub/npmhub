@@ -32,6 +32,7 @@ appAPI.ready(function ($) {
     '.deps {' +
       'list-style: none;' +
       'padding: 0 !important;' +
+      'font-size: 13px;' +
     '}' +
 
     '.deps > li {' +
