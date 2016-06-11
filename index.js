@@ -21,52 +21,33 @@ appAPI.ready(function ($) {
   var $devDepsList = $("<ol class='deps markdown-body'>");
 
   $template.clone()
-  .append('<h3>Dependencies', $depsList)
+  .append('<h3 id="dependencies">Dependencies', $depsList)
   .appendTo('.repository-content');
 
   $template.clone()
-  .append('<h3>Dev dependencies', $devDepsList)
+  .append('<h3 id="dev-dependencies">Dev dependencies', $devDepsList)
   .appendTo('.repository-content');
 
-  function applyStyles () {
-    $('.deps').css({
-      listStyle: 'none',
-      padding: 0
-    })
+  $('<style>').appendTo('head').html(
+    '.deps {' +
+      'list-style: none;' +
+      'padding: 0 !important;' +
+      'font-size: 13px;' +
+    '}' +
 
-    $('.deps > li').css({
-      padding: '10px',
-      borderBottom: '1px solid #DDD'
-    })
+    '.deps > li {' +
+      'padding: 10px;' +
+      'border-bottom: 1px solid #DDD;' +
+    '}' +
 
-    $('.deps > li:last-child').css({
-      borderBottom: 'none'
-    })
+    '.deps > li:last-child {' +
+      'border-bottom: none;' +
+    '}' +
 
-    $('.deps > li > span').css({
-      display: 'inline-block'
-    })
-
-    $('.deps > li > span.name').css({
-      minWidth: '500px',
-      maxWidth: '600px'
-    })
-
-    $('.deps > li > span.count').css({
-      color: '#999',
-      minWidth: '100px'
-    })
-
-    $('.deps > li > span.count em').css({
-      color: '#000',
-      fontStyle: 'normal'
-    })
-
-    $('li.empty').css({
-      opacity: '0.6'
-    })
-
-  }
+    'li.empty {' +
+      'opacity: 0.6;' +
+    '}'
+  );
 
   appAPI.request.get(pkgUrl, function (data) {
     var pkg = JSON.parse(data)
@@ -76,7 +57,6 @@ appAPI.ready(function ($) {
 
     if (pkg.dependencies === undefined) {
       $depsList.append("<li class='empty'>None found in package.json</li>")
-      applyStyles()
     } else {
       var depNames = Object.keys(pkg.dependencies)
 
@@ -93,7 +73,6 @@ appAPI.ready(function ($) {
           if (dep.repository) {
             $('#dep-' + dep.name).append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
           }
-          applyStyles()
         })
       }
     }
@@ -104,7 +83,6 @@ appAPI.ready(function ($) {
 
     if (pkg.devDependencies === undefined) {
       $devDepsList.append("<li class='empty'>None found in package.json</li>")
-      applyStyles()
     } else {
       var depNames = Object.keys(pkg.devDependencies)
 
@@ -120,7 +98,6 @@ appAPI.ready(function ($) {
           if (dep.repository) {
             $('#devDep-' + dep.name).append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
           }
-          applyStyles()
         })
       }
     }
