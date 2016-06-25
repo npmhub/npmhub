@@ -1,7 +1,4 @@
-appAPI.ready(function ($) {
-  // Are we on github.com?
-  if (!document.location.href.match(/github\.com/)) return
-
+$(function () {
   // Are we on a repo page?
   var pathParts = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/)
   if (!pathParts) return
@@ -12,7 +9,7 @@ appAPI.ready(function ($) {
   // Assemble API URL for fetching raw json from github
   var user = pathParts[1]
   var repo = pathParts[2]
-  var pkgUrl = 'http://github-raw-cors-proxy.herokuapp.com/' + user + '/' + repo + '/blob/master/package.json'
+  var pkgUrl = 'https://github-raw-cors-proxy.herokuapp.com/' + user + '/' + repo + '/blob/master/package.json'
 
   // Set up list containers and headings
   var $template = $('#readme').clone().empty().removeAttr('id');
@@ -28,9 +25,7 @@ appAPI.ready(function ($) {
   .append('<h3 id="dev-dependencies">Dev dependencies', $devDepsList)
   .appendTo('.repository-content');
 
-  appAPI.request.get(pkgUrl, function (data) {
-    var pkg = JSON.parse(data)
-
+  fetch(pkgUrl).then(response => response.json()).then(function (pkg) {
     // Dependencies
     // -------------------------------------------------------------------------------
 
@@ -41,12 +36,11 @@ appAPI.ready(function ($) {
 
       for (var i in depNames) {
         var name = depNames[i]
-        var depUrl = 'http://npm-registry-cors-proxy.herokuapp.com/' + name
+        var depUrl = 'https://npm-registry-cors-proxy.herokuapp.com/' + name
 
         $depsList.append("<li id='dep-" + name + "'><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;&nbsp;</li>')
 
-        appAPI.request.get(depUrl, function (data) {
-          var dep = JSON.parse(data)
+        fetch(depUrl).then(response => response.json()).then(function (dep) {
           $('#dep-' + dep.name).append(dep.description)
 
           if (dep.repository) {
@@ -67,12 +61,11 @@ appAPI.ready(function ($) {
 
       for (var i in depNames) {
         var name = depNames[i]
-        var depUrl = 'http://npm-registry-cors-proxy.herokuapp.com/' + name
+        var depUrl = 'https://npm-registry-cors-proxy.herokuapp.com/' + name
 
         $devDepsList.append("<li id='devDep-" + name + "'><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;&nbsp;</li>')
 
-        appAPI.request.get(depUrl, function (data) {
-          var dep = JSON.parse(data)
+        fetch(depUrl).then(response => response.json()).then(function (dep) {
           $('#devDep-' + dep.name).append(dep.description)
           if (dep.repository) {
             $('#devDep-' + dep.name).append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
