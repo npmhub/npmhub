@@ -26,54 +26,31 @@ $(function () {
   .appendTo('.repository-content');
 
   fetch(pkgUrl).then(response => response.json()).then(function (pkg) {
-    // Dependencies
-    // -------------------------------------------------------------------------------
+    addDependencies(pkg.dependencies, $depsList);
+    addDependencies(pkg.devDependencies, $devDepsList);
+  });
 
-    if (pkg.dependencies === undefined) {
-      $depsList.append("<li class='empty'>None found in package.json</li>")
-    } else {
-      var depNames = Object.keys(pkg.dependencies)
-
-      for (var i in depNames) {
-        var name = depNames[i]
+  function addDependencies(dependencies, $list) {
+    if (dependencies) {
+      var depNames = Object.keys(dependencies).forEach(name => {
+        console.log(name)
         var depUrl = 'https://npm-registry-cors-proxy.herokuapp.com/' + name
 
-        $depsList.append("<li id='dep-" + name + "'><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;&nbsp;</li>')
+        var $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;&nbsp;</li>')
+        $dep.appendTo($list);
 
         fetch(depUrl).then(response => response.json()).then(function (dep) {
-          $('#dep-' + dep.name).append(dep.description)
+          console.log(dep)
+          $dep.append(dep.description)
 
           if (dep.repository) {
-            $('#dep-' + dep.name).append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
+            $dep.append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
           }
         })
-      }
-    }
-
-
-    // Dev Dependencies
-    // -------------------------------------------------------------------------------
-
-    if (pkg.devDependencies === undefined) {
-      $devDepsList.append("<li class='empty'>None found in package.json</li>")
+      });
     } else {
-      var depNames = Object.keys(pkg.devDependencies)
-
-      for (var i in depNames) {
-        var name = depNames[i]
-        var depUrl = 'https://npm-registry-cors-proxy.herokuapp.com/' + name
-
-        $devDepsList.append("<li id='devDep-" + name + "'><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;&nbsp;</li>')
-
-        fetch(depUrl).then(response => response.json()).then(function (dep) {
-          $('#devDep-' + dep.name).append(dep.description)
-          if (dep.repository) {
-            $('#devDep-' + dep.name).append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
-          }
-        })
-      }
+      $list.append("<li class='empty'>None found in package.json</li>");
     }
-
-  })
+  }
 
 })
