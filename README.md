@@ -4,7 +4,7 @@ npm-hub is a browser extension that lets your explore npm dependencies on GitHub
 
 ## Installation
 
-npm-hub was created with [Crossrider](http://crossrider.com/), a platform for authoring and distributing cross-browser extensions. Install it on [Google Chrome](https://chrome.google.com/webstore/detail/npm-hub/kbbbjimdjbjclaebffknlabpogocablj) or [other browsers](http://crossrider.com/install/36212-npm-hub).
+Install it on [Google Chrome](https://chrome.google.com/webstore/detail/npm-hub/kbbbjimdjbjclaebffknlabpogocablj) or [Firefox](http://crossrider.com/install/36212-npm-hub).
 
 ## Design
 
