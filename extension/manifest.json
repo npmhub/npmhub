@@ -1,0 +1,47 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "npm-hub",
+  "version": "1.26.34",
+	"manifest_version":2,
+  
+  "description": "Explore npm dependencies on GitHub repos",
+  "icons": { "16": "icons/icon16.png",
+             "48": "icons/icon48.png",
+            "128": "icons/icon128.png" },
+  
+"background": {
+    "page": "background.html"
+  },
+  
+
+  
+
+  "permissions": ["http://*/*","https://*/*","tabs","cookies","notifications","contextMenus","webNavigation","webRequest","webRequestBlocking","unlimitedStorage","storage"],
+  
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  
+  "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["js/platformVersion.js", "js/lib/consts.js", "js/lib/logging.js", "js/lib/reports.js","js/lib/xhr.js","js/api/cookie.js","js/api/message.js", "js/api/pageAction.js","js/lib/installer.js", "js/lib/app_api.js"],
+      "run_at":"document_start",
+      "all_frames":true
+    }
+  ]
+  
+  
+  ,
+   "web_accessible_resources":[
+    "Settings.json"
+   ]
+}
+
+
+
+
+
+
+
+
+
