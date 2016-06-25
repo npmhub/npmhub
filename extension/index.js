@@ -28,27 +28,6 @@ appAPI.ready(function ($) {
   .append('<h3 id="dev-dependencies">Dev dependencies', $devDepsList)
   .appendTo('.repository-content');
 
-  $('<style>').appendTo('head').html(
-    '.deps {' +
-      'list-style: none;' +
-      'padding: 0 !important;' +
-      'font-size: 13px;' +
-    '}' +
-
-    '.deps > li {' +
-      'padding: 10px;' +
-      'border-bottom: 1px solid #DDD;' +
-    '}' +
-
-    '.deps > li:last-child {' +
-      'border-bottom: none;' +
-    '}' +
-
-    'li.empty {' +
-      'opacity: 0.6;' +
-    '}'
-  );
-
   appAPI.request.get(pkgUrl, function (data) {
     var pkg = JSON.parse(data)
 
