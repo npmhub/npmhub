@@ -23,7 +23,7 @@ $(() => {
   .append('<h3 id="dev-dependencies">Dev dependencies', $devDepsList)
   .appendTo('.repository-content');
 
-  fetch(pkgUrl).then(response => response.json()).then(pkg => {
+  backgroundFetch(pkgUrl).then(pkg => {
     addDependencies(pkg.dependencies, $depsList);
     addDependencies(pkg.devDependencies, $devDepsList);
   });
@@ -36,7 +36,7 @@ $(() => {
         const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;&nbsp;</li>')
         $dep.appendTo($list);
 
-        fetch(depUrl).then(response => response.json()).then(dep => {
+        backgroundFetch(depUrl).then(dep => {
           $dep.append(dep.description)
 
           if (dep.repository) {

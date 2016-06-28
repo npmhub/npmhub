@@ -15,12 +15,18 @@
       "strict_min_version": "45.0"
     }
   },
+  "background": {
+    "scripts": [
+        "background-fetch.js"
+    ]
+  },
   "content_scripts":[
     {
       "matches":[
         "https://github.com/*"
       ],
       "js":[
+        "background-fetch.js",
         "jquery.js",
         "index.js"
       ],
