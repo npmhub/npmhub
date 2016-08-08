@@ -1,6 +1,6 @@
 $(() => {
   // Are we on a repo page?
-  const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/)
+  const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/) || [];
   if (!user) return
 
   // Does the repo have a package.json?
