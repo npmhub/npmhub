@@ -1,0 +1,14 @@
+{
+  "name": "npm-hub",
+  "version": "2.0.0",
+  "description": "",
+  "devDependencies": {
+    "chrome-webstore-upload-cli": "^1.0.0"
+  },
+  "private": true,
+  "author": "zeke",
+  "license": "MIT",
+  "scripts": {
+    "release": "webstore upload --source=extension --auto-publish"
+  }
+}

@@ -1,0 +1,15 @@
+.deps {
+  list-style: none;
+  padding: 0 !important;
+  font-size: 13px;
+}
+.deps > li {
+  padding: 10px;
+  border-bottom: 1px solid #DDD;
+}
+.deps > li:last-child {
+  border-bottom: none;
+}
+li.empty {
+  opacity: 0.6;
+}
