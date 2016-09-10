@@ -7,7 +7,7 @@ $().ready(() => {
   if (!$('.files [title="package.json"]').length) return
 
   // Assemble API URL for fetching raw json from github
-  const depUrl = 'https://registry.npmjs.org/' + name
+  const pkgUrl = 'https://raw.githubusercontent.com/' + user + '/' + repo + '/master/package.json'
 
   // Set up list containers and headings
   const $template = $('#readme').clone().empty().removeAttr('id');
@@ -28,7 +28,7 @@ $().ready(() => {
   .appendTo('.repository-content');
 
   backgroundFetch(pkgUrl).then(pkg => {
-    $depsVisBtn.click({pkg}, viewDepsViz);
+    $depsVisBtn.wrap(`<a href="http://npm.anvaka.com/#/view/2d/${pkg.name}"></a>`);
     addDependencies(pkg.dependencies, $depsList);
     addDependencies(pkg.devDependencies, $devDepsList);
   });
@@ -52,15 +52,5 @@ $().ready(() => {
     } else {
       $list.append("<li class='empty'>None found in package.json</li>");
     }
-  }
-
-  function viewDepsViz(e) {
-    const npmPkgName = e.data.pkg.name;
-    const windowFeatures = "resizable,scrollbars,status";
-
-    var otherWindow = window.open(`http://npm.anvaka.com/#/view/2d/${npmPkgName}`, "npmanvaka", windowFeatures);
-    otherWindow.opener = null;
-    otherWindow.location = url;
-    return false;
   }
 });
