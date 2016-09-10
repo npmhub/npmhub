@@ -7,7 +7,7 @@ $(() => {
   if (!$('.files [title="package.json"]').length) return
 
   // Assemble API URL for fetching raw json from github
-  const pkgUrl = 'https://github-raw-cors-proxy.herokuapp.com/' + user + '/' + repo + '/blob/master/package.json'
+  const pkgUrl = 'https://rawgit.com/' + user + '/' + repo + '/master/package.json'
 
   // Set up list containers and headings
   const $template = $('#readme').clone().empty().removeAttr('id');
