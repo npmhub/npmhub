@@ -7,7 +7,7 @@ $(() => {
   if (!$('.files [title="package.json"]').length) return
 
   // Assemble API URL for fetching raw json from github
-  const pkgUrl = 'https://github-raw-cors-proxy.herokuapp.com/' + user + '/' + repo + '/blob/master/package.json'
+  const pkgUrl = 'https://raw.githubusercontent.com/' + user + '/' + repo + '/master/package.json'
 
   // Set up list containers and headings
   const $template = $('#readme').clone().empty().removeAttr('id');
@@ -31,7 +31,7 @@ $(() => {
   function addDependencies(dependencies, $list) {
     if (dependencies) {
       const depNames = Object.keys(dependencies).forEach(name => {
-        const depUrl = 'https://npm-registry-cors-proxy.herokuapp.com/' + name
+        const depUrl = 'https://registry.npmjs.org/' + name
 
         const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;&nbsp;</li>')
         $dep.appendTo($list);

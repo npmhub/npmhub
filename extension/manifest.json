@@ -20,6 +20,9 @@
         "background-fetch.js"
     ]
   },
+  "permissions": [
+    "https://registry.npmjs.org/"
+  ],
   "content_scripts":[
     {
       "matches":[
