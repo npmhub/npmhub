@@ -1,4 +1,4 @@
-$(() => {
+$().ready(() => {
   // Are we on a repo page?
   const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/) || [];
   if (!user) return
@@ -15,7 +15,11 @@ $(() => {
   const $depsList = $("<ol class='deps markdown-body'>");
   const $devDepsList = $("<ol class='deps markdown-body'>");
 
+  const $depsVisBtn = $("<button class='btn btn-sm viz-btn' type='button'>Dependency tree visualization</button>");
+  $depsVisBtn.attr("style", "float: right; margin: 5px 5px 0 0;");
+
   $template.clone()
+  .append($depsVisBtn)
   .append('<h3 id="dependencies">Dependencies', $depsList)
   .appendTo('.repository-content');
 
@@ -24,6 +28,7 @@ $(() => {
   .appendTo('.repository-content');
 
   backgroundFetch(pkgUrl).then(pkg => {
+    $depsVisBtn.wrap(`<a href="http://npm.anvaka.com/#/view/2d/${pkg.name}"></a>`);
     addDependencies(pkg.dependencies, $depsList);
     addDependencies(pkg.devDependencies, $devDepsList);
   });
@@ -48,5 +53,4 @@ $(() => {
       $list.append("<li class='empty'>None found in package.json</li>");
     }
   }
-
-})
+});
