@@ -42,7 +42,7 @@ $().ready(() => {
       const depUrl = 'https://registry.npmjs.org/' + name
       const version = dependencies[name]
 
-      const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;<strong>' + version + '</strong>&nbsp;</li>')
+      const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;<code><small>' + version + '</small></code>&nbsp;</li>')
       $dep.appendTo($list);
       backgroundFetch(depUrl).then(dep => {
         $dep.append(dep.description)
