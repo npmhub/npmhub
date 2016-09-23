@@ -34,23 +34,23 @@ $().ready(() => {
   });
 
   function addDependencies(dependencies, $list) {
-    if (dependencies) {
-      const depNames = Object.keys(dependencies).forEach(name => {
-        const depUrl = 'https://registry.npmjs.org/' + name
-
-        const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;&nbsp;</li>')
-        $dep.appendTo($list);
-
-        backgroundFetch(depUrl).then(dep => {
-          $dep.append(dep.description)
-
-          if (dep.repository) {
-            $dep.append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
-          }
-        })
-      });
-    } else {
-      $list.append("<li class='empty'>None found in package.json</li>");
+    if (!dependencies) {
+      return $list.append("<li class='empty'>None found in package.json</li>");
     }
+
+    const depNames = Object.keys(dependencies).forEach(name => {
+      const depUrl = 'https://registry.npmjs.org/' + name
+      const version = dependencies[name]
+
+      const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;<strong>' + version + '</strong>&nbsp;</li>')
+      $dep.appendTo($list);
+      backgroundFetch(depUrl).then(dep => {
+        $dep.append(dep.description)
+
+        if (dep.repository) {
+          $dep.append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
+        }
+      })
+    });
   }
 });
