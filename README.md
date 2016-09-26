@@ -4,7 +4,17 @@ npm-hub is a browser extension that lets your explore npm dependencies on GitHub
 
 ## Installation
 
-Install it on [Google Chrome](https://chrome.google.com/webstore/detail/npm-hub/kbbbjimdjbjclaebffknlabpogocablj) or [Firefox](http://crossrider.com/install/36212-npm-hub).
+### Chrome
+
+Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/npm-hub/kbbbjimdjbjclaebffknlabpogocablj)
+
+### Firefox
+
+1. Download [this repo as a zip file](https://github.com/zeke/npm-hub/archive/master.zip)
+2. Extract its contents
+3. Visit `about:debugging#addons` in Firefox
+4. Click on **Load Temporary Add-on**
+5. Select the file `browser/manifest.json`
 
 ## Design
 
