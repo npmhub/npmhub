@@ -1,4 +1,4 @@
-$().ready(() => {
+jQuery(() => {
   // Are we on a repo page?
   const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/) || [];
   if (!user) return
