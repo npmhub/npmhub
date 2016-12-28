@@ -1,6 +1,6 @@
 {
   "name":"npm-hub",
-  "version":"2.0.1",
+  "version":"2.1.0",
   "manifest_version":2,
   "description":"Explore npm dependencies on GitHub repos",
   "author": "Zeke Sikelianos, Federico Brigante",
