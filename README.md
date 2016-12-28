@@ -1,4 +1,4 @@
-# npm-hub [![Version published on Chrome Web Store](https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg)](https://chrome.google.com/webstore/npm-hub/sublimetextarea/kbbbjimdjbjclaebffknlabpogocablj)
+# npm-hub [![Version published on Chrome Web Store](https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg)](https://chrome.google.com/webstore/detail/npm-hub/kbbbjimdjbjclaebffknlabpogocablj)
 
 npm-hub is a browser extension that lets your explore npm dependencies on GitHub repos. When viewing a repository on github.com that has a package.json file, this extension will introspect the dependencies in package.json and display links and description for each dependency, just below the file list.
 
