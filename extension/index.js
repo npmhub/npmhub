@@ -1,8 +1,8 @@
-jQuery(() => {
-  // Are we on a repo page?
-  const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/) || [];
-  if (!user) return
+const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/) || [];
 
+// Are we on a repo page?
+if (user) {
+  
   // Does the repo have a package.json?
   if (!document.querySelector('.files [title="package.json"]')) return
 
@@ -51,4 +51,4 @@ jQuery(() => {
       })
     });
   }
-});
+}
