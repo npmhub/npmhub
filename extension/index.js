@@ -4,7 +4,7 @@ jQuery(() => {
   if (!user) return
 
   // Does the repo have a package.json?
-  if (!$('.files [title="package.json"]').length) return
+  if (!document.querySelector('.files [title="package.json"]')) return
 
   // Assemble API URL for fetching raw json from github
   const pkgUrl = 'https://raw.githubusercontent.com/' + user + '/' + repo + '/master/package.json'
@@ -14,9 +14,7 @@ jQuery(() => {
 
   const $depsList = $("<ol class='deps markdown-body'>");
   const $devDepsList = $("<ol class='deps markdown-body'>");
-
-  const $depsVisBtn = $("<button class='btn btn-sm viz-btn' type='button'>Dependency tree visualization</button>");
-  $depsVisBtn.attr("style", "float: right; margin: 5px 5px 0 0;");
+  const $depsVisBtn = $("<button class='btn btn-sm viz-btn' style='float: right; margin: 5px 5px 0 0;' type='button'>Dependency tree visualization");
 
   $template.clone()
   .append($depsVisBtn)
