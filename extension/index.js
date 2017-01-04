@@ -1,11 +1,8 @@
 const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/) || [];
 
-// Are we on a repo page?
-if (user) {
+// Are we on a repo page that has a package.json?
+if (user && document.querySelector('.files [title="package.json"]')) {
   
-  // Does the repo have a package.json?
-  if (!document.querySelector('.files [title="package.json"]')) return
-
   // Assemble API URL for fetching raw json from github
   const pkgUrl = 'https://raw.githubusercontent.com/' + user + '/' + repo + '/master/package.json'
 
