@@ -27,13 +27,11 @@ jQuery(() => {
   .append('<h3 id="dev-dependencies">Dev dependencies', $devDepsList)
   .appendTo('.repository-content');
 
-  fetch(pkgUrl, { credentials: 'include' }).then(res => {
-    res.text().then(domStr => {
-      const pkg = JSON.parse($(domStr).find('.blob-wrapper').text());
-      $depsVisBtn.wrap(`<a href="http://npm.anvaka.com/#/view/2d/${pkg.name}"></a>`);
-      addDependencies(pkg.dependencies, $depsList);
-      addDependencies(pkg.devDependencies, $devDepsList);
-    });
+  fetch(pkgUrl, { credentials: 'include' }).then(res => res.text()).then(domStr => {
+    const pkg = JSON.parse($(domStr).find('.blob-wrapper').text());
+    $depsVisBtn.wrap(`<a href="http://npm.anvaka.com/#/view/2d/${pkg.name}"></a>`);
+    addDependencies(pkg.dependencies, $depsList);
+    addDependencies(pkg.devDependencies, $devDepsList);
   });
 
   function addDependencies(dependencies, $list) {
