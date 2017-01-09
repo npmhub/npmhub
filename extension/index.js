@@ -4,7 +4,7 @@ const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*
 if (user && document.querySelector('.files [title="package.json"]')) {
   
   // Assemble API URL for fetching raw json from github
-  const pkgUrl = 'https://raw.githubusercontent.com/' + user + '/' + repo + '/master/package.json'
+  const pkgUrl = `https://github.com/${user}/${repo}/blob/master/package.json`;
 
   // Set up list containers and headings
   const $template = $('#readme').clone().empty().removeAttr('id');
@@ -22,7 +22,8 @@ if (user && document.querySelector('.files [title="package.json"]')) {
   .append('<h3 id="dev-dependencies">Dev dependencies', $devDepsList)
   .appendTo('.repository-content');
 
-  backgroundFetch(pkgUrl).then(pkg => {
+  fetch(pkgUrl, { credentials: 'include' }).then(res => res.text()).then(domStr => {
+    const pkg = JSON.parse($(domStr).find('.blob-wrapper').text());
     $depsVisBtn.wrap(`<a href="http://npm.anvaka.com/#/view/2d/${pkg.name}"></a>`);
     addDependencies(pkg.dependencies, $depsList);
     addDependencies(pkg.devDependencies, $devDepsList);
