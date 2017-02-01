@@ -2,7 +2,7 @@ const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*
 
 // Are we on a repo page that has a package.json?
 if (user && document.querySelector('.files [title="package.json"]')) {
-  
+
   // Assemble API URL for fetching raw json from github
   const pkgUrl = `https://github.com/${user}/${repo}/blob/master/package.json`;
 
@@ -36,9 +36,7 @@ if (user && document.querySelector('.files [title="package.json"]')) {
 
     const depNames = Object.keys(dependencies).forEach(name => {
       const depUrl = 'https://registry.npmjs.org/' + name
-      const version = dependencies[name]
-
-      const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;<code><small>' + version + '</small></code>&nbsp;</li>')
+      const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;</li>')
       $dep.appendTo($list);
       backgroundFetch(depUrl).then(dep => {
         $dep.append(dep.description)
