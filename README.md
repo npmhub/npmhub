@@ -14,7 +14,7 @@ Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail
 2. Extract its contents
 3. Visit `about:debugging#addons` in Firefox
 4. Click on **Load Temporary Add-on**
-5. Select the file `browser/manifest.json`
+5. Select the file `extension/manifest.json`
 
 ## Design
 
