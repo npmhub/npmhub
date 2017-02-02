@@ -20,4 +20,4 @@ Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail
 
 Here's what npmhub looks like:
 
-![npmhub on Chrome](assets/npmhub-screenshot.png)
+![npmhub on Chrome](assets/npm-hub-screenshot.png)
