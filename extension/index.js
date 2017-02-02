@@ -1,10 +1,8 @@
-const [, user, repo] = document.location.pathname.match(/\/+([^/]*)\/([^(/|\?)]*)/) || [];
-
 // Are we on a repo page that has a package.json?
-if (user && document.querySelector('.files [title="package.json"]')) {
+const packageLink = document.querySelector('.files [title="package.json"]');
 
-  // Assemble API URL for fetching raw json from github
-  const pkgUrl = `https://github.com/${user}/${repo}/blob/master/package.json`;
+if (packageLink) {
+  const pkgUrl = packageLink.href;
 
   // Set up list containers and headings
   const $template = $('#readme').clone().empty().removeAttr('id');
