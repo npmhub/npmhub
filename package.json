@@ -1,14 +1,16 @@
 {
   "name": "npmhub",
-  "version": "2.0.1",
+  "version": "0.0.0",
   "description": "",
   "devDependencies": {
-    "chrome-webstore-upload-cli": "^1.0.0"
+    "chrome-webstore-upload-cli": "^1.0.0",
+    "dot-json": "^1.0.3"
   },
   "private": true,
   "author": "zeke",
   "license": "MIT",
   "scripts": {
-    "release": "webstore upload --source=extension --auto-publish"
+    "release": "webstore upload --source=extension --auto-publish",
+    "version-from-git-tag": "dot-json extension/manifest.json version $(git describe --abbrev=0 --tags | sed s/v//)"
   }
 }
