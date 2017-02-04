@@ -28,11 +28,11 @@ if (packageLink) {
   });
 
   function addDependencies(dependencies, $list) {
-    if (!dependencies) {
+    if (!dependencies || !Object.keys(dependencies).length) {
       return $list.append("<li class='empty'>None found in package.json</li>");
     }
 
-    const depNames = Object.keys(dependencies).forEach(name => {
+    Object.keys(dependencies).forEach(name => {
       const depUrl = 'https://registry.npmjs.org/' + name
       const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;</li>')
       $dep.appendTo($list);
