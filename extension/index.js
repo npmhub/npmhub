@@ -34,14 +34,10 @@ if (packageLink) {
 
     Object.keys(dependencies).forEach(name => {
       const depUrl = 'https://registry.npmjs.org/' + name
-      const $dep = $("<li><a href='https://npmjs.org/package/" + name + "'>" + name + '</a>&nbsp;</li>')
+      const $dep = $("<li><a href='http://ghub.io/" + name + "'>" + name + '</a>&nbsp;</li>')
       $dep.appendTo($list);
       backgroundFetch(depUrl).then(dep => {
         $dep.append(dep.description)
-
-        if (dep.repository) {
-          $dep.append(" <a href='http://ghub.io/" + dep.name + "'>(repo)</a>")
-        }
       })
     });
   }
