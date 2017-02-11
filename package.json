@@ -11,6 +11,6 @@
   "license": "MIT",
   "scripts": {
     "release": "webstore upload --source=extension --auto-publish",
-    "version-from-git-tag": "dot-json extension/manifest.json version $(git describe --abbrev=0 --tags | sed s/v//)"
+    "update-version": "dot-json extension/manifest.json version $(date +%Y.%m.%d.%H.%M)"
   }
 }
