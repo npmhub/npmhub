@@ -5,7 +5,4 @@ env:
   - EXTENSION_ID=kbbbjimdjbjclaebffknlabpogocablj
 deploy:
   provider: script
-  script: npm run version-from-git-tag; npm run release
-  on:
-    branch: master
-    tags: true
+  script: npm run update-version; npm run release
