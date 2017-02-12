@@ -5,4 +5,7 @@ env:
   - EXTENSION_ID=kbbbjimdjbjclaebffknlabpogocablj
 deploy:
   provider: script
+  skip_cleanup: true
   script: npm run update-version; npm run release
+  on:
+      branch: master
