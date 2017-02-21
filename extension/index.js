@@ -1,3 +1,13 @@
+// Escape HTML
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 // Are we on a GitLab instance ?
 const isGitLab = !!document.querySelector('.navbar-gitlab');
 // Are we on a repo page that has a package.json?
@@ -27,7 +37,7 @@ if (packageLink) {
 
   fetch(pkgUrl, { credentials: 'include' }).then(res => res.text()).then(domStr => {
     const pkg = JSON.parse($(domStr).find('.blob-wrapper, .blob-content').text());
-    $depsVisBtn.wrap(`<a href="http://npm.anvaka.com/#/view/2d/${pkg.name}"></a>`);
+    $depsVisBtn.wrap(`<a href="http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}"></a>`);
     addDependencies(pkg.dependencies, $depsList);
     addDependencies(pkg.devDependencies, $devDepsList);
   });
@@ -39,7 +49,7 @@ if (packageLink) {
 
     Object.keys(dependencies).forEach(name => {
       const depUrl = 'https://registry.npmjs.org/' + name
-      const $dep = $("<li><a href='http://ghub.io/" + name + "'>" + name + '</a>&nbsp;</li>')
+      const $dep = $(`<li><a href='http://ghub.io/${esc(name)}>${esc(name)}</a>&nbsp;</li>`)
       $dep.appendTo($list);
       backgroundFetch(depUrl).then(dep => {
         $dep.append(dep.description)
