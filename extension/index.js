@@ -49,7 +49,7 @@ if (packageLink) {
 
     Object.keys(dependencies).forEach(name => {
       const depUrl = 'https://registry.npmjs.org/' + name
-      const $dep = $(`<li><a href='http://ghub.io/${esc(name)}>${esc(name)}</a>&nbsp;</li>`)
+      const $dep = $(`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`)
       $dep.appendTo($list);
       backgroundFetch(depUrl).then(dep => {
         $dep.append(dep.description)
