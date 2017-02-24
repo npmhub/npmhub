@@ -21,3 +21,8 @@ Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail
 Here's what npmhub looks like:
 
 ![npmhub on Chrome](assets/npm-hub-screenshot.png)
+
+## See Also
+
+- [packagehub](https://github.com/BrainMaestro/packagehub) - an extension for displaying dependencies for different package managers on GitHub.
+- [ghub.io](http://ghub.io) - jump straight to the GitHub repo of an npm package, e.g. [ghub.io/express](http://ghub.io/express).
