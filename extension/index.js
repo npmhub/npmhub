@@ -44,7 +44,7 @@ if (packageLink) {
 
   function addDependencies(dependencies, $list) {
     if (!dependencies || !Object.keys(dependencies).length) {
-      return $list.append("<li class='empty'>None found in package.json</li>");
+      return $list.append("<li class='empty'>No dependencies! 🎉</li>");
     }
 
     Object.keys(dependencies).forEach(name => {
