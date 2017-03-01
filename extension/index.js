@@ -21,7 +21,7 @@ if (packageLink) {
 
   const $depsList = $("<ol class='deps markdown-body'>");
   const $devDepsList = $("<ol class='deps markdown-body'>");
-  const $depsVisBtn = $("<button class='btn btn-sm viz-btn' style='float: right; margin: 5px 5px 0 0;' type='button'>Dependency tree visualization");
+  const $depsVisBtn = $("<a class='btn btn-sm' style='float: right; margin: 5px'>Dependency tree visualization</a>");
 
   const dependenciesHeader    = isGitLab ? '<div id="dependencies" class="file-title"><strong>Dependencies'         : '<h3 id="dependencies">Dependencies';
   const devDependenciesHeader = isGitLab ? '<div id="dev-dependencies" class="file-title"><strong>Dev dependencies' : '<h3 id="dev-dependencies">Dev dependencies';
@@ -37,7 +37,7 @@ if (packageLink) {
 
   fetch(pkgUrl, { credentials: 'include' }).then(res => res.text()).then(domStr => {
     const pkg = JSON.parse($(domStr).find('.blob-wrapper, .blob-content').text());
-    $depsVisBtn.wrap(`<a href="http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}"></a>`);
+    $depsVisBtn.attr('href', `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`);
     addDependencies(pkg.dependencies, $depsList);
     addDependencies(pkg.devDependencies, $devDepsList);
   });
