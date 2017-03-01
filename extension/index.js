@@ -37,7 +37,11 @@ if (packageLink) {
 
   fetch(pkgUrl, { credentials: 'include' }).then(res => res.text()).then(domStr => {
     const pkg = JSON.parse($(domStr).find('.blob-wrapper, .blob-content').text());
-    $depsVisBtn.attr('href', `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`);
+    if (pkg.private) {
+      $depsVisBtn.remove();
+    } else {
+      $depsVisBtn.attr('href', `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`);
+    }
     addDependencies(pkg.dependencies, $depsList);
     addDependencies(pkg.devDependencies, $devDepsList);
   });
