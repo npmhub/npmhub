@@ -39,11 +39,15 @@ if (packageLink) {
   .appendTo('.repository-content, .tree-content-holder');
 
   fetch(pkgUrl, {credentials: 'include'}).then(res => res.text()).then(domStr => {
-    const pkg = JSON.parse($(domStr).find('.blob-wrapper, .blob-content').text());
-    addDependencies(pkg.dependencies, $depsList);
-    addDependencies(pkg.devDependencies, $devDepsList);
+    const json = $(domStr).find('.blob-wrapper, .blob-content').text();
+    const pkg = JSON.parse(json);
+    const dependencies = Object.keys(pkg.dependencies || {});
+    const devDependencies = Object.keys(pkg.devDependencies || {});
 
-    if (!pkg.private) {
+    addDependencies(dependencies, $depsList);
+    addDependencies(devDependencies, $devDepsList);
+
+    if (dependencies.length && !pkg.private) {
       $('<a class="btn btn-sm">')
       .text('Dependency tree visualization')
       .attr('href', `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`)
@@ -56,11 +60,11 @@ if (packageLink) {
   });
 
   function addDependencies(dependencies, $list) {
-    if (!dependencies || !Object.keys(dependencies).length) {
+    if (!dependencies.length) {
       return $list.append('<li class="empty">No dependencies! 🎉</li>');
     }
 
-    Object.keys(dependencies).forEach(name => {
+    dependencies.forEach(name => {
       const depUrl = 'https://registry.npmjs.org/' + name;
       const $dep = $(`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`);
       $dep.appendTo($list);
