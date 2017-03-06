@@ -17,7 +17,6 @@ if (packageLink) {
   // Set up list containers and headings
   const $template = $('#readme, .readme-holder').clone().empty().removeAttr('id');
   const $dependencies = createContainer($template, 'Dependencies');
-  const $devDependencies = createContainer($template, 'Dev Dependencies');
 
   // Fetch list of dependencies
   fetch(packageLink.href, {credentials: 'include'}).then(res => res.text()).then(generateLists);
@@ -29,7 +28,11 @@ if (packageLink) {
     const devDependencies = Object.keys(pkg.devDependencies || {});
 
     addDependencies($dependencies, dependencies);
-    addDependencies($devDependencies, devDependencies);
+
+    // Don't show dev dependencies if there are absolutely no dependencies
+    if (dependencies.length || devDependencies.length) {
+      addDependencies(createContainer($template, 'Dev Dependencies'), devDependencies);
+    }
 
     if (dependencies.length && !pkg.private) {
       $('<a class="btn btn-sm">')
