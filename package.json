@@ -11,6 +11,6 @@
   "license": "MIT",
   "scripts": {
     "release": "webstore upload --source=extension --auto-publish",
-    "update-version": "dot-json extension/manifest.json version $(date +%Y.%-m.%d.%-H%M)"
+    "update-version": "dot-json extension/manifest.json version $(date -u +%Y.%-m.%-d.%-H%M)"
   }
 }
