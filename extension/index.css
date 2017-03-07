@@ -13,3 +13,13 @@
 li.empty {
   opacity: 0.6;
 }
+.deps:empty:before {
+	content: "loading";
+	padding: 10px;
+	animation: npmhub-pulse 1s infinite;
+}
+@keyframes npmhub-pulse {
+	50% {
+		opacity : 0.5;
+	}
+}
