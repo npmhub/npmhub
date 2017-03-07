@@ -19,8 +19,7 @@ if (location.protocol === 'chrome-extension:' || location.protocol === 'moz-exte
 	});
 } else {
 	// setup in content script
-	window.backgroundFetch = function () {
-		const args = [...arguments];
+	window.backgroundFetch = function (...args) {
 		return new Promise((resolve, reject) => {
 			chrome.runtime.sendMessage({
 				action: 'fetch',
