@@ -13,6 +13,10 @@
 li.empty {
   opacity: 0.6;
 }
+.npmhub-anvaka {
+	float: right;
+	margin: 5px;
+}
 .deps:empty:before {
 	content: "loading";
 	padding: 10px;

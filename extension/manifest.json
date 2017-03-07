@@ -31,7 +31,6 @@
       ],
       "js": [
         "background-fetch.js",
-        "jquery.js",
         "index.js"
       ],
       "css": [

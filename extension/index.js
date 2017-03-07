@@ -8,69 +8,75 @@ function esc(str) {
     .replace(/>/g, '&gt;');
 }
 
-// Are we on a GitLab instance ?
+// Get DOM node from HTML
+function html(html) {
+  if (html.raw) {
+    // Shortcut for html`text` instead of html(`text`)
+    html = String.raw(...arguments);
+  }
+
+  const fragment = document.createRange().createContextualFragment(html.trim());
+  if (fragment.firstChild === fragment.lastChild) {
+    return fragment.firstChild;
+  }
+  return fragment;
+}
+
 const isGitLab = document.querySelector('.navbar-gitlab');
-// Are we on a repo page that has a package.json?
 const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
 
 if (packageLink) {
-  // Set up list containers and headings
-  const $template = $('#readme, .readme-holder').clone().empty().removeAttr('id');
-  const $dependencies = createContainer($template, 'Dependencies');
+  const boxTemplate = document.querySelector('#readme, .readme-holder');
+  const dependenciesBox = createBox(boxTemplate, 'Dependencies');
 
-  // Fetch list of dependencies
   fetch(packageLink.href, {credentials: 'include'}).then(res => res.text()).then(generateLists);
 
   function generateLists(domStr) {
-    const json = $(domStr).find('.blob-wrapper, .blob-content').text();
+    const json = html(domStr).querySelector('.blob-wrapper, .blob-content').textContent;
     const pkg = JSON.parse(json);
     const dependencies = Object.keys(pkg.dependencies || {});
     const devDependencies = Object.keys(pkg.devDependencies || {});
 
-    addDependencies($dependencies, dependencies);
+    addDependencies(dependenciesBox, dependencies);
 
     // Don't show dev dependencies if there are absolutely no dependencies
     if (dependencies.length || devDependencies.length) {
-      addDependencies(createContainer($template, 'Dev Dependencies'), devDependencies);
+      addDependencies(createBox(boxTemplate, 'Dev Dependencies'), devDependencies);
     }
 
     if (dependencies.length && !pkg.private) {
-      $('<a class="btn btn-sm">')
-      .text('Dependency tree visualization')
-      .attr('href', `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`)
-      .css({
-        float: 'right',
-        margin: 5
-      })
-      .prependTo($dependencies);
+      const link = html`<a class="npmhub-anvaka btn btn-sm">Dependency tree visualization`;
+      link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
+      dependenciesBox.appendChild(link);
     }
   }
 
-  function createContainer($template, title) {
-    // Create header
-    const dependenciesHeader = isGitLab ?
-      `<div class="file-title"><strong>${title}` :
-      `<h3>${title}`;
+  function createBox(boxTemplate, title) {
+    const containerEl = boxTemplate.cloneNode();
+    containerEl.removeAttribute('id');
+    containerEl.appendChild(isGitLab ?
+      html`<div class="file-title"><strong>${title}` :
+      html`<h3>${title}`
+    );
+    containerEl.appendChild(html`<ol class="deps markdown-body">`);
 
-    // Merge all and add to page
-    return $template.clone()
-    .append(dependenciesHeader, '<ol class="deps markdown-body">')
-    .appendTo('.repository-content, .tree-content-holder');
+    document.querySelector('.repository-content, .tree-content-holder').appendChild(containerEl);
+    return containerEl;
   }
 
-  function addDependencies($container, list) {
-    const $list = $container.find('.deps');
+  function addDependencies(containerEl, list) {
+    const listEl = containerEl.querySelector('.deps');
     if (list.length) {
       list.forEach(name => {
         const depUrl = 'https://registry.npmjs.org/' + name;
-        const $dep = $(`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`);
-        $dep.appendTo($list);
+        const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
+        listEl.appendChild(depEl);
         backgroundFetch(depUrl).then(dep => {
-          $dep.append(dep.description);
+          depEl.appendChild(html(dep.description));
         });
       });
     } else {
-      $list.append('<li class="empty">No dependencies! 🎉</li>');
+      listEl.appendChild(html`<li class="empty">No dependencies! 🎉</li>`);
     }
   }
 }
