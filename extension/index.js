@@ -13,16 +13,34 @@ const isGitLab = document.querySelector('.navbar-gitlab');
 // Are we on a repo page that has a package.json?
 const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
 
+function convertLink(href)
+{
+  let url = new URL(href);
+
+  if (url.host === "gitlab.com")
+  {
+    url.pathname = url.pathname.replace("/blob/", "/raw/");
+  }
+  else if (url.host === "github.com")
+  {
+    url.pathname = url.pathname.replace("/blob/", "/");
+    url.host = "raw.githubusercontent.com";
+  }
+
+  return url.href;
+}
+
 if (packageLink) {
   // Set up list containers and headings
   const $template = $('#readme, .readme-holder').clone().empty().removeAttr('id');
   const $dependencies = createContainer($template, 'Dependencies');
 
-  // Fetch list of dependencies
-  fetch(packageLink.href, {credentials: 'include'}).then(res => res.text()).then(generateLists);
+  const packageJson = convertLink(packageLink.href);
 
-  function generateLists(domStr) {
-    const json = $(domStr).find('.blob-wrapper, .blob-content').text();
+  // Fetch list of dependencies
+  fetch(packageJson).then(res => res.text()).then(generateLists);
+
+  function generateLists(json) {
     const pkg = JSON.parse(json);
     const dependencies = Object.keys(pkg.dependencies || {});
     const devDependencies = Object.keys(pkg.devDependencies || {});
