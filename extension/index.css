@@ -14,16 +14,16 @@ li.empty {
   opacity: 0.6;
 }
 .npmhub-anvaka {
-	float: right;
-	margin: 5px;
+  float: right;
+  margin: 5px;
 }
 .deps:empty:before {
-	content: "loading";
-	padding: 10px;
-	animation: npmhub-pulse 1s infinite;
+  content: "loading";
+  padding: 10px;
+  animation: npmhub-pulse 1s infinite;
 }
 @keyframes npmhub-pulse {
-	50% {
-		opacity : 0.5;
-	}
+  50% {
+    opacity : 0.5;
+  }
 }
