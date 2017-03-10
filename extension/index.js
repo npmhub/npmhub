@@ -22,14 +22,9 @@ function html(html) {
   return fragment;
 }
 
-function init() {
+async function init() {
   const dependenciesBox = createBox('Dependencies');
-  fetch(packageLink.href, {credentials: 'include'})
-  .then(res => res.text())
-  .then(domStr => generateLists(domStr, dependenciesBox));
-}
-
-function generateLists(domStr, dependenciesBox) {
+  const domStr = await fetch(packageLink.href, {credentials: 'include'}).then(res => res.text())
   const json = html(domStr).querySelector('.blob-wrapper, .blob-content').textContent;
   const pkg = JSON.parse(json);
 
@@ -68,13 +63,12 @@ function createBox(title) {
 function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.deps');
   if (list.length) {
-    list.forEach(name => {
+    list.forEach(async name => {
       const depUrl = 'https://registry.npmjs.org/' + name;
       const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
       listEl.appendChild(depEl);
-      backgroundFetch(depUrl).then(dep => {
-        depEl.appendChild(html(dep.description));
-      });
+      const dep = await window.backgroundFetch(depUrl);
+      depEl.appendChild(html(dep.description));
     });
   } else {
     listEl.appendChild(html`<li class="empty">No dependencies! 🎉</li>`);

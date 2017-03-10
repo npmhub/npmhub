@@ -12,7 +12,7 @@
   "applications": {
     "gecko": {
       "id": "npm-hub@sikelianos.com",
-      "strict_min_version": "45.0"
+      "strict_min_version": "52.0"
     }
   },
   "background": {
