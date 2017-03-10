@@ -64,7 +64,7 @@ function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.deps');
   if (list.length) {
     list.forEach(async name => {
-      const depUrl = 'https://registry.npmjs.org/' + name;
+      const depUrl = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
       const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
       listEl.appendChild(depEl);
       const dep = await window.backgroundFetch(depUrl);
