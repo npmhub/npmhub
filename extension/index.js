@@ -68,7 +68,7 @@ function addDependencies(containerEl, list) {
       const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
       listEl.appendChild(depEl);
       const dep = await window.backgroundFetch(depUrl);
-      depEl.appendChild(html(dep.description));
+      depEl.appendChild(html(esc(dep.description)));
     });
   } else {
     listEl.appendChild(html`<li class="empty">No dependencies! 🎉</li>`);
