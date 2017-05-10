@@ -43,6 +43,12 @@ async function init() {
     link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
     dependenciesBox.insertBefore(link, dependenciesBox.firstChild);
   }
+  
+  if (!pkg.private) {
+    const link = html`<a class="npmhub-anvaka btn btn-sm">Open on npmjs.com`;
+    link.href = `https://www.npmjs.com/package/${esc(pkg.name)}`;
+    dependenciesBox.insertBefore(link, dependenciesBox.firstChild);
+  }
 }
 
 function createBox(title) {
