@@ -39,7 +39,7 @@ async function init() {
   }
 
   if (dependencies.length && !pkg.private) {
-    const link = html`<a class="npmhub-anvaka btn btn-sm">Dependency tree visualization`;
+    const link = html`<a class="npmhub-anvaka btn btn-sm">Visualize full tree`;
     link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
     dependenciesBox.insertBefore(link, dependenciesBox.firstChild);
   }
