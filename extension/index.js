@@ -48,8 +48,8 @@ async function init() {
 function createBox(title) {
   const isGitLab = document.querySelector('.navbar-gitlab');
   const boxTemplate = document.querySelector('#readme, .readme-holder');
-  const containerEl = boxTemplate.cloneNode();
-  containerEl.removeAttribute('id');
+  const containerEl = document.createElement(boxTemplate.tagName);
+  containerEl.classList = boxTemplate.classList;
   containerEl.appendChild(isGitLab ?
     html`<div class="file-title"><strong>${title}` :
     html`<h3>${title}`
