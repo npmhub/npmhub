@@ -14,7 +14,10 @@
 li.empty {
   opacity: 0.6;
 }
-.npmhub-anvaka {
+.npmhub-header {
+  float: right;
+}
+.npmhub-header .btn {
   float: right;
   margin: 5px;
 }

@@ -22,6 +22,10 @@ function html(html) {
   return fragment;
 }
 
+function getPkgUrl(name) {
+  return 'https://registry.npmjs.org/' + name.replace('/', '%2F');
+}
+
 async function init() {
   const dependenciesBox = createBox('Dependencies');
   const domStr = await fetch(packageLink.href, {credentials: 'include'}).then(res => res.text())
@@ -38,16 +42,19 @@ async function init() {
     addDependencies(createBox('Dev Dependencies'), devDependencies);
   }
 
-  if (dependencies.length && !pkg.private) {
-    const link = html`<a class="npmhub-anvaka btn btn-sm">Visualize full tree`;
-    link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
-    dependenciesBox.insertBefore(link, dependenciesBox.firstChild);
-  }
-  
   if (!pkg.private) {
-    const link = html`<a class="npmhub-anvaka btn btn-sm">Open on npmjs.com`;
-    link.href = `https://www.npmjs.com/package/${esc(pkg.name)}`;
-    dependenciesBox.insertBefore(link, dependenciesBox.firstChild);
+    const realPkg = await window.backgroundFetch(getPkgUrl(pkg.name));
+    if (realPkg.name) { // if 404, realPkg === {}
+      const link = html`<a class="btn btn-sm">Open on npmjs.com`;
+      link.href = `https://www.npmjs.com/package/${esc(pkg.name)}`;
+      dependenciesBox.firstChild.appendChild(link);
+
+      if (dependencies.length) {
+        const link = html`<a class="btn btn-sm">Visualize full tree`;
+        link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
+        dependenciesBox.firstChild.appendChild(link);
+      }
+    }
   }
 }
 
@@ -56,6 +63,7 @@ function createBox(title) {
   const boxTemplate = document.querySelector('#readme, .readme-holder');
   const containerEl = document.createElement(boxTemplate.tagName);
   containerEl.classList = boxTemplate.classList;
+  containerEl.appendChild(html`<div class="npmhub-header">`);
   containerEl.appendChild(isGitLab ?
     html`<div class="file-title"><strong>${title}` :
     html`<h3>${title}`
@@ -70,10 +78,9 @@ function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.deps');
   if (list.length) {
     list.forEach(async name => {
-      const depUrl = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
       const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
       listEl.appendChild(depEl);
-      const dep = await window.backgroundFetch(depUrl);
+      const dep = await window.backgroundFetch(getPkgUrl(name));
       depEl.appendChild(html(esc(dep.description)));
     });
   } else {
