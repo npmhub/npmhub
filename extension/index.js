@@ -56,7 +56,7 @@ function createBox(title) {
   );
   containerEl.appendChild(html`<ol class="deps markdown-body">`);
 
-  document.querySelector('.repository-content, .tree-content-holder').appendChild(containerEl);
+  boxTemplate.parentNode.appendChild(containerEl);
   return containerEl;
 }
 
