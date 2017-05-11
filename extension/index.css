@@ -20,6 +20,7 @@ li.empty {
 .npmhub-header .btn {
   float: right;
   margin: 5px;
+  margin-left: 0;
 }
 .deps:empty:before {
   display: block;
