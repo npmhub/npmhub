@@ -1,6 +1,7 @@
 .deps {
   list-style: none;
   padding: 0 !important;
+  margin: 0 !important; /* gitlab */
   font-size: 13px;
 }
 .deps > li {
@@ -18,6 +19,7 @@ li.empty {
   margin: 5px;
 }
 .deps:empty:before {
+  display: block;
   content: "loading";
   padding: 10px;
   animation: npmhub-pulse 1s infinite;
