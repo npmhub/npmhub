@@ -18,7 +18,8 @@
   "background": {
     "scripts": [
       "background-fetch.js"
-    ]
+    ],
+    "persistent": false
   },
   "permissions": [
     "https://registry.npmjs.org/"
