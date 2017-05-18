@@ -1,8 +1,10 @@
-# npmhub [![Version on Chrome Web Store][badge-cws]][link-cws] [![Travis autodeployment][badge-travis]][link-travis]
+# npmhub [![Chrome version][badge-cws]][link-cws] [![Firefox version][badge-amo]][link-amo] [![Autodeployment][badge-travis]][link-travis]
 
   [badge-cws]: https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg
+  [badge-amo]: https://img.shields.io/amo/v/npm-hub.svg
   [badge-travis]: https://img.shields.io/travis/npmhub/npmhub/master.svg?label=autodeployment
-  [link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj
+  [link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj "Version published on Chrome Web Store"
+  [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ "Version published on Mozilla Add-ons"
   [link-travis]: https://travis-ci.org/npmhub/npmhub
 
 npmhub is a browser extension that lets you explore npm dependencies on GitHub and GitLab repos. When viewing a repository's file list containing a `package.json`, this extension will display links and descriptions for each dependency at the bottom of the page.
