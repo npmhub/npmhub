@@ -9,17 +9,9 @@ npmhub is a browser extension that lets you explore npm dependencies on GitHub a
 
 ## Installation
 
-### Chrome
-
-Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj)
-
-### Firefox
-
-1. Download [this repo as a zip file](https://github.com/npmhub/npmhub/archive/master.zip)
-2. Extract its contents
-3. Visit `about:debugging#addons` in Firefox
-4. Click on **Load Temporary Add-on**
-5. Select the file `extension/manifest.json`
+  + [**Chrome** extension](https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj)
+  + [**Firefox** add-on](https://addons.mozilla.org/en-US/firefox/addon/npm-hub/)
+  + Opera - You can install the Chrome extension by installing [this Opera extension](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) first.
 
 ## Design
 
