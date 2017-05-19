@@ -8,6 +8,6 @@ env:
 deploy:
   provider: script
   skip_cleanup: true
-  script: npm run update-version; npm run release
+  script: npm run update-version; npm run release-cws; npm run release-amo
   on:
       branch: master

@@ -4,13 +4,15 @@
   "description": "",
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.0.0",
-    "dot-json": "^1.0.3"
+    "dot-json": "^1.0.3",
+    "web-ext": "^1.9.1"
   },
   "private": true,
   "author": "zeke",
   "license": "MIT",
   "scripts": {
-    "release": "webstore upload --source=extension --auto-publish",
+    "release-amo": "OK='Your add-on has been submitted for review.'; web-ext sign -s extension | sed -n \"s/\\($OK\\).*$/\\1/;1,/$OK/p\" | perl -pe 'BEGIN { $s=1 } END { exit $s } $s=0 if /'\"$OK\"'/;'",
+    "release-cws": "webstore upload --source=extension --auto-publish",
     "update-version": "dot-json extension/manifest.json version $(date -u +%Y.%-m.%-d.%-H%M)"
   }
 }
