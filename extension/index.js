@@ -43,18 +43,22 @@ async function init() {
   }
 
   if (!pkg.private) {
-    const realPkg = await window.backgroundFetch(getPkgUrl(pkg.name));
-    if (realPkg.name) { // if 404, realPkg === {}
-      const link = html`<a class="btn btn-sm">Open on npmjs.com`;
-      link.href = `https://www.npmjs.com/package/${esc(pkg.name)}`;
-      dependenciesBox.firstChild.appendChild(link);
-
-      if (dependencies.length) {
-        const link = html`<a class="btn btn-sm">Visualize full tree`;
-        link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
+    window.backgroundFetch(getPkgUrl(pkg.name))
+    .then(realPkg => {
+      if (realPkg.name) { // if 404, realPkg === {}
+        const link = html`<a class="btn btn-sm">Open on npmjs.com`;
+        link.href = `https://www.npmjs.com/package/${esc(pkg.name)}`;
         dependenciesBox.firstChild.appendChild(link);
+
+        if (dependencies.length) {
+          const link = html`<a class="btn btn-sm">Visualize full tree`;
+          link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
+          dependenciesBox.firstChild.appendChild(link);
+        }
       }
-    }
+    }, err => {
+      console.warn('npmhub: there was an error while pinging the current package on npmjs.org', err);
+    });
   }
 }
 
