@@ -6,7 +6,7 @@
 // Use in content_script as:
 // backgroundFetch(url).then(doSomething)
 
-if (location.protocol === 'chrome-extension:' || location.protocol === 'moz-extension:') {
+if (chrome.runtime.getBackgroundPage) {
 	// setup in background page
 	chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		if (message.action === 'fetch') {
