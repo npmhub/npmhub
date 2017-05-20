@@ -25,7 +25,7 @@ if (chrome.runtime.getBackgroundPage) {
         action: 'fetch',
         arguments: args
       }, response => {
-        if (response.startsWith('Error')) {
+        if (String(response).startsWith('Error')) {
           reject(new Error(response.replace(/Error:? ?/, '')));
         } else {
           resolve(response);
