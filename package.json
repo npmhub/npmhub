@@ -12,7 +12,7 @@
   "author": "zeke",
   "license": "MIT",
   "scripts": {
-    "test": "xo && web-ext lint",
+    "test": "xo",
     "release-amo": "OK='Your add-on has been submitted for review.'; web-ext sign -s extension | sed -n \"s/\\($OK\\).*$/\\1/;1,/$OK/p\" | perl -pe 'BEGIN { $s=1 } END { exit $s } $s=0 if /'\"$OK\"'/;'",
     "release-cws": "webstore upload --source=extension --auto-publish",
     "update-version": "dot-json extension/manifest.json version $(date -u +%Y.%-m.%-d.%-H%M)"
