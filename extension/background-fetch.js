@@ -7,30 +7,30 @@
 // backgroundFetch(url).then(doSomething)
 
 if (chrome.runtime.getBackgroundPage) {
-	// setup in background page
-	chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-		if (message.action === 'fetch') {
-			fetch(...message.arguments)
-			.then(response => response.json())
-			.then(sendResponse)
-			.catch(err => sendResponse(String(err)));
-		}
-		return true; // tell browser to await response
-	});
+  // Setup in background page
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === 'fetch') {
+      fetch(...message.arguments)
+      .then(response => response.json())
+      .then(sendResponse)
+      .catch(err => sendResponse(String(err)));
+    }
+    return true; // Tell browser to await response
+  });
 } else {
-	// setup in content script
-	window.backgroundFetch = function (...args) {
-		return new Promise((resolve, reject) => {
-			chrome.runtime.sendMessage({
-				action: 'fetch',
-				arguments: args
-			}, response => {
-				if (/^Error/.test(response)) {
-					reject(new Error(response.replace(/Error:? ?/, '')));
-				} else {
-					resolve(response);
-				}
-			});
-		});
-	};
+  // Setup in content script
+  window.backgroundFetch = function (...args) {
+    return new Promise((resolve, reject) => {
+      chrome.runtime.sendMessage({
+        action: 'fetch',
+        arguments: args
+      }, response => {
+        if (response.startsWith('Error')) {
+          reject(new Error(response.replace(/Error:? ?/, '')));
+        } else {
+          resolve(response);
+        }
+      });
+    });
+  };
 }
