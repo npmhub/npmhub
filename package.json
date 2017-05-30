@@ -5,7 +5,7 @@
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.0.0",
     "dot-json": "^1.0.3",
-    "web-ext": "^1.9.1",
+    "webext": "^1.9.1-with-submit.1",
     "xo": "^0.18.2"
   },
   "private": true,
@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "test": "xo",
-    "release-amo": "cd extension && OK='has been submitted for review.' && web-ext sign | sed -n \"s/\\($OK\\).*$/\\1/;1,/$OK/p\" | perl -pe 'BEGIN { $s=1 } END { exit $s } $s=0 if /'\"$OK\"'/;'",
+    "release-amo": "cd extension && webext submit",
     "release-cws": "cd extension && webstore upload --auto-publish",
     "update-version": "dot-json extension/manifest.json version $(date -u +%Y.%-m.%-d.%-H%M)"
   },
