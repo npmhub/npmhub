@@ -17,7 +17,8 @@
   "xo": {
     "space": 2,
     "ignores": [
-      "extension/**"
+      "extension/**",
+      "src/lib/github-url-to-object.js"
     ],
     "rules": {
       "import/no-unassigned-import": 0
