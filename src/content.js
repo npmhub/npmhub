@@ -11,6 +11,9 @@ function getPkgUrl(name) {
 
 async function init() {
   const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
+  if (!packageLink || document.querySelector('.npmhub-header')) {
+    return;
+  }
   const dependenciesBox = createBox('Dependencies');
   const domStr = await fetch(packageLink.href, {credentials: 'include'}).then(res => res.text());
   const json = html(domStr).querySelector('.blob-wrapper, .blob-content').textContent;
