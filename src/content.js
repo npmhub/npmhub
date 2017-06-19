@@ -1,7 +1,7 @@
 import 'webext-dynamic-content-scripts';
 import {escape as esc} from 'escape-goat';
-import backgroundFetch from '../lib/background-fetch';
-import html from '../lib/parse-html';
+import backgroundFetch from './lib/background-fetch';
+import html from './lib/parse-html';
 
 const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
 

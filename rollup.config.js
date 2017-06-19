@@ -2,7 +2,7 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import commonJS from 'rollup-plugin-commonjs';
 
 export default [
-  'src/index.js',
+  'src/content.js',
   'src/background.js',
   'src/options.js'
 ].map(entry => ({

@@ -39,10 +39,10 @@
         "https://gitlab.com/*"
       ],
       "js": [
-        "index.js"
+        "content.js"
       ],
       "css": [
-        "index.css"
+        "content.css"
       ]
     }
   ]

@@ -6,7 +6,7 @@
   "author": "zeke",
   "license": "MIT",
   "scripts": {
-    "test": "xo",
+    "test": "xo && npm run build",
     "build": "rollup -c",
     "watch": "npm run build --silent -- --watch",
     "release-amo": "cd extension && webext submit",
