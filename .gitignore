@@ -1,2 +1,2 @@
-dist
+extension/**/*.js
 node_modules

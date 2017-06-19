@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '7'
+  - node
 branches:
   only: master
 env:
@@ -8,7 +8,7 @@ env:
 deploy:
   provider: script
   skip_cleanup: true
-  script: npm run update-version; npm run release-cws; npm run release-amo
+  script: npm run release
   on:
       branch: master
       

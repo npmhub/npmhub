@@ -17,7 +17,7 @@
   },
   "background": {
     "scripts": [
-      "background-fetch.js"
+      "background.js"
     ],
     "persistent": false
   },
@@ -31,7 +31,6 @@
         "https://gitlab.com/*"
       ],
       "js": [
-        "background-fetch.js",
         "index.js"
       ],
       "css": [
