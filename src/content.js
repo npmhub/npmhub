@@ -55,14 +55,14 @@ function createBox(title) {
     html`<div class="file-title"><strong>${title}` :
     html`<h3>${title}`
   );
-  containerEl.appendChild(html`<ol class="deps markdown-body">`);
+  containerEl.appendChild(html`<ol class="npmhub-deps markdown-body">`);
 
   boxTemplate.parentNode.appendChild(containerEl);
   return containerEl;
 }
 
 function addDependencies(containerEl, list) {
-  const listEl = containerEl.querySelector('.deps');
+  const listEl = containerEl.querySelector('.npmhub-deps');
   if (list.length > 0) {
     list.forEach(async name => {
       const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
@@ -71,7 +71,7 @@ function addDependencies(containerEl, list) {
       depEl.appendChild(html(esc(dep.description)));
     });
   } else {
-    listEl.appendChild(html`<li class="empty">No dependencies! 🎉</li>`);
+    listEl.appendChild(html`<li class="npmhub-empty">No dependencies! 🎉</li>`);
   }
 }
 

@@ -1,17 +1,17 @@
-.deps {
+.npmhub-deps {
   list-style: none;
   padding: 0 !important;
   margin: 0 !important; /* gitlab */
   font-size: 13px;
 }
-.deps > li {
+.npmhub-deps > li {
   padding: 10px;
   border-bottom: 1px solid #DDD;
 }
-.deps > li:last-child {
+.npmhub-deps > li:last-child {
   border-bottom: none;
 }
-li.empty {
+li.npmhub-empty {
   opacity: 0.6;
 }
 .npmhub-header {
@@ -22,7 +22,7 @@ li.empty {
   margin: 5px;
   margin-left: 0;
 }
-.deps:empty:before {
+.npmhub-deps:empty:before {
   display: block;
   content: "loading";
   padding: 10px;
