@@ -15,7 +15,7 @@ GitHub Enterprise, GitLab Enterprise and Community Edition are also supported by
 
   + [**Chrome** extension](https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj)
   + [**Firefox** add-on](https://addons.mozilla.org/en-US/firefox/addon/npm-hub/)
-  + Opera - You can install the Chrome extension by installing [this Opera extension](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) first.
+  + Opera - Use [this Opera extension](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) to install the Chrome version.
 
 ## Design
 
