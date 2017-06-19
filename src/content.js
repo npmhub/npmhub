@@ -1,15 +1,15 @@
 import 'webext-dynamic-content-scripts';
 import {escape as esc} from 'escape-goat';
+import githubInjection from 'github-injection';
 import backgroundFetch from './lib/background-fetch';
 import html from './lib/parse-html';
-
-const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
 
 function getPkgUrl(name) {
   return 'https://registry.npmjs.org/' + name.replace('/', '%2F');
 }
 
 async function init() {
+  const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
   const dependenciesBox = createBox('Dependencies');
   const domStr = await fetch(packageLink.href, {credentials: 'include'}).then(res => res.text());
   const json = html(domStr).querySelector('.blob-wrapper, .blob-content').textContent;
@@ -75,6 +75,4 @@ function addDependencies(containerEl, list) {
   }
 }
 
-if (packageLink) {
-  init();
-}
+githubInjection(window, init);
