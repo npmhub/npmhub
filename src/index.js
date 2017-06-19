@@ -1,28 +1,8 @@
+import {escape as esc} from 'escape-goat';
+import backgroundFetch from '../lib/background-fetch';
+import html from '../lib/parse-html';
+
 const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
-
-// Escape HTML
-function esc(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
-
-// Get DOM node from HTML
-function html(html) {
-  if (html.raw) {
-    // Shortcut for html`text` instead of html(`text`)
-    html = String.raw(...arguments);
-  }
-
-  const fragment = document.createRange().createContextualFragment(html.trim());
-  if (fragment.firstChild === fragment.lastChild) {
-    return fragment.firstChild;
-  }
-  return fragment;
-}
 
 function getPkgUrl(name) {
   return 'https://registry.npmjs.org/' + name.replace('/', '%2F');
@@ -45,7 +25,7 @@ async function init() {
   }
 
   if (!pkg.private) {
-    window.backgroundFetch(getPkgUrl(pkg.name))
+    backgroundFetch(getPkgUrl(pkg.name))
     .then(realPkg => {
       if (realPkg.name) { // If 404, realPkg === {}
         const link = html`<a class="btn btn-sm">Open on npmjs.com`;
@@ -86,7 +66,7 @@ function addDependencies(containerEl, list) {
     list.forEach(async name => {
       const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
       listEl.appendChild(depEl);
-      const dep = await window.backgroundFetch(getPkgUrl(name));
+      const dep = await backgroundFetch(getPkgUrl(name));
       depEl.appendChild(html(esc(dep.description)));
     });
   } else {
