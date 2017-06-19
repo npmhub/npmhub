@@ -11,6 +11,3 @@ deploy:
   script: npm run release
   on:
       branch: master
-      
-      # the deployment will be skipped if the last commit doesn't touch the extension's files
-      condition: $(git diff-tree --no-commit-id --name-only -r HEAD | sed -n '/extension\// q 1'; echo $?) = 1
