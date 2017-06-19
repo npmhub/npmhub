@@ -1,3 +1,4 @@
+import 'webext-dynamic-content-scripts';
 import {escape as esc} from 'escape-goat';
 import backgroundFetch from '../lib/background-fetch';
 import html from '../lib/parse-html';
