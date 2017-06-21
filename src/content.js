@@ -9,15 +9,18 @@ function getPkgUrl(name) {
   return 'https://registry.npmjs.org/' + name.replace('/', '%2F');
 }
 
+function isGitLab() {
+  return Boolean(document.querySelector('.navbar-gitlab'));
+}
+
 async function init() {
   const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
   if (!packageLink || document.querySelector('.npmhub-header')) {
     return;
   }
+
   const dependenciesBox = createBox('Dependencies');
-  const domStr = await fetch(packageLink.href, {credentials: 'include'}).then(res => res.text());
-  const json = html(domStr).querySelector('.blob-wrapper, .blob-content').textContent;
-  const pkg = JSON.parse(json);
+  const pkg = await fetchPackageJson(packageLink);
 
   const dependencies = Object.keys(pkg.dependencies || {});
   const devDependencies = Object.keys(pkg.devDependencies || {});
@@ -49,13 +52,31 @@ async function init() {
   }
 }
 
+async function fetchPackageJson(link) {
+  // https://gitlab.com/user/repo/blob/master/package.json
+  // https://github.com/user/repo/blob/master/package.json
+  const url = link.href.replace(/(gitlab[.]com[/].+[/].+[/])blob/, '$1raw');
+
+  // GitLab will return a raw JSON
+  // GitHub will return an HTML page
+  let pkg = await fetch(url, {
+    credentials: 'include'
+  }).then(r => r.text());
+
+  // Parse the JSON string out of the HTML page
+  if (!isGitLab()) {
+    pkg = html(pkg).querySelector('.blob-wrapper').textContent;
+  }
+
+  return JSON.parse(pkg);
+}
+
 function createBox(title) {
-  const isGitLab = document.querySelector('.navbar-gitlab');
   const boxTemplate = document.querySelector('#readme, .readme-holder');
   const containerEl = document.createElement(boxTemplate.tagName);
   containerEl.classList = boxTemplate.classList;
   containerEl.appendChild(html`<div class="npmhub-header">`);
-  containerEl.appendChild(isGitLab ?
+  containerEl.appendChild(isGitLab() ?
     html`<div class="file-title"><strong>${title}` :
     html`<h3>${title}`
   );
