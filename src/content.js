@@ -93,8 +93,8 @@ function addDependencies(containerEl, list) {
       const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
       listEl.appendChild(depEl);
       const dep = await backgroundFetch(getPkgUrl(name));
-      depEl.querySelector('a').href = parseRepoUrl(dep);
       depEl.appendChild(html(esc(dep.description)));
+      depEl.querySelector('a').href = parseRepoUrl(dep);
     });
   } else {
     listEl.appendChild(html`<li class="npmhub-empty">No dependencies! 🎉</li>`);
