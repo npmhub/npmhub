@@ -14,7 +14,7 @@ function isGitLab() {
 }
 
 async function init() {
-  const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
+  const packageLink = document.querySelector('[class*="file"] a[title="package.json"]');
   if (!packageLink || document.querySelector('.npmhub-header')) {
     return;
   }
