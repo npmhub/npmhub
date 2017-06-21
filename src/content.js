@@ -1,7 +1,6 @@
 import 'webext-dynamic-content-scripts';
 import {escape as esc} from 'escape-goat';
 import githubInjection from 'github-injection';
-import backgroundFetch from './lib/background-fetch';
 import parseRepoUrl from './lib/parse-repo-url';
 import html from './lib/parse-html';
 
@@ -33,7 +32,7 @@ async function init() {
   }
 
   if (!pkg.private) {
-    backgroundFetch(getPkgUrl(pkg.name))
+    fetch(getPkgUrl(pkg.name)).then(r => r.json())
     .then(realPkg => {
       if (realPkg.name) { // If 404, realPkg === {}
         const link = html`<a class="btn btn-sm">Open on npmjs.com`;
@@ -92,7 +91,7 @@ function addDependencies(containerEl, list) {
     list.forEach(async name => {
       const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
       listEl.appendChild(depEl);
-      const dep = await backgroundFetch(getPkgUrl(name));
+      const dep = await fetch(getPkgUrl(name)).then(r => r.json());
       depEl.appendChild(html(esc(dep.description)));
       depEl.querySelector('a').href = parseRepoUrl(dep);
     });
