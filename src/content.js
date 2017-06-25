@@ -31,7 +31,7 @@ async function init() {
     addDependencies(createBox('Dev Dependencies'), devDependencies);
   }
 
-  if (!pkg.private) {
+  if (!pkg.private && pkg.name) {
     fetch(getPkgUrl(pkg.name)).then(r => r.json())
     .then(realPkg => {
       if (realPkg.name) { // If 404, realPkg === {}
