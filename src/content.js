@@ -71,18 +71,20 @@ async function fetchPackageJson(link) {
 }
 
 function createBox(title) {
-  const boxTemplate = document.querySelector('#readme, .readme-holder');
-  const containerEl = document.createElement(boxTemplate.tagName);
-  containerEl.classList = boxTemplate.classList;
-  containerEl.appendChild(html`<div class="npmhub-header">`);
-  containerEl.appendChild(isGitLab() ?
-    html`<div class="file-title"><strong>${title}` :
-    html`<h3>${title}`
-  );
-  containerEl.appendChild(html`<ol class="npmhub-deps markdown-body">`);
+  const box = html`
+    <div class="readme boxed-group file-holder readme-holder">
+      <div class="npmhub-header"></div>
+      ${
+        isGitLab() ?
+        `<div class="file-title"><strong>${title}</strong></div>` :
+        `<h3>${title}</h3>`
+      }
+      <ol class="npmhub-deps markdown-body"></ol>
+    </div>
+  `;
 
-  boxTemplate.parentNode.appendChild(containerEl);
-  return containerEl;
+  document.querySelector('.repository-content, .tree-content-holder').appendChild(box);
+  return box;
 }
 
 function addDependencies(containerEl, list) {
