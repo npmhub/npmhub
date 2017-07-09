@@ -2,7 +2,7 @@
 
   [badge-cws]: https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg?label=chrome
   [badge-amo]: https://img.shields.io/amo/v/npm-hub.svg?label=firefox
-  [badge-travis]: https://img.shields.io/travis/npmhub/npmhub/master.svg?label=autodeployment
+  [badge-travis]: https://img.shields.io/travis/npmhub/npmhub/master.svg?label=deployment
   [link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj "Version published on Chrome Web Store"
   [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ "Version published on Mozilla Add-ons"
   [link-travis]: https://travis-ci.org/npmhub/npmhub
