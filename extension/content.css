@@ -14,10 +14,9 @@
 li.npmhub-empty {
   opacity: 0.6;
 }
-.npmhub-header {
-  float: right;
-}
 .npmhub-header .btn {
+  position: relative;
+  z-index: 1; /* Necessary for GitLab */
   float: right;
   margin: 5px;
   margin-left: 0;
