@@ -22,14 +22,21 @@ async function init() {
   const pkg = await fetchPackageJson(packageLink);
 
   const dependencies = Object.keys(pkg.dependencies || {});
-  const devDependencies = Object.keys(pkg.devDependencies || {});
 
   addDependencies(dependenciesBox, dependencies);
 
-  // Don't show dev dependencies if there are absolutely no dependencies
-  if (dependencies.length > 0 || devDependencies.length > 0) {
-    addDependencies(createBox('Dev Dependencies'), devDependencies);
-  }
+  [
+    'peer',
+    'bundled',
+    'optional',
+    'dev'
+  ].forEach(depType => {
+    const list = Object.keys(pkg[depType + 'Dependencies'] || {});
+    const title = depType[0].toUpperCase() + depType.substr(1) + ' Dependencies';
+    if (list.length > 0) {
+      addDependencies(createBox(title), list);
+    }
+  });
 
   if (!pkg.private && pkg.name) {
     fetch(getPkgUrl(pkg.name)).then(r => r.json())
@@ -37,12 +44,12 @@ async function init() {
       if (realPkg.name) { // If 404, realPkg === {}
         const link = html`<a class="btn btn-sm">Open on npmjs.com`;
         link.href = `https://www.npmjs.com/package/${esc(pkg.name)}`;
-        dependenciesBox.firstChild.appendChild(link);
+        dependenciesBox.firstElementChild.appendChild(link);
 
         if (dependencies.length > 0) {
           const link = html`<a class="btn btn-sm">Visualize full tree`;
           link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
-          dependenciesBox.firstChild.appendChild(link);
+          dependenciesBox.firstElementChild.appendChild(link);
         }
       }
     }, err => {
