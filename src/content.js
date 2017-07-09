@@ -12,6 +12,10 @@ function isGitLab() {
   return Boolean(document.querySelector('.navbar-gitlab'));
 }
 
+function addHeaderLink(box, name, url) {
+  box.firstElementChild.appendChild(html`<a class="btn btn-sm" href="${url}">${name}</a>`);
+}
+
 async function init() {
   const packageLink = document.querySelector('[class*="file"] a[title="package.json"]');
   if (!packageLink || document.querySelector('.npmhub-header')) {
@@ -19,10 +23,11 @@ async function init() {
   }
 
   const dependenciesBox = createBox('Dependencies');
+  addHeaderLink(dependenciesBox, 'See package.json', packageLink.href);
+
   const pkg = await fetchPackageJson(packageLink);
 
   const dependencies = Object.keys(pkg.dependencies || {});
-
   addDependencies(dependenciesBox, dependencies);
 
   [
@@ -42,14 +47,17 @@ async function init() {
     fetch(getPkgUrl(pkg.name)).then(r => r.json())
     .then(realPkg => {
       if (realPkg.name) { // If 404, realPkg === {}
-        const link = html`<a class="btn btn-sm">Open on npmjs.com`;
-        link.href = `https://www.npmjs.com/package/${esc(pkg.name)}`;
-        dependenciesBox.firstElementChild.appendChild(link);
-
+        addHeaderLink(
+          dependenciesBox,
+          'Open on npmjs.com',
+          `https://www.npmjs.com/package/${esc(pkg.name)}`
+        );
         if (dependencies.length > 0) {
-          const link = html`<a class="btn btn-sm">Visualize full tree`;
-          link.href = `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`;
-          dependenciesBox.firstElementChild.appendChild(link);
+          addHeaderLink(
+            dependenciesBox,
+            'Visualize full tree',
+            `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`
+          );
         }
       }
     }, err => {
