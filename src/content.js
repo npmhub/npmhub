@@ -21,8 +21,9 @@ async function init() {
   if (!packageLink || document.querySelector('.npmhub-header')) {
     return;
   }
-
-  const dependenciesBox = createBox('Dependencies');
+  
+  const container = document.querySelector('.repository-content, .tree-content-holder');
+  const dependenciesBox = createBox('Dependencies', container);
   addHeaderLink(dependenciesBox, 'See package.json', packageLink.href);
 
   const pkg = await fetchPackageJson(packageLink);
@@ -39,7 +40,7 @@ async function init() {
     const list = Object.keys(pkg[depType + 'Dependencies'] || {});
     const title = depType[0].toUpperCase() + depType.substr(1) + ' Dependencies';
     if (list.length > 0) {
-      addDependencies(createBox(title), list);
+      addDependencies(createBox(title, container), list);
     }
   });
 
@@ -85,7 +86,7 @@ async function fetchPackageJson(link) {
   return JSON.parse(pkg);
 }
 
-function createBox(title) {
+function createBox(title, container) {
   const box = html`
     <div class="readme boxed-group file-holder readme-holder">
       <div class="npmhub-header"></div>
@@ -98,7 +99,7 @@ function createBox(title) {
     </div>
   `;
 
-  document.querySelector('.repository-content, .tree-content-holder').appendChild(box);
+  container.appendChild(box);
   return box;
 }
 
