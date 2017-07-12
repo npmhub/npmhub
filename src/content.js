@@ -21,7 +21,7 @@ async function init() {
   if (!packageLink || document.querySelector('.npmhub-header')) {
     return;
   }
-  
+
   const container = document.querySelector('.repository-content, .tree-content-holder');
   const dependenciesBox = createBox('Dependencies', container);
   addHeaderLink(dependenciesBox, 'See package.json', packageLink.href);
