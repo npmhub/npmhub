@@ -80,7 +80,7 @@ async function fetchPackageJson(link) {
 
   // Parse the JSON string out of the HTML page
   if (!isGitLab()) {
-    pkg = html(pkg).querySelector('.blob-wrapper').textContent;
+    pkg = html(pkg).querySelector('.blob-wrapper table').textContent;
   }
 
   return JSON.parse(pkg);
