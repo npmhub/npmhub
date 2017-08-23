@@ -114,7 +114,7 @@ function addDependencies(containerEl, list) {
       depEl.querySelector('a').href = parseRepoUrl(dep);
     });
   } else {
-    listEl.appendChild(html`<li class="npmhub-empty">No dependencies! 🎉</li>`);
+    listEl.appendChild(html`<li class="npmhub-empty">No dependencies!</li>`);
   }
 }
 
