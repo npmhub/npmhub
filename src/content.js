@@ -37,8 +37,10 @@ async function init() {
     'optional',
     'dev'
   ].forEach(depType => {
-    const field = pkg[depType + 'Dependencies'];
-    const list = depType === 'bundled' ? field || [] : Object.keys(field || {});
+    let list = pkg[depType + 'Dependencies'] || [];
+    if (!Array.isArray(list)) {
+      list = Object.keys(list);
+    }
     if (list.length > 0) {
       const title = depType[0].toUpperCase() + depType.substr(1) + ' Dependencies';
       addDependencies(createBox(title, container), list);
