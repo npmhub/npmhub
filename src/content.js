@@ -37,9 +37,10 @@ async function init() {
     'optional',
     'dev'
   ].forEach(depType => {
-    const list = Object.keys(pkg[depType + 'Dependencies'] || {});
-    const title = depType[0].toUpperCase() + depType.substr(1) + ' Dependencies';
+    const field = pkg[depType + 'Dependencies'];
+    const list = depType === 'bundled' ? field || [] : Object.keys(field || {});
     if (list.length > 0) {
+      const title = depType[0].toUpperCase() + depType.substr(1) + ' Dependencies';
       addDependencies(createBox(title, container), list);
     }
   });
