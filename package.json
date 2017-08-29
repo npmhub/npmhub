@@ -12,7 +12,7 @@
     "release-amo": "cd extension && webext submit",
     "release-cws": "cd extension && webstore upload --auto-publish",
     "release": "npm run build && npm run update-version && npm run release-amo && npm run release-cws",
-    "update-version": "dot-json extension/manifest.json version $(date -u +%Y.%-m.%-d.%-H%M)"
+    "update-version": "dot-json extension/manifest.json version $(daily-version Y)"
   },
   "xo": {
     "space": 2,
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.0.0",
+    "daily-version": "^0.10.1",
     "dot-json": "^1.0.3",
     "rollup": "^0.43.0",
     "rollup-plugin-commonjs": "^8.0.2",
