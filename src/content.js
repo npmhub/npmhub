@@ -117,7 +117,7 @@ function addDependencies(containerEl, list) {
       depEl.querySelector('a').href = parseRepoUrl(dep);
     });
   } else {
-    listEl.appendChild(html`<li class="npmhub-empty">No dependencies! 🎉</li>`);
+    listEl.appendChild(html`<li class="npmhub-empty">No dependencies! <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji></li>`);
   }
 }
 
