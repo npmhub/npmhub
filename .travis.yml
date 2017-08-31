@@ -1,14 +1,10 @@
 language: node_js
 node_js:
-  - 7
+  - 8
 branches:
   only: master
 env:
   - EXTENSION_ID=kbbbjimdjbjclaebffknlabpogocablj
-
-cache:
-  directories:
-  - $HOME/.npm-daily-version
 
 deploy:
   provider: script
