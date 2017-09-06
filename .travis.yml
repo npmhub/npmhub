@@ -5,11 +5,6 @@ branches:
   only: master
 env:
   - EXTENSION_ID=kbbbjimdjbjclaebffknlabpogocablj
-
-cache:
-  directories:
-  - $HOME/.npm-daily-version
-
 deploy:
   provider: script
   skip_cleanup: true
