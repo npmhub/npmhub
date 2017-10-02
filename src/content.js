@@ -1,33 +1,76 @@
 import 'webext-dynamic-content-scripts';
 import {escape as esc} from 'escape-goat';
 import githubInjection from 'github-injection';
+import select from 'select-dom';
 import parseRepoUrl from './lib/parse-repo-url';
 import html from './lib/parse-html';
+
+// Mini version of element-ready + parent support
+function elementReady(selector, parent) {
+  return new Promise(resolve => {
+    (function check() {
+      const el = select(selector, parent);
+      if (el) {
+        resolve(el);
+      } else {
+        requestAnimationFrame(check);
+      }
+    })();
+  });
+}
 
 function getPkgUrl(name) {
   return 'https://registry.npmjs.org/' + name.replace('/', '%2F');
 }
 
 function isGitLab() {
-  return Boolean(document.querySelector('.navbar-gitlab'));
+  return select.exists('.navbar-gitlab');
+}
+
+function isPackageJson() {
+  const breadcrumb = select('.breadcrumb .final-path, .breadcrumb li:last-child strong');
+  return breadcrumb && breadcrumb.textContent === 'package.json';
 }
 
 function addHeaderLink(box, name, url) {
   box.firstElementChild.appendChild(html`<a class="btn btn-sm" href="${url}">${name}</a>`);
 }
 
+function getPackageURL() {
+  if (isPackageJson()) {
+    return location.href;
+  }
+  const packageLink = select([
+    '.files [title="package.json"]', // GitHub
+    '.tree-item-file-name [title="package.json"]' // GitLab
+  ].join(','));
+  if (packageLink) {
+    return packageLink.href;
+  }
+}
+
 async function init() {
-  const packageLink = document.querySelector('.files [title="package.json"], .tree-item-file-name [title="package.json"]');
-  if (!packageLink || document.querySelector('.npmhub-header')) {
+  if (select('.npmhub-header')) {
     return;
   }
 
-  const container = document.querySelector('.repository-content, .tree-content-holder');
+  const packageURL = getPackageURL();
+  if (!packageURL) {
+    return;
+  }
+
+  const container = select([
+    '.repository-content', // GitHub
+    '.tree-content-holder', // GitLab
+    '.blob-content-holder' // GitLab package.json page
+  ].join(','));
+
   const dependenciesBox = createBox('Dependencies', container);
-  addHeaderLink(dependenciesBox, 'See package.json', packageLink.href);
+  if (!isPackageJson()) {
+    addHeaderLink(dependenciesBox, 'See package.json', packageURL);
+  }
 
-  const pkg = await fetchPackageJson(packageLink);
-
+  const pkg = await fetchPackageJson(packageURL);
   const dependencies = Object.keys(pkg.dependencies || {});
   addDependencies(dependenciesBox, dependencies);
 
@@ -70,23 +113,29 @@ async function init() {
   }
 }
 
-async function fetchPackageJson(link) {
-  // https://gitlab.com/user/repo/blob/master/package.json
-  // https://github.com/user/repo/blob/master/package.json
-  const url = link.href.replace(/(gitlab[.]com[/].+[/].+[/])blob/, '$1raw');
+async function fetchPackageJson(url) {
+  let dom = document;
+  if (!isPackageJson()) {
+    // https://gitlab.com/user/repo/raw/master/package.json
+    // https://github.com/user/repo/blob/master/package.json
+    url = url.replace(/(gitlab[.]com[/].+[/].+[/])blob/, '$1raw');
 
-  // GitLab will return a raw JSON
-  // GitHub will return an HTML page
-  let pkg = await fetch(url, {
-    credentials: 'include'
-  }).then(r => r.text());
+    const body = await fetch(url, {
+      credentials: 'include'
+    }).then(r => r.text());
 
-  // Parse the JSON string out of the HTML page
-  if (!isGitLab()) {
-    pkg = html(pkg).querySelector('.blob-wrapper table').textContent;
+    // GitLab will return raw JSON
+    // GitHub will return an HTML page
+    if (isGitLab()) {
+      return JSON.parse(body);
+    }
+    dom = html(body);
   }
 
-  return JSON.parse(pkg);
+  // ElementReady required for GitLab's deferred content load
+  const jsonEl = await elementReady('.blob-wrapper table, .blob-viewer pre', dom);
+
+  return JSON.parse(jsonEl.textContent);
 }
 
 function createBox(title, container) {
