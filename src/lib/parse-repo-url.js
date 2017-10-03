@@ -1,22 +1,39 @@
-// Imported from
+// Partially imported from and inspired by
+// https://github.com/npm/npm/blob/20589f4b028d3e8a617800ac6289d27f39e548e8/lib/repo.js#L38-L51
+// https://github.com/npm/normalize-package-data/blob/9948ecf3d97cffcaab8f914522a0f3953edac6e4/lib/fixer.js#L14-L38
 // https://github.com/juliangruber/ghub.io/blob/f5dffef663588cb0e58e9897553a1f786f808762/index.js#L19-L30
-import parse from './github-url-to-object';
 
-function validUrl(url) {
-  return typeof url === 'string' && url.length && url.indexOf('github') > -1 ?
-    url :
-    false;
+import {fromUrl as parseRepo} from 'hosted-git-info';
+
+function unknownHostedUrl(url) {
+  try {
+    const idx = url.indexOf('@');
+    if (idx !== -1) {
+      url = url.slice(idx + 1).replace(/:([^\d]+)/, '/$1');
+    }
+    url = new URL(url);
+    const protocol = url.protocol === 'https:' ?
+      'https:' :
+      'http:';
+    return protocol + '//' + (url.host || '') +
+      url.path.replace(/\.git$/, '');
+  } catch (err) {/**/}
+}
+
+function normalizeRepository(repoField) {
+  if (repoField && repoField.url) {
+    return repoField.url;
+  }
+  return repoField;
 }
 
 export default function (pkg) {
-  let repoUrl =
-    validUrl(pkg.repository) ||
-    validUrl(pkg.repository && pkg.repository.url) ||
-    validUrl(
-      pkg.versions &&
-        Object.keys(pkg.versions).length &&
-        pkg.versions[Object.keys(pkg.versions).pop()].homepage
-    );
-  repoUrl = parse(repoUrl);
-  return (repoUrl && repoUrl.https_url) || 'https://www.npmjs.com/package/' + pkg.name;
+  const repoUrl = normalizeRepository(pkg.repository);
+  const info = parseRepo(repoUrl);
+  const url = info ? info.browse() : unknownHostedUrl(repoUrl);
+  if (url) {
+    return url;
+  }
+
+  return 'https://www.npmjs.com/package/' + pkg.name;
 }
