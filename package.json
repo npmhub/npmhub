@@ -31,7 +31,6 @@
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.0.0",
     "dot-json": "^1.0.3",
-    "rollup": "^0.43.0",
     "webext": "^1.9.1-with-submit.1",
     "webpack": "^3.6.0",
     "xo": "^0.18.2"
