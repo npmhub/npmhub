@@ -4,20 +4,7 @@ import githubInjection from 'github-injection';
 import select from 'select-dom';
 import parseRepoUrl from './lib/parse-repo-url';
 import html from './lib/parse-html';
-
-// Mini version of element-ready + parent support
-function elementReady(selector, parent) {
-  return new Promise(resolve => {
-    (function check() {
-      const el = select(selector, parent);
-      if (el) {
-        resolve(el);
-      } else {
-        requestAnimationFrame(check);
-      }
-    })();
-  });
-}
+import elementReady from './lib/element-ready';
 
 function getPkgUrl(name) {
   return 'https://registry.npmjs.org/' + name.replace('/', '%2F');
