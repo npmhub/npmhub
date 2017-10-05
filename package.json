@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "test": "xo && npm run build",
-    "build": "rollup -c",
-    "watch": "npm run build --silent -- --watch",
+    "build": "webpack",
+    "watch": "webpack --watch",
     "release-amo": "cd extension && webext submit",
     "release-cws": "cd extension && webstore upload --auto-publish",
     "release": "npm run build && npm run update-version && npm run release-amo && npm run release-cws",
@@ -31,11 +31,8 @@
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.0.0",
     "dot-json": "^1.0.3",
-    "rollup": "^0.43.0",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-watch": "^4.0.0",
     "webext": "^1.9.1-with-submit.1",
+    "webpack": "^3.6.0",
     "xo": "^0.18.2"
   },
   "dependencies": {
