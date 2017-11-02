@@ -146,7 +146,7 @@ function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.npmhub-deps');
   if (list.length > 0) {
     list.forEach(async name => {
-      const depEl = html`<li><a href='http://ghub.io/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
+      const depEl = html`<li><a href='https://www.npmjs.com/package/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
       listEl.appendChild(depEl);
       const dep = await fetch(getPkgUrl(name)).then(r => r.json());
       depEl.appendChild(html(esc(dep.description)));
