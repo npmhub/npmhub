@@ -20,7 +20,9 @@ function isPackageJson() {
 }
 
 function addHeaderLink(box, name, url) {
-  box.firstElementChild.appendChild(html`<a class="btn btn-sm" href="${url}">${name}</a>`);
+  box.firstElementChild.append(html`
+    <a class="btn btn-sm" href="${url}">${name}</a>
+  `);
 }
 
 function getPackageURL() {
@@ -138,7 +140,7 @@ function createBox(title, container) {
     </div>
   `;
 
-  container.appendChild(box);
+  container.append(box);
   return box;
 }
 
@@ -146,10 +148,17 @@ function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.npmhub-deps');
   if (list.length > 0) {
     list.forEach(async name => {
-      const depEl = html`<li><a href='https://www.npmjs.com/package/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
-      listEl.appendChild(depEl);
+      const depEl = html`
+        <li>
+          <a href='https://www.npmjs.com/package/${esc(name)}'>
+            ${esc(name)}
+          </a>
+          &nbsp;
+        </li>
+      `;
+      listEl.append(depEl);
       const dep = await fetch(getPkgUrl(name)).then(r => r.json());
-      depEl.appendChild(html(esc(dep.description)));
+      depEl.append(dep.description);
 
       const url = parseRepoUrl(dep);
       if (url) {
@@ -157,7 +166,12 @@ function addDependencies(containerEl, list) {
       }
     });
   } else {
-    listEl.appendChild(html`<li class="npmhub-empty">No dependencies! <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji></li>`);
+    listEl.append(html`
+      <li class="npmhub-empty">
+        No dependencies!
+        <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji>
+      </li>
+    `);
   }
 }
 
