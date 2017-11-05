@@ -150,7 +150,11 @@ function addDependencies(containerEl, list) {
       listEl.appendChild(depEl);
       const dep = await fetch(getPkgUrl(name)).then(r => r.json());
       depEl.appendChild(html(esc(dep.description)));
-      depEl.querySelector('a').href = parseRepoUrl(dep);
+
+      const url = parseRepoUrl(dep);
+      if (url) {
+        depEl.querySelector('a').href = url;
+      }
     });
   } else {
     listEl.appendChild(html`<li class="npmhub-empty">No dependencies! <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji></li>`);

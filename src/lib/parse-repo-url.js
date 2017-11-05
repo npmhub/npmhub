@@ -30,10 +30,5 @@ function normalizeRepository(repoField) {
 export default function (pkg) {
   const repoUrl = normalizeRepository(pkg.repository);
   const info = parseRepo(repoUrl);
-  const url = info ? info.browse() : unknownHostedUrl(repoUrl);
-  if (url) {
-    return url;
-  }
-
-  return 'https://www.npmjs.com/package/' + pkg.name;
+  return info ? info.browse() : unknownHostedUrl(repoUrl);
 }
