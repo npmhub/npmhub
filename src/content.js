@@ -161,4 +161,4 @@ function addDependencies(containerEl, list) {
   }
 }
 
-githubInjection(window, init);
+githubInjection(init);
