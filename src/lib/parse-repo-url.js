@@ -16,7 +16,7 @@ function unknownHostedUrl(url) {
       'https:' :
       'http:';
     return protocol + '//' + (url.host || '') +
-      url.path.replace(/\.git$/, '');
+      url.pathname.replace(/\.git$/, '');
   } catch (err) {/**/}
 }
 
