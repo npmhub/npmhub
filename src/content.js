@@ -92,6 +92,10 @@ async function addDependency(name, container) {
   container.append(depEl);
 
   const dep = await fetchPackageFromNpm(name);
+  if (!dep.name) {
+    depEl.append(html('<em>Not published or private.</em>'));
+    return;
+  }
   depEl.append(dep.description);
 
   const url = parseRepoUrl(dep);
