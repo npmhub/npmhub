@@ -143,26 +143,31 @@ function createBox(title, container) {
   return box;
 }
 
+async function addDependency(name, container) {
+  const depEl = html.el(`
+    <li>
+      <a href='https://www.npmjs.com/package/${esc(name)}'>
+        ${esc(name)}
+      </a>
+    </li>
+  `);
+  container.append(depEl);
+
+  const dep = await fetch(getPkgUrl(name)).then(r => r.json());
+  depEl.append(dep.description);
+
+  const url = parseRepoUrl(dep);
+  if (url) {
+    depEl.querySelector('a').href = url;
+  }
+}
+
 function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.npmhub-deps');
   if (list.length > 0) {
-    list.forEach(async name => {
-      const depEl = html.el(`
-        <li>
-          <a href='https://www.npmjs.com/package/${esc(name)}'>
-            ${esc(name)}
-          </a>
-        </li>
-      `);
-      listEl.append(depEl);
-      const dep = await fetch(getPkgUrl(name)).then(r => r.json());
-      depEl.append(dep.description);
-
-      const url = parseRepoUrl(dep);
-      if (url) {
-        depEl.querySelector('a').href = url;
-      }
-    });
+    for (const name of list) {
+      addDependency(name, listEl);
+    }
   } else {
     listEl.append(html.el(`
       <li class="npmhub-empty">
