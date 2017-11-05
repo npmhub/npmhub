@@ -38,69 +38,6 @@ function getPackageURL() {
   }
 }
 
-async function init() {
-  if (select('.npmhub-header')) {
-    return;
-  }
-
-  const packageURL = getPackageURL();
-  if (!packageURL) {
-    return;
-  }
-
-  const container = select([
-    '.repository-content', // GitHub
-    '.tree-content-holder', // GitLab
-    '.blob-content-holder' // GitLab package.json page
-  ].join(','));
-
-  const dependenciesBox = createBox('Dependencies', container);
-  if (!isPackageJson()) {
-    addHeaderLink(dependenciesBox, 'See package.json', packageURL);
-  }
-
-  const pkg = await fetchPackageJson(packageURL);
-  const dependencies = Object.keys(pkg.dependencies || {});
-  addDependencies(dependenciesBox, dependencies);
-
-  [
-    'Peer',
-    'Bundled',
-    'Optional',
-    'Dev'
-  ].forEach(depType => {
-    let list = pkg[depType.toLowerCase() + 'Dependencies'] || [];
-    if (!Array.isArray(list)) {
-      list = Object.keys(list);
-    }
-    if (list.length > 0) {
-      addDependencies(createBox(`${depType} Dependencies`, container), list);
-    }
-  });
-
-  if (!pkg.private && pkg.name) {
-    fetch(getPkgUrl(pkg.name)).then(r => r.json())
-    .then(realPkg => {
-      if (realPkg.name) { // If 404, realPkg === {}
-        addHeaderLink(
-          dependenciesBox,
-          'Open on npmjs.com',
-          `https://www.npmjs.com/package/${esc(pkg.name)}`
-        );
-        if (dependencies.length > 0) {
-          addHeaderLink(
-            dependenciesBox,
-            'Visualize full tree',
-            `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`
-          );
-        }
-      }
-    }, err => {
-      console.warn('npmhub: there was an error while pinging the current package on npmjs.org', err);
-    });
-  }
-}
-
 async function fetchPackageJson(url) {
   let dom = document;
   if (!isPackageJson()) {
@@ -175,6 +112,69 @@ function addDependencies(containerEl, list) {
         <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji>
       </li>
     `));
+  }
+}
+
+async function init() {
+  if (select('.npmhub-header')) {
+    return;
+  }
+
+  const packageURL = getPackageURL();
+  if (!packageURL) {
+    return;
+  }
+
+  const container = select([
+    '.repository-content', // GitHub
+    '.tree-content-holder', // GitLab
+    '.blob-content-holder' // GitLab package.json page
+  ].join(','));
+
+  const dependenciesBox = createBox('Dependencies', container);
+  if (!isPackageJson()) {
+    addHeaderLink(dependenciesBox, 'See package.json', packageURL);
+  }
+
+  const pkg = await fetchPackageJson(packageURL);
+  const dependencies = Object.keys(pkg.dependencies || {});
+  addDependencies(dependenciesBox, dependencies);
+
+  [
+    'Peer',
+    'Bundled',
+    'Optional',
+    'Dev'
+  ].forEach(depType => {
+    let list = pkg[depType.toLowerCase() + 'Dependencies'] || [];
+    if (!Array.isArray(list)) {
+      list = Object.keys(list);
+    }
+    if (list.length > 0) {
+      addDependencies(createBox(`${depType} Dependencies`, container), list);
+    }
+  });
+
+  if (!pkg.private && pkg.name) {
+    fetch(getPkgUrl(pkg.name)).then(r => r.json())
+    .then(realPkg => {
+      if (realPkg.name) { // If 404, realPkg === {}
+        addHeaderLink(
+          dependenciesBox,
+          'Open on npmjs.com',
+          `https://www.npmjs.com/package/${esc(pkg.name)}`
+        );
+        if (dependencies.length > 0) {
+          addHeaderLink(
+            dependenciesBox,
+            'Visualize full tree',
+            `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`
+          );
+        }
+      }
+    }, err => {
+      console.warn('npmhub: there was an error while pinging the current package on npmjs.org', err);
+    });
   }
 }
 
