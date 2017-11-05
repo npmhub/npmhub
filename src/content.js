@@ -64,18 +64,17 @@ async function init() {
   addDependencies(dependenciesBox, dependencies);
 
   [
-    'peer',
-    'bundled',
-    'optional',
-    'dev'
+    'Peer',
+    'Bundled',
+    'Optional',
+    'Dev'
   ].forEach(depType => {
-    let list = pkg[depType + 'Dependencies'] || [];
+    let list = pkg[depType.toLowerCase() + 'Dependencies'] || [];
     if (!Array.isArray(list)) {
       list = Object.keys(list);
     }
     if (list.length > 0) {
-      const title = depType[0].toUpperCase() + depType.substr(1) + ' Dependencies';
-      addDependencies(createBox(title, container), list);
+      addDependencies(createBox(`${depType} Dependencies`, container), list);
     }
   });
 
