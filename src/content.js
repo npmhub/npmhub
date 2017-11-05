@@ -84,9 +84,9 @@ function createBox(title, container) {
 async function addDependency(name, container) {
   const depEl = html.el(`
     <li>
-      <a href='https://www.npmjs.com/package/${esc(name)}'>
-        ${esc(name)}
-      </a>
+      <a href='https://www.npmjs.com/package/${esc(name)}'>${
+        esc(name)
+      }</a>
     </li>
   `);
   container.append(depEl);
