@@ -6,8 +6,9 @@ import parseRepoUrl from './lib/parse-repo-url';
 import html from './lib/parse-html';
 import elementReady from './lib/element-ready';
 
-function getPkgUrl(name) {
-  return 'https://registry.npmjs.org/' + name.replace('/', '%2F');
+function fetchPackageFromNpm(name) {
+  const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
+  return fetch(url).then(r => r.json());
 }
 
 function isGitLab() {
@@ -20,7 +21,9 @@ function isPackageJson() {
 }
 
 function addHeaderLink(box, name, url) {
-  box.firstElementChild.appendChild(html`<a class="btn btn-sm" href="${url}">${name}</a>`);
+  box.firstElementChild.append(html.el(`
+    <a class="btn btn-sm" href="${url}">${name}</a>
+  `));
 }
 
 function getPackageURL() {
@@ -36,71 +39,7 @@ function getPackageURL() {
   }
 }
 
-async function init() {
-  if (select('.npmhub-header')) {
-    return;
-  }
-
-  const packageURL = getPackageURL();
-  if (!packageURL) {
-    return;
-  }
-
-  const container = select([
-    '.repository-content', // GitHub
-    '.tree-content-holder', // GitLab
-    '.blob-content-holder' // GitLab package.json page
-  ].join(','));
-
-  const dependenciesBox = createBox('Dependencies', container);
-  if (!isPackageJson()) {
-    addHeaderLink(dependenciesBox, 'See package.json', packageURL);
-  }
-
-  const pkg = await fetchPackageJson(packageURL);
-  const dependencies = Object.keys(pkg.dependencies || {});
-  addDependencies(dependenciesBox, dependencies);
-
-  [
-    'peer',
-    'bundled',
-    'optional',
-    'dev'
-  ].forEach(depType => {
-    let list = pkg[depType + 'Dependencies'] || [];
-    if (!Array.isArray(list)) {
-      list = Object.keys(list);
-    }
-    if (list.length > 0) {
-      const title = depType[0].toUpperCase() + depType.substr(1) + ' Dependencies';
-      addDependencies(createBox(title, container), list);
-    }
-  });
-
-  if (!pkg.private && pkg.name) {
-    fetch(getPkgUrl(pkg.name)).then(r => r.json())
-    .then(realPkg => {
-      if (realPkg.name) { // If 404, realPkg === {}
-        addHeaderLink(
-          dependenciesBox,
-          'Open on npmjs.com',
-          `https://www.npmjs.com/package/${esc(pkg.name)}`
-        );
-        if (dependencies.length > 0) {
-          addHeaderLink(
-            dependenciesBox,
-            'Visualize full tree',
-            `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`
-          );
-        }
-      }
-    }, err => {
-      console.warn('npmhub: there was an error while pinging the current package on npmjs.org', err);
-    });
-  }
-}
-
-async function fetchPackageJson(url) {
+async function fetchPackageFromRepo(url) {
   let dom = document;
   if (!isPackageJson()) {
     // https://gitlab.com/user/repo/raw/master/package.json
@@ -126,7 +65,7 @@ async function fetchPackageJson(url) {
 }
 
 function createBox(title, container) {
-  const box = html`
+  const box = html.el(`
     <div class="readme boxed-group file-holder readme-holder">
       <div class="npmhub-header"></div>
       ${
@@ -136,25 +75,108 @@ function createBox(title, container) {
       }
       <ol class="npmhub-deps markdown-body"></ol>
     </div>
-  `;
+  `);
 
-  container.appendChild(box);
+  container.append(box);
   return box;
+}
+
+async function addDependency(name, container) {
+  const depEl = html.el(`
+    <li>
+      <a href='https://www.npmjs.com/package/${esc(name)}'>${
+        esc(name)
+      }</a>
+    </li>
+  `);
+  container.append(depEl);
+
+  const dep = await fetchPackageFromNpm(name);
+  depEl.append(dep.description);
+
+  const url = parseRepoUrl(dep);
+  if (url) {
+    depEl.querySelector('a').href = url;
+  }
 }
 
 function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.npmhub-deps');
   if (list.length > 0) {
-    list.forEach(async name => {
-      const depEl = html`<li><a href='https://www.npmjs.com/package/${esc(name)}'>${esc(name)}</a>&nbsp;</li>`;
-      listEl.appendChild(depEl);
-      const dep = await fetch(getPkgUrl(name)).then(r => r.json());
-      depEl.appendChild(html(esc(dep.description)));
-      depEl.querySelector('a').href = parseRepoUrl(dep);
-    });
+    for (const name of list) {
+      addDependency(name, listEl);
+    }
   } else {
-    listEl.appendChild(html`<li class="npmhub-empty">No dependencies! <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji></li>`);
+    listEl.append(html.el(`
+      <li class="npmhub-empty">
+        No dependencies!
+        <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji>
+      </li>
+    `));
   }
 }
 
-githubInjection(window, init);
+async function init() {
+  if (select('.npmhub-header')) {
+    return;
+  }
+
+  const packageURL = getPackageURL();
+  if (!packageURL) {
+    return;
+  }
+
+  const container = select([
+    '.repository-content', // GitHub
+    '.tree-content-holder', // GitLab
+    '.blob-content-holder' // GitLab package.json page
+  ].join(','));
+
+  const dependenciesBox = createBox('Dependencies', container);
+  if (!isPackageJson()) {
+    addHeaderLink(dependenciesBox, 'See package.json', packageURL);
+  }
+
+  const pkg = await fetchPackageFromRepo(packageURL);
+  const dependencies = Object.keys(pkg.dependencies || {});
+  addDependencies(dependenciesBox, dependencies);
+
+  [
+    'Peer',
+    'Bundled',
+    'Optional',
+    'Dev'
+  ].forEach(depType => {
+    let list = pkg[depType.toLowerCase() + 'Dependencies'] || [];
+    if (!Array.isArray(list)) {
+      list = Object.keys(list);
+    }
+    if (list.length > 0) {
+      addDependencies(createBox(`${depType} Dependencies`, container), list);
+    }
+  });
+
+  if (!pkg.private && pkg.name) {
+    fetchPackageFromNpm(pkg.name)
+    .then(realPkg => {
+      if (realPkg.name) { // If 404, realPkg === {}
+        addHeaderLink(
+          dependenciesBox,
+          'Open on npmjs.com',
+          `https://www.npmjs.com/package/${esc(pkg.name)}`
+        );
+        if (dependencies.length > 0) {
+          addHeaderLink(
+            dependenciesBox,
+            'Visualize full tree',
+            `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`
+          );
+        }
+      }
+    }, err => {
+      console.warn('npmhub: there was an error while pinging the current package on npmjs.org', err);
+    });
+  }
+}
+
+githubInjection(init);
