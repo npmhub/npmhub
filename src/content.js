@@ -6,8 +6,9 @@ import parseRepoUrl from './lib/parse-repo-url';
 import html from './lib/parse-html';
 import elementReady from './lib/element-ready';
 
-function getPkgUrl(name) {
-  return 'https://registry.npmjs.org/' + name.replace('/', '%2F');
+function fetchPackageFromNpm(name) {
+  const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
+  return fetch(url).then(r => r.json());
 }
 
 function isGitLab() {
@@ -38,7 +39,7 @@ function getPackageURL() {
   }
 }
 
-async function fetchPackageJson(url) {
+async function fetchPackageFromRepo(url) {
   let dom = document;
   if (!isPackageJson()) {
     // https://gitlab.com/user/repo/raw/master/package.json
@@ -90,7 +91,7 @@ async function addDependency(name, container) {
   `);
   container.append(depEl);
 
-  const dep = await fetch(getPkgUrl(name)).then(r => r.json());
+  const dep = await fetchPackageFromNpm(name);
   depEl.append(dep.description);
 
   const url = parseRepoUrl(dep);
@@ -136,7 +137,7 @@ async function init() {
     addHeaderLink(dependenciesBox, 'See package.json', packageURL);
   }
 
-  const pkg = await fetchPackageJson(packageURL);
+  const pkg = await fetchPackageFromRepo(packageURL);
   const dependencies = Object.keys(pkg.dependencies || {});
   addDependencies(dependenciesBox, dependencies);
 
@@ -156,7 +157,7 @@ async function init() {
   });
 
   if (!pkg.private && pkg.name) {
-    fetch(getPkgUrl(pkg.name)).then(r => r.json())
+    fetchPackageFromNpm(pkg.name)
     .then(realPkg => {
       if (realPkg.name) { // If 404, realPkg === {}
         addHeaderLink(
