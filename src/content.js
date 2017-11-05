@@ -6,6 +6,8 @@ import parseRepoUrl from './lib/parse-repo-url';
 import html from './lib/parse-html';
 import elementReady from './lib/element-ready';
 
+const errorMessage = 'npmhub: there was an error while ';
+
 function fetchPackageFromNpm(name) {
   const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
   return fetch(url).then(r => r.json());
@@ -91,10 +93,14 @@ async function addDependency(name, container) {
   `);
   container.append(depEl);
 
-  const dep = await fetchPackageFromNpm(name);
+  const dep = await fetchPackageFromNpm(name).catch(err => {
+    console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, err);
+  });
+  if (!dep) {
+    return depEl.append(html('<em>There was a network error.</em>'));
+  }
   if (!dep.name) {
-    depEl.append(html('<em>Not published or private.</em>'));
-    return;
+    return depEl.append(html('<em>Not published or private.</em>'));
   }
   depEl.append(dep.description);
 
@@ -106,7 +112,13 @@ async function addDependency(name, container) {
 
 function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.npmhub-deps');
-  if (list.length > 0) {
+  if (!list) {
+    listEl.append(html.el(`
+      <li class="npmhub-empty">
+        <em>There was a network error.</em>
+      </li>
+    `));
+  } else if (list.length > 0) {
     for (const name of list) {
       addDependency(name, listEl);
     }
@@ -141,7 +153,13 @@ async function init() {
     addHeaderLink(dependenciesBox, 'See package.json', packageURL);
   }
 
-  const pkg = await fetchPackageFromRepo(packageURL);
+  const pkg = await fetchPackageFromRepo(packageURL).catch(err => {
+    addDependencies(dependenciesBox, false);
+    console.warn(`${errorMessage} fetching the current package.json from ${location.hostname}`, err);
+  });
+  if (!pkg) {
+    return;
+  }
   const dependencies = Object.keys(pkg.dependencies || {});
   addDependencies(dependenciesBox, dependencies);
 
@@ -178,7 +196,7 @@ async function init() {
         }
       }
     }, err => {
-      console.warn('npmhub: there was an error while pinging the current package on npmjs.org', err);
+      console.warn(`${errorMessage} pinging the current package on npmjs.org`, err);
     });
   }
 }
