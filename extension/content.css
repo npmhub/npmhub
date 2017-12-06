@@ -14,6 +14,9 @@
 li.npmhub-empty {
   opacity: 0.6;
 }
+.npmhub-deps em {
+  color: darkgray;
+}
 .npmhub-header .btn {
   position: relative;
   z-index: 1; /* Necessary for GitLab */
