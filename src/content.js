@@ -187,6 +187,11 @@ async function init() {
           'Open on npmjs.com',
           `https://www.npmjs.com/package/${esc(pkg.name)}`
         );
+        addHeaderLink(
+          dependenciesBox,
+          'Test with RunKit',
+          `https://npm.runkit.com/${esc(pkg.name)}`
+        );
         if (dependencies.length > 0) {
           addHeaderLink(
             dependenciesBox,
