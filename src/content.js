@@ -196,7 +196,7 @@ async function init() {
           addHeaderLink(
             dependenciesBox,
             'Visualize full tree',
-            `http://npm.anvaka.com/#/view/2d/${esc(pkg.name)}`
+            `http://npm.broofa.com/?q=${esc(pkg.name)}`
           );
         }
       }
