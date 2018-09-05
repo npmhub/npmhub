@@ -68,7 +68,7 @@ async function fetchPackageFromRepo(url) {
 
 function createBox(title, container) {
   const box = html.el(`
-    <div class="readme boxed-group file-holder readme-holder">
+    <div class="readme boxed-group file-holder readme-holder mt-5">
       <div class="npmhub-header"></div>
       ${
         isGitLab() ?
