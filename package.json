@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "test": "xo && npm run build",
-    "build": "webpack",
-    "watch": "webpack --watch",
+    "build": "webpack --mode=production",
+    "watch": "webpack --mode=development --watch",
     "release-amo": "cd extension && web-ext-submit",
     "release-cws": "cd extension && webstore upload --auto-publish",
     "release": "npm run build && npm run update-version && npm run release-amo && npm run release-cws",
@@ -32,7 +32,8 @@
     "chrome-webstore-upload-cli": "^1.0.0",
     "dot-json": "^1.0.3",
     "web-ext-submit": "^2.9.2",
-    "webpack": "^3.8.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
     "xo": "^0.18.2"
   },
   "dependencies": {
@@ -41,6 +42,7 @@
     "github-injection": "^1.0.1",
     "hosted-git-info": "^2.5.0",
     "select-dom": "^4.1.1",
+    "uglifyjs-webpack-plugin": "^1.3.0",
     "webext-domain-permission-toggle": "0.0.2",
     "webext-dynamic-content-scripts": "^5.0.1"
   }

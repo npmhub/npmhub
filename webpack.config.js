@@ -1,15 +1,13 @@
 'use strict';
 const path = require('path');
-const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
+  devtool: 'sourcemap',
   entry: {
     content: './src/content',
-    background: './src/background',
+    background: './src/background'
   },
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin()
-  ],
   resolve: {
     alias: {
       // Required until https://github.com/npm/hosted-git-info/pull/26 is in
@@ -23,5 +21,24 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'extension'),
     filename: '[name].js'
+  },
+
+  optimization: {
+    // Without this, function names will be garbled and enableFeature won't work
+    concatenateModules: true,
+
+    // Automatically enabled on prod; keeps it somewhat readable for AMO reviewers
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          mangle: false,
+          compress: false,
+          output: {
+            beautify: true,
+            indent_level: 2 // eslint-disable-line camelcase
+          }
+        }
+      })
+    ]
   }
 };
