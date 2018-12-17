@@ -8,9 +8,10 @@ import elementReady from './lib/element-ready';
 
 const errorMessage = 'npmhub: there was an error while ';
 
-function fetchPackageFromNpm(name) {
+async function fetchPackageFromNpm(name) {
   const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
-  return fetch(url).then(r => r.json());
+  const response = await fetch(url, {credentials: 'include'});
+  return response.json();
 }
 
 function isGitLab() {
@@ -48,9 +49,8 @@ async function fetchPackageFromRepo(url) {
     // https://github.com/user/repo/blob/master/package.json
     url = url.replace(/(gitlab[.]com[/].+[/].+[/])blob/, '$1raw');
 
-    const body = await fetch(url, {
-      credentials: 'include'
-    }).then(r => r.text());
+    const response = await fetch(url, {credentials: 'include'});
+    const body = await response.text();
 
     // GitLab will return raw JSON
     // GitHub will return an HTML page
@@ -67,6 +67,7 @@ async function fetchPackageFromRepo(url) {
 }
 
 function createBox(title, container) {
+  /* eslint-disable indent */
   const box = html.el(`
     <div class="readme boxed-group file-holder readme-holder mt-5">
       <div class="npmhub-header"></div>
@@ -78,6 +79,7 @@ function createBox(title, container) {
       <ol class="npmhub-deps markdown-body"></ol>
     </div>
   `);
+  /* eslint-enable indent */
 
   container.append(box);
   return box;
@@ -86,17 +88,18 @@ function createBox(title, container) {
 async function addDependency(name, container) {
   const depEl = html.el(`
     <li>
-      <a href='https://www.npmjs.com/package/${esc(name)}'>${
-        esc(name)
-      }</a>
+      <a href='https://www.npmjs.com/package/${esc(name)}'>
+        ${esc(name)}
+      </a>
     </li>
   `);
   container.append(depEl);
 
-  const dep = await fetchPackageFromNpm(name).catch(err => {
-    console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, err);
-  });
-  if (!dep) {
+  let dep;
+  try {
+    dep = await fetchPackageFromNpm(name);
+  } catch (error) {
+    console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
     return depEl.append(html('<em>There was a network error.</em>'));
   }
   if (!dep.name) {
@@ -153,22 +156,24 @@ async function init() {
     addHeaderLink(dependenciesBox, 'See package.json', packageURL);
   }
 
-  const pkg = await fetchPackageFromRepo(packageURL).catch(err => {
+  let pkg;
+  try {
+    pkg = await fetchPackageFromRepo(packageURL);
+  } catch (error) {
     addDependencies(dependenciesBox, false);
-    console.warn(`${errorMessage} fetching the current package.json from ${location.hostname}`, err);
-  });
-  if (!pkg) {
+    console.warn(`${errorMessage} fetching the current package.json from ${location.hostname}`, error);
     return;
   }
   const dependencies = Object.keys(pkg.dependencies || {});
   addDependencies(dependenciesBox, dependencies);
 
-  [
+  const types = [
     'Peer',
     'Bundled',
     'Optional',
     'Dev'
-  ].forEach(depType => {
+  ];
+  for (const depType of types) {
     let list = pkg[depType.toLowerCase() + 'Dependencies'] || [];
     if (!Array.isArray(list)) {
       list = Object.keys(list);
@@ -176,11 +181,11 @@ async function init() {
     if (list.length > 0) {
       addDependencies(createBox(`${depType} Dependencies`, container), list);
     }
-  });
+  }
 
   if (!pkg.private && pkg.name) {
-    fetchPackageFromNpm(pkg.name)
-    .then(realPkg => {
+    try {
+      const realPkg = await fetchPackageFromNpm(pkg.name);
       if (realPkg.name) { // If 404, realPkg === {}
         addHeaderLink(
           dependenciesBox,
@@ -200,9 +205,9 @@ async function init() {
           );
         }
       }
-    }, err => {
-      console.warn(`${errorMessage} pinging the current package on npmjs.org`, err);
-    });
+    } catch (error) {
+      console.warn(`${errorMessage} pinging the current package on npmjs.org`, error);
+    }
   }
 }
 

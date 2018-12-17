@@ -22,16 +22,14 @@
     "persistent": false
   },
   "permissions": [
-    "https://registry.npmjs.org/"
+    "https://registry.npmjs.org/",
+    "contextMenus",
+    "activeTab"
   ],
   "optional_permissions": [
     "http://*/*",
     "https://*/*"
   ],
-  "options_ui": {
-    "chrome_style": true,
-    "page": "options.html"
-  },
   "content_scripts":[
     {
       "matches": [

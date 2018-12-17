@@ -17,7 +17,7 @@ function unknownHostedUrl(url) {
       'http:';
     return protocol + '//' + (url.host || '') +
       url.pathname.replace(/\.git$/, '');
-  } catch (err) {/**/}
+  } catch (error) {/**/}
 }
 
 function normalizeRepository(repoField) {
