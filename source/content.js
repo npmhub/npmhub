@@ -67,6 +67,7 @@ async function fetchPackageFromRepo(url) {
 }
 
 function createBox(title, container) {
+  /* eslint-disable indent */
   const box = html.el(`
     <div class="readme boxed-group file-holder readme-holder mt-5">
       <div class="npmhub-header"></div>
@@ -78,6 +79,7 @@ function createBox(title, container) {
       <ol class="npmhub-deps markdown-body"></ol>
     </div>
   `);
+  /* eslint-enable indent */
 
   container.append(box);
   return box;
@@ -86,9 +88,9 @@ function createBox(title, container) {
 async function addDependency(name, container) {
   const depEl = html.el(`
     <li>
-      <a href='https://www.npmjs.com/package/${esc(name)}'>${
-        esc(name)
-      }</a>
+      <a href='https://www.npmjs.com/package/${esc(name)}'>
+        ${esc(name)}
+      </a>
     </li>
   `);
   container.append(depEl);
@@ -165,12 +167,13 @@ async function init() {
   const dependencies = Object.keys(pkg.dependencies || {});
   addDependencies(dependenciesBox, dependencies);
 
-  [
+  const types = [
     'Peer',
     'Bundled',
     'Optional',
     'Dev'
-  ].forEach(depType => {
+  ];
+  for (const depType of types) {
     let list = pkg[depType.toLowerCase() + 'Dependencies'] || [];
     if (!Array.isArray(list)) {
       list = Object.keys(list);
@@ -178,7 +181,7 @@ async function init() {
     if (list.length > 0) {
       addDependencies(createBox(`${depType} Dependencies`, container), list);
     }
-  });
+  }
 
   if (!pkg.private && pkg.name) {
     try {

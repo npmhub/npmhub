@@ -15,9 +15,13 @@
     "update-version": "VERSION=20$(utc-version); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
   },
   "xo": {
-    "space": 2,
     "rules": {
-      "import/no-unassigned-import": 0
+      "import/no-unassigned-import": 0,
+      "indent": [
+        2,
+        2,
+        {"ignoredNodes": ["TemplateLiteral > ConditionalExpression"]}
+      ]
     },
     "envs": [
       "browser",
