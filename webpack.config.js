@@ -1,17 +1,18 @@
 'use strict';
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   devtool: 'sourcemap',
   entry: {
-    content: './src/content',
-    background: './src/background'
+    content: './source/content',
+    background: './source/background'
   },
   resolve: {
     alias: {
       // Required until https://github.com/npm/hosted-git-info/pull/26 is in
-      url: path.resolve('./src/lib/reduced-url.js')
+      url: path.resolve('./source/lib/reduced-url.js')
     }
   },
   externals: {
@@ -19,10 +20,18 @@ module.exports = {
     util: 'window'
   },
   output: {
-    path: path.join(__dirname, 'extension'),
+    path: path.join(__dirname, 'distribution'),
     filename: '[name].js'
   },
-
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: '**',
+        context: 'source',
+        ignore: '*.js'
+      }
+    ])
+  ],
   optimization: {
     // Without this, function names will be garbled and enableFeature won't work
     concatenateModules: true,

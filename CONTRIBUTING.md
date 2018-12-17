@@ -28,6 +28,7 @@ To get started, you'll need `git` and `node` installed.
 git clone https://github.com/npmhub/npmhub
 cd npmhub
 npm install
+npm run watch
 ```
 
 To run the extension locally while developing:
@@ -36,7 +37,7 @@ To run the extension locally while developing:
 1. Disable the production version of npmhub if you have it installed already.
 1. Enable "Developer Mode".
 1. Click "Load Unpacked Extension".
-1. Browse to the `/extension` directory of your checked-out project.
+1. Browse to the `/distribution` directory of your checked-out project.
 1. Visit a [Javascripty repo with dependencies](https://github.com/VictorBjelkholm/trymodule) and you should see dependencies listed below the README.
 
 ## Deployment
