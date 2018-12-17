@@ -24,8 +24,8 @@ function isPackageJson() {
 }
 
 function addHeaderLink(box, name, url) {
-  box.firstElementChild.append(html.el(`
-    <a class="btn btn-sm" href="${url}">${name}</a>
+  box.firstElementChild.prepend(html.el(`
+    <a class="btn btn-sm BtnGroup-item" href="${url}">${name}</a>
   `));
 }
 
@@ -70,7 +70,7 @@ function createBox(title, container) {
   /* eslint-disable indent */
   const box = html.el(`
     <div class="readme boxed-group file-holder readme-holder mt-5">
-      <div class="npmhub-header"></div>
+      <div class="npmhub-header BtnGroup"></div>
       ${
         isGitLab() ?
         `<div class="file-title"><strong>${title}</strong></div>` :
@@ -153,7 +153,7 @@ async function init() {
 
   const dependenciesBox = createBox('Dependencies', container);
   if (!isPackageJson()) {
-    addHeaderLink(dependenciesBox, 'See package.json', packageURL);
+    addHeaderLink(dependenciesBox, 'package.json', packageURL);
   }
 
   let pkg;
@@ -189,12 +189,12 @@ async function init() {
       if (realPkg.name) { // If 404, realPkg === {}
         addHeaderLink(
           dependenciesBox,
-          'Open on npmjs.com',
+          'npmjs.com',
           `https://www.npmjs.com/package/${esc(pkg.name)}`
         );
         addHeaderLink(
           dependenciesBox,
-          'Test with RunKit',
+          'RunKit',
           `https://npm.runkit.com/${esc(pkg.name)}`
         );
         if (dependencies.length > 0) {

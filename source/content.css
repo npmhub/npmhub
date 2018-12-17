@@ -17,12 +17,15 @@ li.npmhub-empty {
 .npmhub-deps em {
   color: darkgray;
 }
+.npmhub-header {
+  float: right;
+  margin-right: 5px;
+}
 .npmhub-header .btn {
   position: relative;
   z-index: 1; /* Necessary for GitLab */
-  float: right;
-  margin: 5px;
-  margin-left: 0;
+  /* float: right; */
+  margin: 5px 0;
 }
 .npmhub-deps:empty:before {
   display: block;
