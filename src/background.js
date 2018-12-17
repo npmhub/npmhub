@@ -1,3 +1,6 @@
-import injectContentScripts from 'webext-dynamic-content-scripts';
+import domainPermissionToggle from 'webext-domain-permission-toggle';
+import dynamicContentScripts from 'webext-dynamic-content-scripts';
 
-injectContentScripts();
+// GitHub Enterprise support
+dynamicContentScripts.addToFutureTabs();
+domainPermissionToggle.addContextMenu();
