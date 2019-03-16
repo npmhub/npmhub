@@ -15,6 +15,7 @@ exports.parse = function (url) {
     if (path && path[0] !== '/') {
       path = `/${path}`;
     }
+
     return {
       protocol: match[1],
       auth: match[2],

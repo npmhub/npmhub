@@ -5,21 +5,21 @@ import dynamicContentScripts from 'webext-dynamic-content-scripts';
 dynamicContentScripts.addToFutureTabs();
 domainPermissionToggle.addContextMenu();
 
-// let's avoid CORB introduced in Chrome 73 chromestatus.com/feature/5629709824032768
-chrome.runtime.onMessage.addListener(function(
-  { action, payload },
+// Let's avoid CORB introduced in Chrome 73 chromestatus.com/feature/5629709824032768
+chrome.runtime.onMessage.addListener((
+  {action, payload},
   sender,
   sendResponse
-) {
-  if (action === "fetch") {
-    const { name } = payload;
+) => {
+  if (action === 'fetch') {
+    const {name} = payload;
 
-    var url = `https://registry.npmjs.org/${encodeURIComponent(name)}`;
+    const url = `https://registry.npmjs.org/${encodeURIComponent(name)}`;
 
     fetch(url)
       .then(response => response.json())
       .then(json => sendResponse(json));
 
-    return true; // we will respond asynchronously.
+    return true; // We will respond asynchronously.
   }
 });

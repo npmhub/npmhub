@@ -11,6 +11,7 @@ function unknownHostedUrl(url) {
     if (idx !== -1) {
       url = url.slice(idx + 1).replace(/:([^\d]+)/, '/$1');
     }
+
     url = new URL(url);
     const protocol = url.protocol === 'https:' ?
       'https:' :
@@ -24,6 +25,7 @@ function normalizeRepository(repoField) {
   if (repoField && repoField.url) {
     return repoField.url;
   }
+
   return repoField;
 }
 

@@ -9,11 +9,11 @@ import elementReady from './lib/element-ready';
 const errorMessage = 'npmhub: there was an error while ';
 
 async function fetchPackageFromNpm(name) {
-  // get the data from NPM registry via background.js
-  return new Promise(res =>
+  // Get the data from NPM registry via background.js
+  return new Promise(resolve =>
     chrome.runtime.sendMessage(
-      { action: "fetch", payload: { name } },
-      response => res(response)
+      {action: 'fetch', payload: {name}},
+      response => resolve(response)
     )
   );
 }
@@ -37,6 +37,7 @@ function getPackageURL() {
   if (isPackageJson()) {
     return location.href;
   }
+
   const packageLink = select([
     '.files [title="package.json"]', // GitHub
     '.tree-item-file-name [title="package.json"]' // GitLab
@@ -61,6 +62,7 @@ async function fetchPackageFromRepo(url) {
     if (isGitLab()) {
       return JSON.parse(body);
     }
+
     dom = html(body);
   }
 
@@ -106,9 +108,11 @@ async function addDependency(name, container) {
     console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
     return depEl.append(html('<em>There was a network error.</em>'));
   }
+
   if (!dep.name) {
     return depEl.append(html('<em>Not published or private.</em>'));
   }
+
   depEl.append(dep.description);
 
   const url = parseRepoUrl(dep);
@@ -168,6 +172,7 @@ async function init() {
     console.warn(`${errorMessage} fetching the current package.json from ${location.hostname}`, error);
     return;
   }
+
   const dependencies = Object.keys(pkg.dependencies || {});
   addDependencies(dependenciesBox, dependencies);
 
@@ -182,6 +187,7 @@ async function init() {
     if (!Array.isArray(list)) {
       list = Object.keys(list);
     }
+
     if (list.length > 0) {
       addDependencies(createBox(`${depType} Dependencies`, container), list);
     }
