@@ -5,7 +5,7 @@ import dynamicContentScripts from 'webext-dynamic-content-scripts';
 dynamicContentScripts.addToFutureTabs();
 domainPermissionToggle.addContextMenu();
 
-// Let's avoid CORB introduced in Chrome 73 chromestatus.com/feature/5629709824032768
+// `background` fetch required to avoid avoid CORB introduced in Chrome 73 https://chromestatus.com/feature/5629709824032768
 chrome.runtime.onMessage.addListener((
   {action, payload},
   sender,
@@ -14,12 +14,13 @@ chrome.runtime.onMessage.addListener((
   if (action === 'fetch') {
     const {name} = payload;
 
-    const url = `https://registry.npmjs.org/${encodeURIComponent(name)}`;
+    // @ char (scoped repositories) is not escaped, only / is...
+    const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
 
     fetch(url)
       .then(response => response.json())
       .then(json => sendResponse(json));
 
-    return true; // We will respond asynchronously.
+    return true; // Required to signal intent to respond asynchronously
   }
 });

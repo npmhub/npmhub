@@ -13,7 +13,7 @@ async function fetchPackageFromNpm(name) {
   return new Promise(resolve =>
     chrome.runtime.sendMessage(
       {action: 'fetch', payload: {name}},
-      response => resolve(response)
+      resolve
     )
   );
 }
