@@ -9,9 +9,13 @@ import elementReady from './lib/element-ready';
 const errorMessage = 'npmhub: there was an error while ';
 
 async function fetchPackageFromNpm(name) {
-  const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
-  const response = await fetch(url, {credentials: 'include'});
-  return response.json();
+  // get the data from NPM registry via background.js
+  return new Promise(res =>
+    chrome.runtime.sendMessage(
+      { action: "fetch", payload: { name } },
+      response => res(response)
+    )
+  );
 }
 
 function isGitLab() {
