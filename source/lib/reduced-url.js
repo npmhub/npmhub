@@ -1,4 +1,3 @@
-// Module required until https://github.com/npm/hosted-git-info/pull/26 is in
 // This can't be replaced with `new URL()` because browsers don't support git+http urls
 
 const protocol = '(?:([^:]+:)?(?://)?)?';
