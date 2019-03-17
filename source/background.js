@@ -26,8 +26,27 @@ async function fetchPackageJson(name) {
   // Scoped repositories contain an escaped slash and a regular at-sign
   // Example: https://registry.npmjs.org/@shinnn%2Feslint-config-node
   const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
-  const response = await fetch(url);
-  return response.json();
+
+  try {
+    const response = await fetch(url);
+    const pkg = await response.json();
+
+    if (pkg.error) {
+      throw new Error(pkg.error);
+    }
+
+    // Only store/pass the necessary info
+    return {
+      url: parseRepoUrl(pkg),
+      description: pkg.description
+    };
+  } catch (error) {
+    cache.delete(name); // Drop errors from cache
+
+    return {
+      error: error.message // Make error JSON.stringify-able
+    };
+  }
 }
 
 // `background` fetch required to avoid avoid CORB introduced in Chrome 73 https://chromestatus.com/feature/5629709824032768
@@ -39,26 +58,8 @@ chrome.runtime.onMessage.addListener((
   if (action === 'fetch') {
     const {name} = payload;
 
-    const promise = cache.get(name) || fetchPackageJson(name).then(pkg => {
-      if (pkg.error) {
-        throw new Error(pkg.error);
-      }
-
-      // Only store/pass the necessary info
-      const info = {
-        url: parseRepoUrl(pkg),
-        description: pkg.description
-      };
-      sendResponse(info);
-      return info;
-    }).catch(error => {
-      cache.delete(name); // Drop errors from cache
-
-      sendResponse({
-        error: error.message
-      });
-    });
-
+    const promise = cache.get(name) || fetchPackageJson(name);
+    promise.then(sendResponse);
     cache.set(name, promise);
 
     return true; // Required to signal intent to respond asynchronously
