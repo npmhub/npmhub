@@ -117,6 +117,7 @@ async function addDependency(name, container) {
     if (error.message === 'Not found') {
       return depEl.append(html('<em>Not published or private.</em>'));
     }
+
     console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
     return depEl.append(html('<em>There was a network error.</em>'));
   }
