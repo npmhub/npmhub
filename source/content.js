@@ -3,26 +3,17 @@ import {escape as esc} from 'escape-goat';
 import githubInjection from 'github-injection';
 import select from 'select-dom';
 import doma from 'doma';
-import parseRepoUrl from './lib/parse-repo-url';
 import elementReady from './lib/element-ready';
 
 const errorMessage = 'npmhub: there was an error while';
 
-async function fetchPackageFromNpm(name) {
+async function fetchPackageInfo(name) {
   // Get the data from NPM registry via background.js
   // due to CORB policies introduced in Chrome 73
-  return new Promise((resolve, reject) =>
+  return new Promise(resolve =>
     chrome.runtime.sendMessage(
       {action: 'fetch', payload: {name}},
-      response => {
-        if (response.error) {
-          const error = new Error(response.error.title);
-          error.message = response.error.message;
-          reject(error);
-        } else {
-          resolve(response);
-        }
-      }
+      resolve
     )
   );
 }
@@ -110,21 +101,21 @@ async function addDependency(name, container) {
   `);
   container.append(depEl);
 
-  let dep;
-  try {
-    dep = await fetchPackageFromNpm(name);
-  } catch (error) {
-    if (error.message === 'Not found') {
-      return depEl.append(doma('<em>Not published or private.</em>'));
+  const {url, description, error} = await fetchPackageInfo(name);
+
+  if (error) {
+    if (error === 'Not found') {
+      depEl.append(doma('<em>Not published or private.</em>'));
+    } else {
+      console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
+      depEl.append(doma('<em>There was a network error.</em>'));
     }
 
-    console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
-    return depEl.append(doma('<em>There was a network error.</em>'));
+    return;
   }
 
-  depEl.append(dep.description);
+  depEl.append(description);
 
-  const url = parseRepoUrl(dep);
   if (url) {
     depEl.querySelector('a').href = url;
   }
@@ -153,7 +144,7 @@ function addDependencies(containerEl, list) {
 }
 
 async function init() {
-  if (select('.npmhub-header')) {
+  if (select.exists('.npmhub-header')) {
     return;
   }
 
@@ -203,29 +194,32 @@ async function init() {
   }
 
   if (!pkg.private && pkg.name) {
-    try {
-      const realPkg = await fetchPackageFromNpm(pkg.name);
-      if (realPkg.name) { // If 404, realPkg === {}
-        addHeaderLink(
-          dependenciesBox,
-          'npmjs.com',
-          `https://www.npmjs.com/package/${esc(pkg.name)}`
-        );
-        addHeaderLink(
-          dependenciesBox,
-          'RunKit',
-          `https://npm.runkit.com/${esc(pkg.name)}`
-        );
-        if (dependencies.length > 0) {
-          addHeaderLink(
-            dependenciesBox,
-            'Visualize full tree',
-            `http://npm.broofa.com/?q=${esc(pkg.name)}`
-          );
-        }
+    // Does the current package exist on npm?
+    const {error} = await fetchPackageInfo(pkg.name);
+    if (error) {
+      if (error.message !== 'Not found') {
+        console.warn(`${errorMessage} pinging the current package on npmjs.org`, error);
       }
-    } catch (error) {
-      console.warn(`${errorMessage} pinging the current package on npmjs.org`, error);
+
+      return;
+    }
+
+    addHeaderLink(
+      dependenciesBox,
+      'npmjs.com',
+      `https://www.npmjs.com/package/${esc(pkg.name)}`
+    );
+    addHeaderLink(
+      dependenciesBox,
+      'RunKit',
+      `https://npm.runkit.com/${esc(pkg.name)}`
+    );
+    if (dependencies.length > 0) {
+      addHeaderLink(
+        dependenciesBox,
+        'Visualize full tree',
+        `http://npm.broofa.com/?q=${esc(pkg.name)}`
+      );
     }
   }
 }
