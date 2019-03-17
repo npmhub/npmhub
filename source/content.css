@@ -2,7 +2,6 @@
   list-style: none;
   padding: 0 !important;
   margin: 0 !important; /* gitlab */
-  font-size: 13px;
 }
 .npmhub-deps > li {
   padding: 10px;
