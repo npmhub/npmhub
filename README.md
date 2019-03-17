@@ -1,7 +1,7 @@
-# npmhub [![Chrome version][badge-cws]][link-cws] [![Firefox version][badge-amo]][link-amo] [![deployment][badge-travis]][link-travis]
+# npmhub [![deployment][badge-travis]][link-travis]
 
-  [badge-cws]: https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg?label=chrome
-  [badge-amo]: https://img.shields.io/amo/v/npm-hub.svg?label=firefox
+  [badge-cws]: https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg?label=
+  [badge-amo]: https://img.shields.io/amo/v/npm-hub.svg?label=
   [badge-travis]: https://img.shields.io/travis/npmhub/npmhub/master.svg?label=deployment
   [link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj "Version published on Chrome Web Store"
   [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ "Version published on Mozilla Add-ons"
@@ -13,8 +13,8 @@ GitHub Enterprise, GitLab Enterprise and Community Edition are also supported by
 
 ## Installation
 
-  + [**Chrome** extension](https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj)
-  + [**Firefox** add-on](https://addons.mozilla.org/en-US/firefox/addon/npm-hub/)
+  + [**Chrome** extension](https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj) [![(version)][badge-cws]][link-cws]
+  + [**Firefox** add-on](https://addons.mozilla.org/en-US/firefox/addon/npm-hub/) [![(version)][badge-amo]][link-amo]
   + Opera - Use [this Opera extension](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) to install the Chrome version.
 
 ## Design
