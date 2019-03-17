@@ -1,5 +1,6 @@
 import domainPermissionToggle from 'webext-domain-permission-toggle';
 import dynamicContentScripts from 'webext-dynamic-content-scripts';
+import parseRepoUrl from './lib/parse-repo-url';
 
 // GitHub Enterprise support
 dynamicContentScripts.addToFutureTabs();
@@ -38,16 +39,23 @@ chrome.runtime.onMessage.addListener((
   if (action === 'fetch') {
     const {name} = payload;
 
-    const promise = cache.get(name) || fetchPackageJson(name);
+    const promise = cache.get(name) || fetchPackageJson(name).then(pkg => {
+      if (pkg.error) {
+        throw new Error(pkg.error);
+      }
 
-    promise.then(sendResponse, error => {
+      // Only store/pass the necessary info
+      const info = {
+        url: parseRepoUrl(pkg),
+        description: pkg.description
+      };
+      sendResponse(info);
+      return info;
+    }).catch(error => {
       cache.delete(name); // Drop errors from cache
 
       sendResponse({
-        error: {
-          title: error.title,
-          message: error.message
-        }
+        error: error.message
       });
     });
 
