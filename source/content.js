@@ -2,8 +2,8 @@ import 'webext-dynamic-content-scripts';
 import {escape as esc} from 'escape-goat';
 import githubInjection from 'github-injection';
 import select from 'select-dom';
+import doma from 'doma';
 import parseRepoUrl from './lib/parse-repo-url';
-import html from './lib/parse-html';
 import elementReady from './lib/element-ready';
 
 const errorMessage = 'npmhub: there was an error while';
@@ -37,7 +37,7 @@ function isPackageJson() {
 }
 
 function addHeaderLink(box, name, url) {
-  box.firstElementChild.prepend(html.el(`
+  box.firstElementChild.prepend(doma(`
     <a class="btn btn-sm BtnGroup-item" href="${url}">${name}</a>
   `));
 }
@@ -72,7 +72,7 @@ async function fetchPackageFromRepo(url) {
       return JSON.parse(body);
     }
 
-    dom = html(body);
+    dom = doma(body);
   }
 
   // ElementReady required for GitLab's deferred content load
@@ -83,7 +83,7 @@ async function fetchPackageFromRepo(url) {
 
 function createBox(title, container) {
   /* eslint-disable indent */
-  const box = html.el(`
+  const box = doma.one(`
     <div class="readme boxed-group file-holder readme-holder mt-5">
       <div class="npmhub-header BtnGroup"></div>
       ${
@@ -101,7 +101,7 @@ function createBox(title, container) {
 }
 
 async function addDependency(name, container) {
-  const depEl = html.el(`
+  const depEl = doma.one(`
     <li>
       <a href='https://www.npmjs.com/package/${esc(name)}'>
         ${esc(name)}
@@ -115,11 +115,11 @@ async function addDependency(name, container) {
     dep = await fetchPackageFromNpm(name);
   } catch (error) {
     if (error.message === 'Not found') {
-      return depEl.append(html('<em>Not published or private.</em>'));
+      return depEl.append(doma('<em>Not published or private.</em>'));
     }
 
     console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
-    return depEl.append(html('<em>There was a network error.</em>'));
+    return depEl.append(doma('<em>There was a network error.</em>'));
   }
 
   depEl.append(dep.description);
@@ -133,7 +133,7 @@ async function addDependency(name, container) {
 function addDependencies(containerEl, list) {
   const listEl = containerEl.querySelector('.npmhub-deps');
   if (!list) {
-    listEl.append(html.el(`
+    listEl.append(doma(`
       <li class="npmhub-empty">
         <em>There was a network error.</em>
       </li>
@@ -143,7 +143,7 @@ function addDependencies(containerEl, list) {
       addDependency(name, listEl);
     }
   } else {
-    listEl.append(html.el(`
+    listEl.append(doma(`
       <li class="npmhub-empty">
         No dependencies!
         <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji>
