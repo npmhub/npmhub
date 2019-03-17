@@ -14,12 +14,19 @@ chrome.runtime.onMessage.addListener((
   if (action === 'fetch') {
     const {name} = payload;
 
-    // @ char (scoped repositories) is not escaped, only / is...
+    // Scoped repositories contain an escaped slash and a regular at-sign
+    // Example: https://registry.npmjs.org/@shinnn%2Feslint-config-node
     const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
 
     fetch(url)
       .then(response => response.json())
-      .then(json => sendResponse(json));
+      .then(json => sendResponse(json))
+      .catch(error => sendResponse({
+        error: {
+          title: error.title,
+          message: error.message
+        }
+      }));
 
     return true; // Required to signal intent to respond asynchronously
   }

@@ -6,14 +6,23 @@ import parseRepoUrl from './lib/parse-repo-url';
 import html from './lib/parse-html';
 import elementReady from './lib/element-ready';
 
-const errorMessage = 'npmhub: there was an error while ';
+const errorMessage = 'npmhub: there was an error while';
 
 async function fetchPackageFromNpm(name) {
   // Get the data from NPM registry via background.js
-  return new Promise(resolve =>
+  // due to CORB policies introduced in Chrome 73
+  return new Promise((resolve, reject) =>
     chrome.runtime.sendMessage(
       {action: 'fetch', payload: {name}},
-      resolve
+      response => {
+        if (response.error) {
+          const error = new Error(response.error.title);
+          error.message = response.error.message;
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      }
     )
   );
 }
@@ -105,12 +114,11 @@ async function addDependency(name, container) {
   try {
     dep = await fetchPackageFromNpm(name);
   } catch (error) {
+    if (error.message === 'Not found') {
+      return depEl.append(html('<em>Not published or private.</em>'));
+    }
     console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
     return depEl.append(html('<em>There was a network error.</em>'));
-  }
-
-  if (!dep.name) {
-    return depEl.append(html('<em>Not published or private.</em>'));
   }
 
   depEl.append(dep.description);
