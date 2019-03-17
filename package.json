@@ -20,7 +20,11 @@
       "indent": [
         2,
         2,
-        {"ignoredNodes": ["TemplateLiteral > ConditionalExpression"]}
+        {
+          "ignoredNodes": [
+            "TemplateLiteral > ConditionalExpression"
+          ]
+        }
       ]
     },
     "envs": [
@@ -35,7 +39,7 @@
     "web-ext-submit": "^2.9.2",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
-    "xo": "*"
+    "xo": "^0.24.0"
   },
   "dependencies": {
     "copy-webpack-plugin": "^4.6.0",

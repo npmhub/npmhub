@@ -6,12 +6,25 @@ import parseRepoUrl from './lib/parse-repo-url';
 import html from './lib/parse-html';
 import elementReady from './lib/element-ready';
 
-const errorMessage = 'npmhub: there was an error while ';
+const errorMessage = 'npmhub: there was an error while';
 
 async function fetchPackageFromNpm(name) {
-  const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
-  const response = await fetch(url, {credentials: 'include'});
-  return response.json();
+  // Get the data from NPM registry via background.js
+  // due to CORB policies introduced in Chrome 73
+  return new Promise((resolve, reject) =>
+    chrome.runtime.sendMessage(
+      {action: 'fetch', payload: {name}},
+      response => {
+        if (response.error) {
+          const error = new Error(response.error.title);
+          error.message = response.error.message;
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      }
+    )
+  );
 }
 
 function isGitLab() {
@@ -33,6 +46,7 @@ function getPackageURL() {
   if (isPackageJson()) {
     return location.href;
   }
+
   const packageLink = select([
     '.files [title="package.json"]', // GitHub
     '.tree-item-file-name [title="package.json"]' // GitLab
@@ -57,6 +71,7 @@ async function fetchPackageFromRepo(url) {
     if (isGitLab()) {
       return JSON.parse(body);
     }
+
     dom = html(body);
   }
 
@@ -99,12 +114,14 @@ async function addDependency(name, container) {
   try {
     dep = await fetchPackageFromNpm(name);
   } catch (error) {
+    if (error.message === 'Not found') {
+      return depEl.append(html('<em>Not published or private.</em>'));
+    }
+
     console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
     return depEl.append(html('<em>There was a network error.</em>'));
   }
-  if (!dep.name) {
-    return depEl.append(html('<em>Not published or private.</em>'));
-  }
+
   depEl.append(dep.description);
 
   const url = parseRepoUrl(dep);
@@ -164,6 +181,7 @@ async function init() {
     console.warn(`${errorMessage} fetching the current package.json from ${location.hostname}`, error);
     return;
   }
+
   const dependencies = Object.keys(pkg.dependencies || {});
   addDependencies(dependenciesBox, dependencies);
 
@@ -178,6 +196,7 @@ async function init() {
     if (!Array.isArray(list)) {
       list = Object.keys(list);
     }
+
     if (list.length > 0) {
       addDependencies(createBox(`${depType} Dependencies`, container), list);
     }
