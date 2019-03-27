@@ -75,7 +75,7 @@ async function fetchPackageFromRepo(url) {
 function createBox(title, container) {
   /* eslint-disable indent */
   const box = doma.one(`
-    <div class="Box Box--condensed mt-5">
+    <div class="Box Box--condensed mt-5 file-holder">
       <div class="npmhub-header BtnGroup"></div>
       ${
         isGitLab() ?
