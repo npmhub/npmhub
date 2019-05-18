@@ -137,7 +137,7 @@ function addDependencies(containerEl, list) {
     listEl.append(doma(`
       <li class="npmhub-empty">
         No dependencies!
-        <g-emoji alias="tada" class="emoji" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" ios-version="6.0">🎉</g-emoji>
+        <g-emoji class="g-emoji" alias="tada" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji>
       </li>
     `));
   }
