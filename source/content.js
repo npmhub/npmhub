@@ -4,6 +4,7 @@ import githubInjection from 'github-injection';
 import select from 'select-dom';
 import doma from 'doma';
 import elementReady from './lib/element-ready';
+import fetchDom from './lib/fetch-dom';
 
 const errorMessage = 'npmhub: there was an error while';
 
@@ -36,11 +37,11 @@ function addHeaderLink(box, name, url) {
   `));
 }
 
-function getPackageURL() {
-  if (isPackageJson()) {
-    return location.href;
-  }
+function hasPackageJson() {
+  return Boolean(getPackageURL());
+}
 
+function getPackageURL() {
   const packageLink = select([
     '.files [title="package.json"]', // GitHub
     '.tree-item-file-name [title="package.json"]' // GitLab
@@ -50,29 +51,24 @@ function getPackageURL() {
   }
 }
 
-async function fetchPackageFromRepo(url) {
-  let dom = document;
-  if (!isPackageJson()) {
-    // https://gitlab.com/user/repo/raw/master/package.json
-    // https://github.com/user/repo/blob/master/package.json
-    url = url.replace(/(gitlab[.]com[/].+[/].+[/])blob/, '$1raw');
-
-    const response = await fetch(url, {credentials: 'include'});
-    const body = await response.text();
-
-    // GitLab will return raw JSON
-    // GitHub will return an HTML page
-    if (isGitLab()) {
-      return JSON.parse(body);
-    }
-
-    dom = doma(body);
+async function getPackageJson() {
+  // GitLab will return raw JSON so we can use that directly
+  // https://gitlab.com/user/repo/raw/master/package.json
+  if (!isPackageJson() && isGitLab()) {
+    const url = getPackageURL().replace(/(gitlab[.]com[/].+[/].+[/])blob/, '$1raw');
+    const response = await fetch(url);
+    return response.json();
   }
 
-  // ElementReady required for GitLab's deferred content load
-  const jsonEl = await elementReady('.blob-wrapper table, .blob-viewer pre', dom);
+  // If it's a package.json page, use the local dom
+  const document_ = isPackageJson() ? document : await fetchDom(getPackageURL());
 
-  return JSON.parse(jsonEl.textContent);
+  const jsonBlobElement = await elementReady([
+    '.blob-wrapper table', // GitHub
+    '.blob-viewer pre' // GitLab, defers content load so it needs `elementReady`
+  ], document_);
+
+  return JSON.parse(jsonBlobElement.textContent);
 }
 
 function createBox(title, container) {
@@ -147,12 +143,7 @@ function addDependencies(containerEl, list) {
 }
 
 async function init() {
-  if (select.exists('.npmhub-header')) {
-    return;
-  }
-
-  const packageURL = getPackageURL();
-  if (!packageURL) {
+  if (select.exists('.npmhub-header') || !(isPackageJson() || hasPackageJson())) {
     return;
   }
 
@@ -164,12 +155,12 @@ async function init() {
 
   const dependenciesBox = createBox('Dependencies', container);
   if (!isPackageJson()) {
-    addHeaderLink(dependenciesBox, 'package.json', packageURL);
+    addHeaderLink(dependenciesBox, 'package.json', getPackageURL());
   }
 
   let pkg;
   try {
-    pkg = await fetchPackageFromRepo(packageURL);
+    pkg = await getPackageJson();
   } catch (error) {
     addDependencies(dependenciesBox, false);
     console.warn(`${errorMessage} fetching the current package.json from ${location.hostname}`, error);
