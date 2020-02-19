@@ -207,6 +207,11 @@ async function init() {
       'RunKit',
       `https://npm.runkit.com/${htmlEscape(pkg.name)}`
     );
+    addHeaderLink(
+      dependenciesBox,
+      'Explore contents',
+      `https://www.unpkg.com/browse/${htmlEscape(pkg.name)}@latest/`
+    );
     if (dependencies.length > 0) {
       addHeaderLink(
         dependenciesBox,
