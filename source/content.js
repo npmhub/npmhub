@@ -37,7 +37,7 @@ function addHeaderLink(box, name, url) {
 }
 
 async function addHeaderLinks(pkg, dependenciesBox, dependencies) {
-  if (pkg.private || !pkg.name) {
+  if (!pkg.name) {
     return;
   }
 
