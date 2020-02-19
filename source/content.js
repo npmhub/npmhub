@@ -1,4 +1,4 @@
-import {escape as esc} from 'escape-goat';
+import {htmlEscape} from 'escape-goat';
 import githubInjection from 'github-injection';
 import select from 'select-dom';
 import doma from 'doma';
@@ -44,7 +44,7 @@ function getPackageURL() {
   const packageLink = select([
     '.files [title="package.json"]', // GitHub
     '.tree-item-file-name [title="package.json"]' // GitLab
-  ].join(','));
+  ]);
   if (packageLink) {
     return packageLink.href;
   }
@@ -92,8 +92,8 @@ function createBox(title, container) {
 async function addDependency(name, container) {
   const depEl = doma.one(`
     <li>
-      <a href='https://www.npmjs.com/package/${esc(name)}'>
-        ${esc(name)}
+      <a href='https://www.npmjs.com/package/${htmlEscape(name)}'>
+        ${htmlEscape(name)}
       </a>
     </li>
   `);
@@ -105,7 +105,7 @@ async function addDependency(name, container) {
     if (error === 'Not found') {
       depEl.append(doma('<em>Not published or private.</em>'));
     } else {
-      console.warn(`${errorMessage} fetching ${esc(name)}/package.json`, error);
+      console.warn(`${errorMessage} fetching ${htmlEscape(name)}/package.json`, error);
       depEl.append(doma('<em>There was a network error.</em>'));
     }
 
@@ -150,7 +150,7 @@ async function init() {
     '.repository-content', // GitHub
     '.tree-content-holder', // GitLab
     '.blob-content-holder' // GitLab package.json page
-  ].join(','));
+  ]);
 
   const dependenciesBox = createBox('Dependencies', container);
   if (!isPackageJson()) {
@@ -200,18 +200,18 @@ async function init() {
     addHeaderLink(
       dependenciesBox,
       'npmjs.com',
-      `https://www.npmjs.com/package/${esc(pkg.name)}`
+      `https://www.npmjs.com/package/${htmlEscape(pkg.name)}`
     );
     addHeaderLink(
       dependenciesBox,
       'RunKit',
-      `https://npm.runkit.com/${esc(pkg.name)}`
+      `https://npm.runkit.com/${htmlEscape(pkg.name)}`
     );
     if (dependencies.length > 0) {
       addHeaderLink(
         dependenciesBox,
         'Visualize full tree',
-        `http://npm.broofa.com/?q=${esc(pkg.name)}`
+        `http://npm.broofa.com/?q=${htmlEscape(pkg.name)}`
       );
     }
   }

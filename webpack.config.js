@@ -16,10 +16,6 @@ module.exports = {
       url: path.resolve('./source/lib/reduced-url.js')
     }
   },
-  externals: {
-    // Required until https://github.com/npm/hosted-git-info/pull/25 is in
-    util: 'window'
-  },
   output: {
     path: path.join(__dirname, 'distribution'),
     filename: '[name].js'

@@ -37,11 +37,11 @@
   },
   "dependencies": {
     "copy-webpack-plugin": "^5.0.1",
-    "doma": "^1.0.0",
-    "escape-goat": "^1.3.0",
+    "doma": "^1.0.3",
+    "escape-goat": "^3.0.0",
     "github-injection": "^1.0.1",
-    "hosted-git-info": "^2.5.0",
-    "select-dom": "^5.0.0",
+    "hosted-git-info": "^3.0.2",
+    "select-dom": "^6.0.0",
     "webext-domain-permission-toggle": "^1.0.0",
     "webext-dynamic-content-scripts": "^6.0.3"
   }
