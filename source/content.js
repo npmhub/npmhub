@@ -36,6 +36,45 @@ function addHeaderLink(box, name, url) {
   `));
 }
 
+async function addHeaderLinks(pkg, dependenciesBox, dependencies) {
+  if (pkg.private || !pkg.name) {
+    return;
+  }
+
+  // Does the current package exist on npm?
+  const {error} = await fetchPackageInfo(pkg.name);
+  if (error) {
+    if (error.message !== 'Not found') {
+      console.warn(`${errorMessage} pinging the current package on npmjs.org`, error);
+    }
+
+    return;
+  }
+
+  addHeaderLink(
+    dependenciesBox,
+    'npmjs.com',
+    `https://www.npmjs.com/package/${htmlEscape(pkg.name)}`
+  );
+  addHeaderLink(
+    dependenciesBox,
+    'RunKit',
+    `https://npm.runkit.com/${htmlEscape(pkg.name)}`
+  );
+  addHeaderLink(
+    dependenciesBox,
+    'Explore contents',
+    `https://www.unpkg.com/browse/${htmlEscape(pkg.name)}@latest/`
+  );
+  if (dependencies.length > 0) {
+    addHeaderLink(
+      dependenciesBox,
+      'Visualize full tree',
+      `http://npm.broofa.com/?q=${htmlEscape(pkg.name)}`
+    );
+  }
+}
+
 function hasPackageJson() {
   return Boolean(getPackageURL());
 }
@@ -167,6 +206,7 @@ async function init() {
   }
 
   const dependencies = Object.keys(pkg.dependencies || {});
+  addHeaderLinks(pkg, dependenciesBox, dependencies);
   addDependencies(dependenciesBox, dependencies);
 
   const types = [
@@ -183,41 +223,6 @@ async function init() {
 
     if (list.length > 0) {
       addDependencies(createBox(`${depType} Dependencies`, container), list);
-    }
-  }
-
-  if (!pkg.private && pkg.name) {
-    // Does the current package exist on npm?
-    const {error} = await fetchPackageInfo(pkg.name);
-    if (error) {
-      if (error.message !== 'Not found') {
-        console.warn(`${errorMessage} pinging the current package on npmjs.org`, error);
-      }
-
-      return;
-    }
-
-    addHeaderLink(
-      dependenciesBox,
-      'npmjs.com',
-      `https://www.npmjs.com/package/${htmlEscape(pkg.name)}`
-    );
-    addHeaderLink(
-      dependenciesBox,
-      'RunKit',
-      `https://npm.runkit.com/${htmlEscape(pkg.name)}`
-    );
-    addHeaderLink(
-      dependenciesBox,
-      'Explore contents',
-      `https://www.unpkg.com/browse/${htmlEscape(pkg.name)}@latest/`
-    );
-    if (dependencies.length > 0) {
-      addHeaderLink(
-        dependenciesBox,
-        'Visualize full tree',
-        `http://npm.broofa.com/?q=${htmlEscape(pkg.name)}`
-      );
     }
   }
 }
