@@ -23,8 +23,11 @@ function isGitLab() {
 }
 
 function isPackageJson() {
-  const breadcrumb = select('.breadcrumb .final-path, .breadcrumb li:last-child strong');
-  return breadcrumb && breadcrumb.textContent === 'package.json';
+  // Example URLs:
+  // https://gitlab.com/gitlab-org/gitlab-foss/blob/master/package.json
+  // https://github.com/npmhub/npmhub/blob/master/package.json
+  const pathnameParts = location.pathname.split('/');
+  return pathnameParts[3] === 'blob' && pathnameParts.pop() === 'package.json';
 }
 
 function addHeaderLink(box, name, url) {
