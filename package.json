@@ -1,7 +1,4 @@
 {
-  "name": "npmhub",
-  "version": "0.0.0",
-  "description": "",
   "private": true,
   "author": "zeke",
   "license": "MIT",
@@ -22,21 +19,24 @@
     "envs": [
       "browser",
       "webextensions"
-    ]
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2019
+    }
   },
   "devDependencies": {
-    "chrome-webstore-upload-cli": "^1.0.0",
-    "dot-json": "^1.1.0",
-    "size-plugin": "^1.1.4",
-    "terser-webpack-plugin": "^1.2.3",
-    "utc-version": "^1.1.0",
-    "web-ext-submit": "^3.0.0",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "xo": "^0.24.0"
+    "chrome-webstore-upload-cli": "^1.2.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "dot-json": "^1.2.0",
+    "size-plugin": "^2.0.1",
+    "terser-webpack-plugin": "^2.3.5",
+    "utc-version": "^2.0.1",
+    "web-ext-submit": "^4.1.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "xo": "^0.26.1"
   },
   "dependencies": {
-    "copy-webpack-plugin": "^5.0.1",
     "doma": "^1.0.3",
     "escape-goat": "^3.0.0",
     "github-injection": "^1.0.1",
