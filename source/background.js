@@ -1,10 +1,9 @@
-import domainPermissionToggle from 'webext-domain-permission-toggle';
-import dynamicContentScripts from 'webext-dynamic-content-scripts';
+import 'webext-dynamic-content-scripts';
+import addDomainPermissionToggle from 'webext-domain-permission-toggle';
 import parseRepoUrl from './lib/parse-repo-url';
 
 // GitHub Enterprise support
-dynamicContentScripts.addToFutureTabs();
-domainPermissionToggle.addContextMenu();
+addDomainPermissionToggle();
 
 const cache = new Map();
 const cacheLimit = 1000;

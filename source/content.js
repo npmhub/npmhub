@@ -1,4 +1,3 @@
-import 'webext-dynamic-content-scripts';
 import {escape as esc} from 'escape-goat';
 import githubInjection from 'github-injection';
 import select from 'select-dom';
