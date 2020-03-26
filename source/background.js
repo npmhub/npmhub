@@ -6,7 +6,7 @@ import parseRepoUrl from './lib/parse-repo-url';
 // GitHub Enterprise support
 addDomainPermissionToggle();
 
-const fetchPackageJson = pMemoize(async (name) => {
+const fetchPackageJson = pMemoize(async name => {
   // Scoped repositories contain an escaped slash and a regular at-sign
   // Example: https://registry.npmjs.org/@shinnn%2Feslint-config-node
   const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
@@ -40,7 +40,7 @@ chrome.runtime.onMessage.addListener((
       .catch(error => ({
         error: error.message // Make error JSON.stringify-able
       }))
-      .then(sendResponse)
+      .then(sendResponse);
 
     return true; // Required to signal intent to respond asynchronously
   }
