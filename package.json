@@ -14,21 +14,41 @@
   "xo": {
     "space": true,
     "rules": {
-      "import/no-unassigned-import": 0
+      "import/no-unassigned-import": 0,
+      "no-new": 0
     },
+    "plugins": [
+      "svelte3"
+    ],
     "envs": [
       "browser",
       "webextensions"
     ],
     "parserOptions": {
-      "ecmaVersion": 2019
-    }
+      "ecmaVersion": 2019,
+      "ecmaFeatures": {
+        "jsx": false
+      }
+    },
+    "extensions": [
+      "svelte"
+    ],
+    "parser": "svelte3/svelte3",
+    "overrides": [
+      {
+        "files": ["**/*.svelte"],
+        "processor": "svelte3/svelte3"
+      }
+    ]
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.2.0",
     "copy-webpack-plugin": "^5.1.1",
     "dot-json": "^1.2.0",
+    "eslint-plugin-svelte3": "^2.7.3",
     "size-plugin": "^2.0.1",
+    "svelte": "^3.18.2",
+    "svelte-loader": "^2.13.6",
     "terser-webpack-plugin": "^2.3.5",
     "utc-version": "^2.0.1",
     "web-ext-submit": "^4.1.0",
