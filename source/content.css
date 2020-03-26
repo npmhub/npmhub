@@ -3,13 +3,6 @@
   padding: 0 !important;
   margin: 0 !important; /* gitlab */
 }
-.npmhub-deps > li {
-  padding: 10px;
-  border-bottom: 1px solid #DDD;
-}
-.npmhub-deps > li:last-child {
-  border-bottom: none;
-}
 li.npmhub-empty {
   opacity: 0.6;
 }

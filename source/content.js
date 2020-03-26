@@ -112,14 +112,13 @@ async function getPackageJson() {
 function createBox(title, container) {
   /* eslint-disable indent */
   const box = doma.one(`
-    <div class="Box Box--condensed mt-5 file-holder">
+    <div class="Box mt-5 npmhub-deps">
       <div class="npmhub-header BtnGroup"></div>
       ${
         isGitLab() ?
         `<div class="file-title"><strong>${title}</strong></div>` :
-        `<h3 class="Box-header Box-title px-2">${title}</h3>`
+        `<div class="Box-header lh-condensed px-3 py-2"><h3 class="Box-title">${title}</h3></div>`
       }
-      <ol class="npmhub-deps markdown-body"></ol>
     </div>
   `);
   /* eslint-enable indent */
@@ -130,11 +129,11 @@ function createBox(title, container) {
 
 async function addDependency(name, container) {
   const depEl = doma.one(`
-    <li>
+    <div class="Box-row lh-condensed px-3 py-2 border-top">
       <a href='https://www.npmjs.com/package/${htmlEscape(name)}'>
         ${htmlEscape(name)}
       </a>
-    </li>
+    </div>
   `);
   container.append(depEl);
 
@@ -159,12 +158,12 @@ async function addDependency(name, container) {
 }
 
 function addDependencies(containerEl, list) {
-  const listEl = containerEl.querySelector('.npmhub-deps');
+  const listEl = containerEl;
   if (!list) {
     listEl.append(doma(`
-      <li class="npmhub-empty">
+      <div class="Box-row lh-condensed px-3 py-2 npmhub-empty">
         <em>There was a network error.</em>
-      </li>
+      </div>
     `));
   } else if (list.length > 0) {
     for (const name of list) {
@@ -172,10 +171,10 @@ function addDependencies(containerEl, list) {
     }
   } else {
     listEl.append(doma(`
-      <li class="npmhub-empty">
+      <div class="Box-row lh-condensed px-3 py-2 npmhub-empty">
         No dependencies!
         <g-emoji class="g-emoji" alias="tada" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji>
-      </li>
+      </div>
     `));
   }
 }
