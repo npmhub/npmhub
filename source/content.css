@@ -3,7 +3,7 @@
   padding: 0 !important;
   margin: 0 !important; /* gitlab */
 }
-li.npmhub-empty {
+.npmhub-empty {
   opacity: 0.6;
 }
 .npmhub-deps em {
