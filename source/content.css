@@ -1,6 +1,6 @@
 .npmhub-deps {
-  list-style: none;
-  padding: 0 !important;
+  /*list-style: none;
+  padding: 0 !important;*/
   margin: 0 !important; /* gitlab */
 }
 .npmhub-empty {
@@ -14,9 +14,9 @@
   margin-right: 3px;
 }
 .npmhub-header .btn {
-  position: relative;
+  /*position: relative;*/
   z-index: 1; /* Necessary for GitLab */
-  margin: 3px 0;
+  /*margin: 3px 0;*/
 }
 .npmhub-deps:empty:before {
   display: block;

@@ -31,8 +31,12 @@ function isPackageJson() {
 }
 
 function addHeaderLink(box, name, url) {
+  isGitLab() ?
   box.firstElementChild.prepend(doma(`
     <a class="btn btn-sm BtnGroup-item" href="${url}">${name}</a>
+  `)) :
+  box.querySelector('.Box-header').append(doma(`
+    <a class="btn btn-sm" href="${url}">${name}</a>
   `));
 }
 
@@ -112,13 +116,16 @@ async function getPackageJson() {
 function createBox(title, container) {
   /* eslint-disable indent */
   const box = doma.one(`
-    <div class="Box mt-5 npmhub-deps">
-      <div class="npmhub-header BtnGroup"></div>
+    <div class="Box mt-5">
       ${
         isGitLab() ?
-        `<div class="file-title"><strong>${title}</strong></div>` :
-        `<div class="Box-header lh-condensed px-3 py-2"><h3 class="Box-title">${title}</h3></div>`
+        `<div class="npmhub-header BtnGroup"></div>
+        <div class="file-title"><strong>${title}</strong></div>` :
+        `<div class="Box-header lh-condensed py-2 d-flex flex-items-center">
+            <h3 class="Box-title overflow-hidden flex-auto">${title}</h3>
+        </div>`
       }
+      <ul class="npmhub-deps"></ul>
     </div>
   `);
   /* eslint-enable indent */
@@ -129,11 +136,11 @@ function createBox(title, container) {
 
 async function addDependency(name, container) {
   const depEl = doma.one(`
-    <div class="Box-row lh-condensed px-3 py-2 border-top">
+    <li class="Box-row">
       <a href='https://www.npmjs.com/package/${htmlEscape(name)}'>
         ${htmlEscape(name)}
       </a>
-    </div>
+    </li>
   `);
   container.append(depEl);
 
@@ -158,12 +165,12 @@ async function addDependency(name, container) {
 }
 
 function addDependencies(containerEl, list) {
-  const listEl = containerEl;
+  const listEl = containerEl.querySelector('.npmhub-deps');
   if (!list) {
     listEl.append(doma(`
-      <div class="Box-row lh-condensed px-3 py-2 npmhub-empty">
+      <li class="Box-row npmhub-empty">
         <em>There was a network error.</em>
-      </div>
+      </li>
     `));
   } else if (list.length > 0) {
     for (const name of list) {
@@ -171,10 +178,10 @@ function addDependencies(containerEl, list) {
     }
   } else {
     listEl.append(doma(`
-      <div class="Box-row lh-condensed px-3 py-2 npmhub-empty">
+      <li class="Box-row npmhub-empty">
         No dependencies!
         <g-emoji class="g-emoji" alias="tada" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji>
-      </div>
+      </li>
     `));
   }
 }
