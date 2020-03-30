@@ -3,13 +3,14 @@
   "author": "zeke",
   "license": "MIT",
   "scripts": {
-    "test": "xo && npm run build",
+    "test": "run-p xo build",
+    "xo": "xo",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch",
-    "release-amo": "cd distribution && web-ext-submit",
-    "release-cws": "cd distribution && webstore upload --auto-publish",
-    "release": "npm run build && npm run update-version && npm run release-amo && npm run release-cws",
-    "update-version": "VERSION=20$(utc-version); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
+    "version": "dot-json distribution/manifest.json version $VER",
+    "release:cws": "webstore upload --source=distribution --auto-publish",
+    "release:amo": "web-ext-submit --source-dir distribution",
+    "release": "VER=20$(daily-version) run-s build version release:*"
   },
   "xo": {
     "space": true,
@@ -28,6 +29,7 @@
     "chrome-webstore-upload-cli": "^1.2.0",
     "copy-webpack-plugin": "^5.1.1",
     "dot-json": "^1.2.0",
+    "npm-run-all": "^4.1.5",
     "size-plugin": "^2.0.1",
     "terser-webpack-plugin": "^2.3.5",
     "utc-version": "^2.0.1",

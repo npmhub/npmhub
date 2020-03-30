@@ -1,9 +1,7 @@
-# npmhub [![deployment][badge-travis]][link-travis]
+# npmhub
 
-  [badge-travis]: https://img.shields.io/travis/npmhub/npmhub/master.svg?label=deployment
   [link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj "Version published on Chrome Web Store"
   [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ "Version published on Mozilla Add-ons"
-  [link-travis]: https://travis-ci.org/npmhub/npmhub
 
 npmhub is a browser extension that lets you explore npm dependencies on GitHub and GitLab repos. When viewing a repository's file list containing a `package.json`, this extension will display links and descriptions for each dependency at the bottom of the page.
 
@@ -14,7 +12,8 @@ GitHub Enterprise, GitLab Enterprise and Community Edition are also supported by
 - [**Chrome** extension][link-cws] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg?label=%20">][link-cws]
 - [**Firefox** add-on][link-amo] [<img valign="middle" src="https://img.shields.io/amo/v/npm-hub.svg?label=%20">][link-amo]
 
-The chrome version also works in Opera (using [this](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/)) and Edge.
+The Chrome version also works in Opera (using [this](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/)) and Edge.
+
 ## Design
 
 Here's what npmhub looks like:
