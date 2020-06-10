@@ -50,8 +50,8 @@ jobs:
     - uses: actions/download-artifact@v2
     - run: cd artifact && npx chrome-webstore-upload-cli@1 upload --auto-publish
       env:
-        EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
-        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        EXTENSION_ID: kbbbjimdjbjclaebffknlabpogocablj
+        CLIENT_ID: 200277273648-r3s6oj211qamm1p0u0bk0bqf6f8htcmu.apps.googleusercontent.com
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
 
@@ -62,5 +62,5 @@ jobs:
     - uses: actions/download-artifact@v2
     - run: cd artifact && npx web-ext-submit@4
       env:
-        WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+        WEB_EXT_API_KEY: user:2225784:400
         WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
