@@ -6,11 +6,11 @@ on:
     - cron: '3 3 * * 3' # At 03:03 on Wednesday https://crontab.guru/#3_3_*_*_3
   push:
     tags:
-      - "20.*"
-      - "21.*"
-      - "22.*"
-      - "23.*"
-      - "24.*"
+      - "2020.*"
+      - "2021.*"
+      - "2022.*"
+      - "2023.*"
+      - "2024.*"
 
 jobs:
 
@@ -24,6 +24,8 @@ jobs:
       - uses: fregante/daily-version-action@v1
         name: Create tag if necessary
         id: daily-version
+        with:
+          prefix: 20
 
   Build:
     needs: Version
