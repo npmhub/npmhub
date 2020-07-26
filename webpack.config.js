@@ -8,7 +8,7 @@ module.exports = {
   devtool: 'sourcemap',
   stats: 'errors-only',
   entry: {
-    content: './source/content',
+    npmhub: './source/npmhub',
     background: './source/background'
   },
   resolve: {

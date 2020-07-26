@@ -40,10 +40,10 @@
         "https://gitlab.com/*"
       ],
       "js": [
-        "content.js"
+        "npmhub.js"
       ],
       "css": [
-        "content.css"
+        "npmhub.css"
       ]
     }
   ]
