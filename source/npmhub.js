@@ -94,7 +94,7 @@ async function getPackageJson() {
   // GitLab will return raw JSON so we can use that directly
   // https://gitlab.com/user/repo/raw/master/package.json
   if (!isPackageJson() && isGitLab()) {
-    const url = getPackageURL().replace(/(gitlab[.]com[/].+[/].+[/])blob/, '$1raw');
+    const url = getPackageURL().replace(/(gitlab\.com\/.+\/.+\/)blob/, '$1raw');
     const response = await fetch(url);
     return response.json();
   }
@@ -130,49 +130,49 @@ function createBox(title, container) {
 }
 
 async function addDependency(name, container) {
-  const depEl = doma.one(`
+  const depElement = doma.one(`
     <li>
       <a href='https://www.npmjs.com/package/${htmlEscape(name)}'>
         ${htmlEscape(name)}
       </a>
     </li>
   `);
-  container.append(depEl);
+  container.append(depElement);
 
   const {url, description, error} = await fetchPackageInfo(name);
 
   if (error) {
     if (error === 'Not found') {
-      depEl.append(doma('<em>Not published or private.</em>'));
+      depElement.append(doma('<em>Not published or private.</em>'));
     } else {
       console.warn(`${errorMessage} fetching ${htmlEscape(name)}/package.json`, error);
-      depEl.append(doma('<em>There was a network error.</em>'));
+      depElement.append(doma('<em>There was a network error.</em>'));
     }
 
     return;
   }
 
-  depEl.append(description);
+  depElement.append(description);
 
   if (url) {
-    depEl.querySelector('a').href = url;
+    depElement.querySelector('a').href = url;
   }
 }
 
-function addDependencies(containerEl, list) {
-  const listEl = containerEl.querySelector('.npmhub-deps');
+function addDependencies(containerElement, list) {
+  const listElement = containerElement.querySelector('.npmhub-deps');
   if (!list) {
-    listEl.append(doma(`
+    listElement.append(doma(`
       <li class="npmhub-empty">
         <em>There was a network error.</em>
       </li>
     `));
   } else if (list.length > 0) {
     for (const name of list) {
-      addDependency(name, listEl);
+      addDependency(name, listElement);
     }
   } else {
-    listEl.append(doma(`
+    listElement.append(doma(`
       <li class="npmhub-empty">
         No dependencies!
         <g-emoji class="g-emoji" alias="tada" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji>

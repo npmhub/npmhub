@@ -1,10 +1,10 @@
 // Mini version of https://github.com/sindresorhus/element-ready
-export default function (selector, parent) {
+export default function elementReady(selector, parent) {
   return new Promise(resolve => {
     (function check() {
-      const el = (parent || document).querySelector(selector);
-      if (el) {
-        resolve(el);
+      const element = (parent || document).querySelector(selector);
+      if (element) {
+        resolve(element);
       } else {
         requestAnimationFrame(check);
       }
