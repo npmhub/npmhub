@@ -6,14 +6,13 @@ on:
     - cron: '3 3 * * 3' # At 03:03 on Wednesday https://crontab.guru/#3_3_*_*_3
   push:
     tags:
-      - "2020.*"
-      - "2021.*"
-      - "2022.*"
-      - "2023.*"
-      - "2024.*"
+      - '2020.*'
+      - '2021.*'
+      - '2022.*'
+      - '2023.*'
+      - '2024.*'
 
 jobs:
-
   Version:
     runs-on: ubuntu-latest
     outputs:
@@ -32,37 +31,37 @@ jobs:
     if: github.event_name == 'push' || needs.Version.outputs.created
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - run: npm install
-    - run: npm test
-    - name: Update extension’s meta
-      env:
-        VER: ${{ needs.Version.outputs.version }}
-      run: |
-        echo https://github.com/$GITHUB_REPOSITORY/tree/$VER > distribution/SOURCE_URL.txt
-        npm run version
-    - uses: actions/upload-artifact@v2
-      with:
-        path: distribution
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm test
+      - name: Update extension’s meta
+        env:
+          VER: ${{ needs.Version.outputs.version }}
+        run: |
+          echo https://github.com/$GITHUB_REPOSITORY/tree/$VER > distribution/SOURCE_URL.txt
+          npm run version
+      - uses: actions/upload-artifact@v2
+        with:
+          path: distribution
 
   Chrome:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v2
-    - run: cd artifact && npx chrome-webstore-upload-cli@1 upload --auto-publish
-      env:
-        EXTENSION_ID: kbbbjimdjbjclaebffknlabpogocablj
-        CLIENT_ID: 200277273648-r3s6oj211qamm1p0u0bk0bqf6f8htcmu.apps.googleusercontent.com
-        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+      - uses: actions/download-artifact@v2
+      - run: cd artifact && npx chrome-webstore-upload-cli@1 upload --auto-publish
+        env:
+          EXTENSION_ID: kbbbjimdjbjclaebffknlabpogocablj
+          CLIENT_ID: 200277273648-r3s6oj211qamm1p0u0bk0bqf6f8htcmu.apps.googleusercontent.com
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
 
   Firefox:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v2
-    - run: cd artifact && npx web-ext-submit@4
-      env:
-        WEB_EXT_API_KEY: user:2225784:400
-        WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
+      - uses: actions/download-artifact@v2
+      - run: cd artifact && npx web-ext-submit@4
+        env:
+          WEB_EXT_API_KEY: user:2225784:400
+          WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
