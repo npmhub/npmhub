@@ -81,7 +81,8 @@ function hasPackageJson() {
 
 function getPackageURL() {
   const packageLink = select([
-    '.files [title="package.json"]', // GitHub
+    '#files ~ div [title="package.json"]', // GitHub
+    '.files [title="package.json"]', // GitHub before "Repository refresh"
     '.tree-item-file-name [title="package.json"]' // GitLab
   ]);
   if (packageLink) {
