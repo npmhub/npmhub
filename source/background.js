@@ -12,16 +12,16 @@ const fetchPackageJson = pMemoize(async name => {
   const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
 
   const response = await fetch(url);
-  const pkg = await response.json();
+  const package_ = await response.json();
 
-  if (pkg.error) {
-    throw new Error(pkg.error);
+  if (package_.error) {
+    throw new Error(package_.error);
   }
 
   // Only store/pass the necessary info
   return {
-    url: parseRepoUrl(pkg),
-    description: pkg.description
+    url: parseRepoUrl(package_),
+    description: package_.description
   };
 }, {
   maxAge: 1000 * 60 * 60 * 24

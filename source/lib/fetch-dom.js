@@ -3,7 +3,7 @@
 import doma from 'doma';
 
 export default async function fetchDom(url, selector) {
-  const absoluteURL = new URL(url, location.origin).toString(); // Firefox `fetch`es from the content script, so relative URLs fail
+  const absoluteURL = new URL(url, window.location.origin).toString(); // Firefox `fetch`es from the content script, so relative URLs fail
   const response = await fetch(absoluteURL, {credentials: 'include'});
   const dom = doma(await response.text());
   if (selector) {

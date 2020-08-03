@@ -26,7 +26,7 @@ function isPackageJson() {
   // Example URLs:
   // https://gitlab.com/gitlab-org/gitlab-foss/blob/master/package.json
   // https://github.com/npmhub/npmhub/blob/master/package.json
-  const pathnameParts = location.pathname.split('/');
+  const pathnameParts = window.location.pathname.split('/');
   return pathnameParts[3] === 'blob' && pathnameParts.pop() === 'package.json';
 }
 
@@ -36,13 +36,13 @@ function addHeaderLink(box, name, url) {
   `));
 }
 
-async function addHeaderLinks(pkg, dependenciesBox, dependencies) {
-  if (!pkg.name) {
+async function addHeaderLinks(package_, dependenciesBox, dependencies) {
+  if (!package_.name) {
     return;
   }
 
   // Does the current package exist on npm?
-  const {error} = await fetchPackageInfo(pkg.name);
+  const {error} = await fetchPackageInfo(package_.name);
   if (error) {
     if (error.message !== 'Not found') {
       console.warn(`${errorMessage} pinging the current package on npmjs.org`, error);
@@ -54,23 +54,23 @@ async function addHeaderLinks(pkg, dependenciesBox, dependencies) {
   addHeaderLink(
     dependenciesBox,
     'npmjs.com',
-    `https://www.npmjs.com/package/${htmlEscape(pkg.name)}`
+    `https://www.npmjs.com/package/${htmlEscape(package_.name)}`
   );
   addHeaderLink(
     dependenciesBox,
     'RunKit',
-    `https://npm.runkit.com/${htmlEscape(pkg.name)}`
+    `https://npm.runkit.com/${htmlEscape(package_.name)}`
   );
   addHeaderLink(
     dependenciesBox,
     'Explore contents',
-    `https://www.unpkg.com/browse/${htmlEscape(pkg.name)}@latest/`
+    `https://www.unpkg.com/browse/${htmlEscape(package_.name)}@latest/`
   );
   if (dependencies.length > 0) {
     addHeaderLink(
       dependenciesBox,
       'Visualize full tree',
-      `http://npm.broofa.com/?q=${htmlEscape(pkg.name)}`
+      `http://npm.broofa.com/?q=${htmlEscape(package_.name)}`
     );
   }
 }
@@ -197,17 +197,17 @@ async function init() {
     addHeaderLink(dependenciesBox, 'package.json', getPackageURL());
   }
 
-  let pkg;
+  let package_;
   try {
-    pkg = await getPackageJson();
+    package_ = await getPackageJson();
   } catch (error) {
     addDependencies(dependenciesBox, false);
-    console.warn(`${errorMessage} fetching the current package.json from ${location.hostname}`, error);
+    console.warn(`${errorMessage} fetching the current package.json from ${window.location.hostname}`, error);
     return;
   }
 
-  const dependencies = Object.keys(pkg.dependencies || {});
-  addHeaderLinks(pkg, dependenciesBox, dependencies);
+  const dependencies = Object.keys(package_.dependencies || {});
+  addHeaderLinks(package_, dependenciesBox, dependencies);
   addDependencies(dependenciesBox, dependencies);
 
   const types = [
@@ -217,7 +217,7 @@ async function init() {
     'Dev'
   ];
   for (const depType of types) {
-    let list = pkg[depType.toLowerCase() + 'Dependencies'] || [];
+    let list = package_[depType.toLowerCase() + 'Dependencies'] || [];
     if (!Array.isArray(list)) {
       list = Object.keys(list);
     }
