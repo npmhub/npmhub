@@ -4,9 +4,8 @@
     "webextensions": true
   },
   "plugins": ["svelte3", "unicorn"],
-  "extends": ["xo/browser", "plugin:unicorn/recommended"],
+  "extends": ["xo-space/browser", "plugin:unicorn/recommended"],
   "rules": {
-    "indent": ["error", 2],
     "import/no-unassigned-import": "off",
 
     // From https://github.com/sveltejs/eslint-plugin-svelte3/issues/41#issuecomment-572503966

@@ -17,7 +17,9 @@
     "copy-webpack-plugin": "^6.0.3",
     "dot-json": "^1.2.0",
     "eslint": "^7.6.0",
+    "eslint-config-xo-space": "^0.25.0",
     "eslint-plugin-svelte3": "^2.7.3",
+    "eslint-plugin-unicorn": "^21.0.0",
     "npm-run-all": "^4.1.5",
     "size-plugin": "^2.0.1",
     "svelte": "^3.24.0",
@@ -26,8 +28,7 @@
     "utc-version": "^2.0.2",
     "web-ext-submit": "^5.0.2",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
-    "xo": "^0.32.1"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "doma": "^3.0.1",
