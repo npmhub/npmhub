@@ -1,5 +1,5 @@
 // Mini version of https://github.com/sindresorhus/element-ready
-export default function (selector, parent) {
+export default function elementReady(selector, parent) {
   return new Promise(resolve => {
     (function check() {
       const element = (parent || document).querySelector(selector);

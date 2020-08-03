@@ -1,5 +1,5 @@
 'use strict';
-const path = require('path');
+const path = require('path'); // eslint-disable-line import/no-extraneous-dependencies
 const SizePlugin = require('size-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -8,7 +8,7 @@ module.exports = {
   devtool: 'sourcemap',
   stats: 'errors-only',
   entry: {
-    content: './source/content',
+    npmhub: './source/npmhub',
     background: './source/background'
   },
   resolve: {
@@ -34,15 +34,18 @@ module.exports = {
   },
   plugins: [
     new SizePlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: '**',
-        context: 'source',
-        ignore: [
-          '*.js'
-        ]
-      }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'source',
+          globOptions: {
+            ignore: [
+              '**/*.js'
+            ]
+          }
+        }
+      ]
+    })
   ],
   optimization: {
     // Without this, function names will be garbled and enableFeature won't work

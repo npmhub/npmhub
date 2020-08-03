@@ -9,7 +9,7 @@ function unknownHostedUrl(url) {
   try {
     const idx = url.indexOf('@');
     if (idx !== -1) {
-      url = url.slice(idx + 1).replace(/:([^\d]+)/, '/$1');
+      url = url.slice(idx + 1).replace(/:(\D+)/, '/$1');
     }
 
     url = new URL(url);
@@ -29,7 +29,7 @@ function normalizeRepository(repoField) {
   return repoField;
 }
 
-export default function (package_) {
+export default function parseRepoUrl(package_) {
   const repoUrl = normalizeRepository(package_.repository);
   const info = parseRepo(repoUrl);
   return info ? info.browse() : unknownHostedUrl(repoUrl);
