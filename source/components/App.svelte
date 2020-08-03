@@ -76,8 +76,6 @@
   }
 
   async function isPackagePublic(name) {
-    console.log(name);
-    console.log(await fetchPackageInfo(name))
     const {error} = await fetchPackageInfo(name);
     if (!error) {
       return true;
@@ -105,20 +103,13 @@
 <Box dependencies={pkgPromise.then(pkg => pkg.dependencies)}>
   {#await pkgPromise then pkg}
     {#await isPackagePublic(pkg.name) then isPublic}
-      <div slot="header">
-        YO
-          {typeof pkg}
-        {#if isPublic}
-          <Header
-            hasDependencies={pkg.dependencies.length}
-            selfLink={!isPackageJson && packageURL}
-          />
-        {/if}
-      </div>
-    {:catch}
-			<li class="npmhub-empty">
-				<em>There was a network error.</em>
-			</li>
+      {#if isPublic}
+        <Header
+          hasDependencies={pkg.dependencies.length}
+          selfLink={!isPackageJson && packageURL}
+          name={pkg.name}
+        />
+      {/if}
     {/await}
   {/await}
 </Box>

@@ -16,9 +16,11 @@ function hasPackageJson() {
 
 function getPackageURL() {
   const packageLink = select([
-    '.files [title="package.json"]', // GitHub
+    '#files ~ div [title="package.json"]', // GitHub
+    '.files [title="package.json"]', // GitHub before "Repository refresh"
     '.tree-item-file-name [title="package.json"]' // GitLab
   ]);
+
   if (packageLink) {
     return packageLink.href;
   }
@@ -28,7 +30,6 @@ async function init() {
   if (select.exists('.npmhub-header') || !(isPackageJson() || hasPackageJson())) {
     return;
   }
-
   new App({
     props: {
       isPackageJson: isPackageJson(),

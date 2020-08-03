@@ -5,7 +5,6 @@
   export let hasDependencies = false;
   export let selfLink = false;
 </script>
-{name}
 {#if selfLink}
   <HeaderLink href={selfLink} label="package.json"/>
 {/if}

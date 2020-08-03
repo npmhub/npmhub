@@ -9,7 +9,7 @@
 
 <div class="Box Box--condensed mt-5 file-holder">
 	<div class="npmhub-header BtnGroup">
-		<slot name="header"></slot>
+		<slot></slot>
 	</div>
 	{#if isGitLab}
 		<div class="file-title"><strong>{type} Dependencies</strong></div>
@@ -43,6 +43,10 @@
 					{/each}
 				{/if}
 			{/if}
+    {:catch}
+			<li class="npmhub-empty">
+				<em>There was a network error.</em>
+			</li>
 		{/await}
 	</ol>
 </div>

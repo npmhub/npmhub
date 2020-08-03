@@ -36,7 +36,9 @@
     "parser": "svelte3/svelte3",
     "overrides": [
       {
-        "files": ["**/*.svelte"],
+        "files": [
+          "**/*.svelte"
+        ],
         "processor": "svelte3/svelte3"
       }
     ]
