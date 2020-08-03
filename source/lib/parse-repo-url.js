@@ -29,8 +29,8 @@ function normalizeRepository(repoField) {
   return repoField;
 }
 
-export default function (pkg) {
-  const repoUrl = normalizeRepository(pkg.repository);
+export default function (package_) {
+  const repoUrl = normalizeRepository(package_.repository);
   const info = parseRepo(repoUrl);
   return info ? info.browse() : unknownHostedUrl(repoUrl);
 }

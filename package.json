@@ -3,7 +3,7 @@
   "author": "zeke",
   "license": "MIT",
   "scripts": {
-    "test": "xo && npm run build",
+    "test": "eslint source --ext .svelte,.js --fix && npm run build",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch",
     "release-amo": "cd distribution && web-ext-submit",
@@ -11,34 +11,37 @@
     "release": "npm run build && npm run update-version && npm run release-amo && npm run release-cws",
     "update-version": "VERSION=20$(utc-version); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
   },
-  "xo": {
-    "space": true,
-    "rules": {
-      "import/no-unassigned-import": 0,
-      "no-new": 0
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "webextensions": true
     },
     "plugins": [
-      "svelte3"
+      "svelte3",
+      "unicorn"
     ],
-    "envs": [
-      "browser",
-      "webextensions"
+    "extends": [
+      "xo/browser",
+      "plugin:unicorn/recommended"
     ],
-    "parserOptions": {
-      "ecmaVersion": 2019,
-      "ecmaFeatures": {
-        "jsx": false
-      }
+    "rules": {
+      "indent": ["error", 2],
+      "import/no-unassigned-import": "off",
+      "no-multiple-empty-lines": [
+        "error",
+        {
+          "max": 1,
+          "maxBOF": 2,
+          "maxEOF": 1
+        }
+      ],
+      "no-new": "off",
+      "unicorn/better-regex": "off",
+      "unicorn/filename-case": "off"
     },
-    "extensions": [
-      "svelte"
-    ],
-    "parser": "svelte3/svelte3",
     "overrides": [
       {
-        "files": [
-          "**/*.svelte"
-        ],
+        "files": "**/*.svelte",
         "processor": "svelte3/svelte3"
       }
     ]
@@ -47,6 +50,7 @@
     "chrome-webstore-upload-cli": "^1.2.0",
     "copy-webpack-plugin": "^5.1.1",
     "dot-json": "^1.2.0",
+    "eslint": "^6.8.0",
     "eslint-plugin-svelte3": "^2.7.3",
     "size-plugin": "^2.0.1",
     "svelte": "^3.18.2",
@@ -56,7 +60,7 @@
     "web-ext-submit": "^4.1.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
-    "xo": "^0.26.1"
+    "xo": "^0.32.1"
   },
   "dependencies": {
     "doma": "^1.0.3",

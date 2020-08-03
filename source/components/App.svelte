@@ -1,6 +1,4 @@
 <script>
-  import doma from 'doma';
-  import select from 'select-dom';
   import elementReady from '../lib/element-ready';
   import fetchDom from '../lib/fetch-dom';
   import Box from './Box.svelte';
@@ -39,7 +37,7 @@
 
   async function getLocalPackage() {
     const packageJson = await getPackageJson();
-    const pkg = {
+    const package_ = {
       name: packageJson.name,
       dependencies: Object.keys(packageJson.dependencies || {}).map(name => ({
         name,
@@ -54,14 +52,14 @@
       }
 
       if (list.length > 0) {
-        pkg[key] = list.map(name => ({
+        package_[key] = list.map(name => ({
           name,
           info: fetchPackageInfo(name)
         }));
       }
     }
 
-    return pkg;
+    return package_;
   }
 
   async function fetchPackageInfo(name) {
@@ -94,29 +92,29 @@
     'Optional',
     'Dev'
   ];
-  const pkgPromise = getLocalPackage();
-  pkgPromise.catch(error => {
-    console.warn(`${errorMessage} fetching the current package.json from ${location.hostname}`, error);
+  const packagePromise = getLocalPackage();
+  packagePromise.catch(error => {
+    console.warn(`${errorMessage} fetching the current package.json from ${window.location.hostname}`, error);
   });
 </script>
 
-<Box dependencies={pkgPromise.then(pkg => pkg.dependencies)}>
-  {#await pkgPromise then pkg}
-    {#await isPackagePublic(pkg.name) then isPublic}
+<Box dependencies={packagePromise.then(package_ => package_.dependencies)}>
+  {#await packagePromise then package_}
+    {#await isPackagePublic(package_.name) then isPublic}
       {#if isPublic}
         <Header
-          hasDependencies={pkg.dependencies.length}
+          hasDependencies={package_.dependencies.length}
           selfLink={!isPackageJson && packageURL}
-          name={pkg.name}
+          name={package_.name}
         />
       {/if}
     {/await}
   {/await}
 </Box>
-{#await pkgPromise then pkg}
+{#await packagePromise then package_}
   {#each types as type}
-    {#if pkg[getDependencyKey(type)]}
-      <Box {type} dependencies={pkg[getDependencyKey(type)]}></Box>
+    {#if package_[getDependencyKey(type)]}
+      <Box {type} dependencies={package_[getDependencyKey(type)]}></Box>
     {/if}
   {/each}
 {/await}

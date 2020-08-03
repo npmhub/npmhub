@@ -6,7 +6,7 @@ function isPackageJson() {
   // Example URLs:
   // https://gitlab.com/gitlab-org/gitlab-foss/blob/master/package.json
   // https://github.com/npmhub/npmhub/blob/master/package.json
-  const pathnameParts = location.pathname.split('/');
+  const pathnameParts = window.location.pathname.split('/');
   return pathnameParts[3] === 'blob' && pathnameParts.pop() === 'package.json';
 }
 
@@ -30,11 +30,12 @@ async function init() {
   if (select.exists('.npmhub-header') || !(isPackageJson() || hasPackageJson())) {
     return;
   }
+
   new App({
     props: {
       isPackageJson: isPackageJson(),
       packageURL: getPackageURL(),
-      isGitLab: select.exists('.navbar-gitlab'),
+      isGitLab: select.exists('.navbar-gitlab')
     },
     target: select([
       '.repository-content', // GitHub
