@@ -1,0 +1,29 @@
+{
+  "env": {
+    "browser": true,
+    "webextensions": true
+  },
+  "plugins": ["svelte3", "unicorn"],
+  "extends": ["xo/browser", "plugin:unicorn/recommended"],
+  "rules": {
+    "indent": ["error", 2],
+    "import/no-unassigned-import": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 2,
+        "maxEOF": 1
+      }
+    ],
+    "no-new": "off",
+    "unicorn/better-regex": "off",
+    "unicorn/filename-case": "off"
+  },
+  "overrides": [
+    {
+      "files": "**/*.svelte",
+      "processor": "svelte3/svelte3"
+    }
+  ]
+}
