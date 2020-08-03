@@ -24,7 +24,6 @@
     }
 
     // If it's a package.json page, use the local dom
-
     const document_ = isPackageJson ? document : await fetchDom(packageURL);
 
     const jsonBlobElement = await elementReady([
@@ -63,8 +62,7 @@
   }
 
   async function fetchPackageInfo(name) {
-    // Get the data from NPM registry via background.js
-    // due to CORB policies introduced in Chrome 73
+    // Get the data from NPM registry via background.js due to CORB policies introduced in Chrome 73
     return new Promise(resolve =>
       chrome.runtime.sendMessage(
         {action: 'fetch', payload: {name}},
@@ -92,6 +90,8 @@
     'Optional',
     'Dev'
   ];
+
+  // TODO: also show error in the UI
   const packagePromise = getLocalPackage();
   packagePromise.catch(error => {
     console.warn(`${errorMessage} fetching the current package.json from ${window.location.hostname}`, error);
