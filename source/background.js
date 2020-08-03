@@ -36,7 +36,6 @@ chrome.runtime.onMessage.addListener((
 ) => {
   if (action === 'fetch') {
     const {name} = payload;
-    console.log('fetchingdddd', name);
 
     fetchPackageJson(name)
       .catch(error => ({
@@ -48,4 +47,3 @@ chrome.runtime.onMessage.addListener((
   }
 });
 
-console.log('wtf');
