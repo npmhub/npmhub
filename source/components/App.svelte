@@ -2,7 +2,7 @@
   import elementReady from '../lib/element-ready';
   import fetchDom from '../lib/fetch-dom';
   import Box from './Box.svelte';
-  import Header from './Header.svelte';
+  import HeaderLink from './HeaderLink.svelte';
 
   export let packageURL;
   export let isPackageJson;
@@ -102,11 +102,15 @@
   {#await packagePromise then package_}
     {#await isPackagePublic(package_.name) then isPublic}
       {#if isPublic}
-        <Header
-          hasDependencies={package_.dependencies.length}
-          selfLink={!isPackageJson && packageURL}
-          name={package_.name}
-        />
+        {#if !isPackageJson}
+          <HeaderLink href={packageURL} label="package.json"/>
+        {/if}
+        <HeaderLink href="https://www.npmjs.com/package/{package_.name}" label="npmjs.com"/>
+        <HeaderLink href="https://npm.runkit.com/{package_.name}" label="RunKit"/>
+        <HeaderLink href="https://www.unpkg.com/browse/{package_.name}@latest/" label="Explore contents"/>
+        {#if package_.dependencies.length}
+          <HeaderLink href="http://npm.broofa.com/?q={package_.name}" label="Visualize full tree"/>
+        {/if}
       {/if}
     {/await}
   {/await}
