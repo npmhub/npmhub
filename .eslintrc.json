@@ -8,6 +8,8 @@
   "rules": {
     "indent": ["error", 2],
     "import/no-unassigned-import": "off",
+
+    // From https://github.com/sveltejs/eslint-plugin-svelte3/issues/41#issuecomment-572503966
     "no-multiple-empty-lines": [
       "error",
       {
