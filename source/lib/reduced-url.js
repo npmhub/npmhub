@@ -7,7 +7,7 @@ const path = '([/]?[^#]*)';
 const hash = '(#.+)?';
 const urlLaxRegex = new RegExp(protocol + auth + host + path + hash);
 
-exports.parse = function (url) {
+export function parse(url) {
   const match = url.match(urlLaxRegex);
   if (match) {
     let path = match[4];
@@ -23,4 +23,4 @@ exports.parse = function (url) {
       hash: match[5]
     };
   }
-};
+}

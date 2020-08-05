@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "webextensions": true
+  },
+  "plugins": ["svelte3", "unicorn"],
+  "extends": ["xo-space/browser", "plugin:unicorn/recommended"],
+  "rules": {
+    "import/no-unassigned-import": "off",
+
+    // From https://github.com/sveltejs/eslint-plugin-svelte3/issues/41#issuecomment-572503966
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 2,
+        "maxEOF": 1
+      }
+    ],
+    "no-new": "off",
+    "unicorn/better-regex": "off",
+    "unicorn/filename-case": "off"
+  },
+  "overrides": [
+    {
+      "files": "**/*.svelte",
+      "processor": "svelte3/svelte3"
+    }
+  ]
+}

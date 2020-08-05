@@ -1,26 +1,6 @@
-import {htmlEscape} from 'escape-goat';
 import githubInjection from 'github-injection';
 import select from 'select-dom';
-import doma from 'doma';
-import elementReady from './lib/element-ready';
-import fetchDom from './lib/fetch-dom';
-
-const errorMessage = 'npmhub: there was an error while';
-
-async function fetchPackageInfo(name) {
-  // Get the data from NPM registry via background.js
-  // due to CORB policies introduced in Chrome 73
-  return new Promise(resolve =>
-    chrome.runtime.sendMessage(
-      {action: 'fetch', payload: {name}},
-      resolve
-    )
-  );
-}
-
-function isGitLab() {
-  return select.exists('.navbar-gitlab');
-}
+import App from './components/App.svelte';
 
 function isPackageJson() {
   // Example URLs:
@@ -28,51 +8,6 @@ function isPackageJson() {
   // https://github.com/npmhub/npmhub/blob/master/package.json
   const pathnameParts = window.location.pathname.split('/');
   return pathnameParts[3] === 'blob' && pathnameParts.pop() === 'package.json';
-}
-
-function addHeaderLink(box, name, url) {
-  box.firstElementChild.prepend(doma(`
-    <a class="btn btn-sm BtnGroup-item" href="${url}">${name}</a>
-  `));
-}
-
-async function addHeaderLinks(package_, dependenciesBox, dependencies) {
-  if (!package_.name) {
-    return;
-  }
-
-  // Does the current package exist on npm?
-  const {error} = await fetchPackageInfo(package_.name);
-  if (error) {
-    if (error.message !== 'Not found') {
-      console.warn(`${errorMessage} pinging the current package on npmjs.org`, error);
-    }
-
-    return;
-  }
-
-  addHeaderLink(
-    dependenciesBox,
-    'npmjs.com',
-    `https://www.npmjs.com/package/${htmlEscape(package_.name)}`
-  );
-  addHeaderLink(
-    dependenciesBox,
-    'RunKit',
-    `https://npm.runkit.com/${htmlEscape(package_.name)}`
-  );
-  addHeaderLink(
-    dependenciesBox,
-    'Explore contents',
-    `https://www.unpkg.com/browse/${htmlEscape(package_.name)}@latest/`
-  );
-  if (dependencies.length > 0) {
-    addHeaderLink(
-      dependenciesBox,
-      'Visualize full tree',
-      `http://npm.broofa.com/?q=${htmlEscape(package_.name)}`
-    );
-  }
 }
 
 function hasPackageJson() {
@@ -85,99 +20,9 @@ function getPackageURL() {
     '.files [title="package.json"]', // GitHub before "Repository refresh"
     '.tree-item-file-name [title="package.json"]' // GitLab
   ]);
+
   if (packageLink) {
     return packageLink.href;
-  }
-}
-
-async function getPackageJson() {
-  // GitLab will return raw JSON so we can use that directly
-  // https://gitlab.com/user/repo/raw/master/package.json
-  if (!isPackageJson() && isGitLab()) {
-    const url = getPackageURL().replace(/(gitlab\.com\/.+\/.+\/)blob/, '$1raw');
-    const response = await fetch(url);
-    return response.json();
-  }
-
-  // If it's a package.json page, use the local dom
-  const document_ = isPackageJson() ? document : await fetchDom(getPackageURL());
-
-  const jsonBlobElement = await elementReady([
-    '.blob-wrapper table', // GitHub
-    '.blob-viewer pre' // GitLab, defers content load so it needs `elementReady`
-  ], document_);
-
-  return JSON.parse(jsonBlobElement.textContent);
-}
-
-function createBox(title, container) {
-  /* eslint-disable indent */
-  const box = doma.one(`
-    <div class="Box Box--condensed mt-5 file-holder">
-      <div class="npmhub-header BtnGroup"></div>
-      ${
-        isGitLab() ?
-        `<div class="file-title"><strong>${title}</strong></div>` :
-        `<h3 class="Box-header Box-title px-2">${title}</h3>`
-      }
-      <ol class="npmhub-deps markdown-body"></ol>
-    </div>
-  `);
-  /* eslint-enable indent */
-
-  container.append(box);
-  return box;
-}
-
-async function addDependency(name, container) {
-  const depElement = doma.one(`
-    <li>
-      <a href='https://www.npmjs.com/package/${htmlEscape(name)}'>
-        ${htmlEscape(name)}
-      </a>
-    </li>
-  `);
-  container.append(depElement);
-
-  const {url, description, error} = await fetchPackageInfo(name);
-
-  if (error) {
-    if (error === 'Not found') {
-      depElement.append(doma('<em>Not published or private.</em>'));
-    } else {
-      console.warn(`${errorMessage} fetching ${htmlEscape(name)}/package.json`, error);
-      depElement.append(doma('<em>There was a network error.</em>'));
-    }
-
-    return;
-  }
-
-  depElement.append(description);
-
-  if (url) {
-    depElement.querySelector('a').href = url;
-  }
-}
-
-function addDependencies(containerElement, list) {
-  const listElement = containerElement.querySelector('.npmhub-deps');
-  if (!list) {
-    listElement.append(doma(`
-      <li class="npmhub-empty">
-        <em>There was a network error.</em>
-      </li>
-    `));
-  } else if (list.length > 0) {
-    for (const name of list) {
-      addDependency(name, listElement);
-    }
-  } else {
-    listElement.append(doma(`
-      <li class="npmhub-empty">
-        No dependencies!
-        <g-emoji class="g-emoji" alias="tada" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji>
-      </li>
-    `));
   }
 }
 
@@ -186,46 +31,18 @@ async function init() {
     return;
   }
 
-  const container = select([
-    '.repository-content', // GitHub
-    '.tree-content-holder', // GitLab
-    '.blob-content-holder' // GitLab package.json page
-  ]);
-
-  const dependenciesBox = createBox('Dependencies', container);
-  if (!isPackageJson()) {
-    addHeaderLink(dependenciesBox, 'package.json', getPackageURL());
-  }
-
-  let package_;
-  try {
-    package_ = await getPackageJson();
-  } catch (error) {
-    addDependencies(dependenciesBox, false);
-    console.warn(`${errorMessage} fetching the current package.json from ${window.location.hostname}`, error);
-    return;
-  }
-
-  const dependencies = Object.keys(package_.dependencies || {});
-  addHeaderLinks(package_, dependenciesBox, dependencies);
-  addDependencies(dependenciesBox, dependencies);
-
-  const types = [
-    'Peer',
-    'Bundled',
-    'Optional',
-    'Dev'
-  ];
-  for (const depType of types) {
-    let list = package_[depType.toLowerCase() + 'Dependencies'] || [];
-    if (!Array.isArray(list)) {
-      list = Object.keys(list);
-    }
-
-    if (list.length > 0) {
-      addDependencies(createBox(`${depType} Dependencies`, container), list);
-    }
-  }
+  new App({
+    props: {
+      isPackageJson: isPackageJson(),
+      packageURL: getPackageURL(),
+      isGitLab: select.exists('.navbar-gitlab')
+    },
+    target: select([
+      '.repository-content', // GitHub
+      '.tree-content-holder', // GitLab
+      '.blob-content-holder' // GitLab package.json page
+    ])
+  });
 }
 
 githubInjection(init);

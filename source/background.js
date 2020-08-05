@@ -7,6 +7,7 @@ import parseRepoUrl from './lib/parse-repo-url';
 addDomainPermissionToggle();
 
 const fetchPackageJson = pMemoize(async name => {
+  console.log('fetching', name);
   // Scoped repositories contain an escaped slash and a regular at-sign
   // Example: https://registry.npmjs.org/@shinnn%2Feslint-config-node
   const url = 'https://registry.npmjs.org/' + name.replace('/', '%2F');
@@ -45,3 +46,4 @@ chrome.runtime.onMessage.addListener((
     return true; // Required to signal intent to respond asynchronously
   }
 });
+

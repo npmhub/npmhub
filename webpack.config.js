@@ -13,8 +13,18 @@ module.exports = {
   },
   resolve: {
     alias: {
-      url: path.resolve('./source/lib/reduced-url.js')
+      url: path.resolve('./source/lib/reduced-url.js'),
+      svelte: path.resolve('node_modules', 'svelte')
     }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.svelte$/,
+        exclude: /node_modules/,
+        use: 'svelte-loader'
+      }
+    ]
   },
   output: {
     path: path.join(__dirname, 'distribution'),
