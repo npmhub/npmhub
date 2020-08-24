@@ -35,8 +35,10 @@
                   <em>Not published or private.</em>
                 {:else if info.error}
                   <em>There was a network error.</em>
-                {:else}
+                {:else if info.description}
                   {info.description}
+                {:else}
+                  <em>No description.</em>
                 {/if}
               {/await}
             </li>
