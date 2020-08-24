@@ -36,7 +36,7 @@
                 {:else if info.error}
                   <em>There was a network error.</em>
                 {:else}
-                  {info.description}
+                  {info.description || ''}
                 {/if}
               {/await}
             </li>
