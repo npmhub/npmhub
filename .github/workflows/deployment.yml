@@ -2,41 +2,29 @@
 name: Deployment
 
 on:
+  workflow_dispatch:
+  # You can manually trigger a deployment on GitHub.com
+  # https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
   schedule:
-    - cron: '3 3 * * 3' # At 03:03 on Wednesday https://crontab.guru/#3_3_*_*_3
-  push:
-    tags:
-      - '2020.*'
-      - '2021.*'
-      - '2022.*'
-      - '2023.*'
-      - '2024.*'
+    - cron: '3 3 * * 3'
 
 jobs:
-  Version:
-    runs-on: ubuntu-latest
+  Build:
     outputs:
-      version: ${{ steps.daily-version.outputs.version }}
       created: ${{ steps.daily-version.outputs.created }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm test # This includes the build
       - uses: fregante/daily-version-action@v1
         name: Create tag if necessary
         id: daily-version
         with:
           prefix: 20
-
-  Build:
-    needs: Version
-    if: github.event_name == 'push' || needs.Version.outputs.created
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm test
       - name: Update extension’s meta
         env:
-          VER: ${{ needs.Version.outputs.version }}
+          VER: ${{ steps.daily-version.outputs.version }}
         run: |
           echo https://github.com/$GITHUB_REPOSITORY/tree/$VER > distribution/SOURCE_URL.txt
           npm run version
@@ -46,6 +34,7 @@ jobs:
 
   Chrome:
     needs: Build
+    if: github.event_name == 'workflow_dispatch' || needs.Build.outputs.created
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
@@ -58,6 +47,7 @@ jobs:
 
   Firefox:
     needs: Build
+    if: github.event_name == 'workflow_dispatch' || needs.Build.outputs.created
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
