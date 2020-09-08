@@ -5,7 +5,7 @@
 }
 .npmhub-deps > li {
   padding: 10px;
-  border-bottom: 1px solid #DDD;
+  border-bottom: 1px solid #ddd;
 }
 .npmhub-deps > li:last-child {
   border-bottom: none;
@@ -27,12 +27,12 @@ li.npmhub-empty {
 }
 .npmhub-deps:empty:before {
   display: block;
-  content: "loading";
+  content: 'loading';
   padding: 10px;
   animation: npmhub-pulse 1s infinite;
 }
 @keyframes npmhub-pulse {
   50% {
-    opacity : 0.5;
+    opacity: 0.5;
   }
 }

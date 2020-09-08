@@ -1,16 +1,26 @@
 {
   "private": true,
-  "author": "zeke",
   "license": "MIT",
+  "author": "zeke",
   "scripts": {
-    "test": "run-p lint build",
-    "lint": "eslint source --ext .svelte,.js",
     "build": "webpack --mode=production",
-    "watch": "webpack --mode=development --watch",
-    "version": "dot-json distribution/manifest.json version $VER",
-    "release:cws": "webstore upload --source=distribution --auto-publish",
+    "lint": "eslint source --ext .svelte,.js",
+    "release": "VER=20$(daily-version) run-s build version release:*",
     "release:amo": "web-ext-submit --source-dir distribution",
-    "release": "VER=20$(daily-version) run-s build version release:*"
+    "release:cws": "webstore upload --source=distribution --auto-publish",
+    "test": "run-p lint build",
+    "version": "dot-json distribution/manifest.json version $VER",
+    "watch": "webpack --mode=development --watch"
+  },
+  "dependencies": {
+    "doma": "^3.0.1",
+    "escape-goat": "^3.0.0",
+    "github-injection": "^1.0.1",
+    "hosted-git-info": "^3.0.5",
+    "p-memoize": "^4.0.0",
+    "select-dom": "^6.0.2",
+    "webext-domain-permission-toggle": "^1.0.1",
+    "webext-dynamic-content-scripts": "^6.0.4"
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.2.0",
@@ -29,15 +39,5 @@
     "web-ext-submit": "^5.0.2",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
-  },
-  "dependencies": {
-    "doma": "^3.0.1",
-    "escape-goat": "^3.0.0",
-    "github-injection": "^1.0.1",
-    "hosted-git-info": "^3.0.5",
-    "p-memoize": "^4.0.0",
-    "select-dom": "^6.0.2",
-    "webext-domain-permission-toggle": "^1.0.1",
-    "webext-dynamic-content-scripts": "^6.0.4"
   }
 }

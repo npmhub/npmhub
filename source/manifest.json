@@ -9,9 +9,9 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-	"browser_action": {
-		"default_icon": "icons/icon128.png"
-	},
+  "browser_action": {
+    "default_icon": "icons/icon128.png"
+  },
   "applications": {
     "gecko": {
       "id": "npm-hub@sikelianos.com",

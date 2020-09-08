@@ -27,7 +27,10 @@ function getPackageURL() {
 }
 
 async function init() {
-  if (select.exists('.npmhub-header') || !(isPackageJson() || hasPackageJson())) {
+  if (
+    select.exists('.npmhub-header') ||
+    !(isPackageJson() || hasPackageJson())
+  ) {
     return;
   }
 
