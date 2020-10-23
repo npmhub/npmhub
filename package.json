@@ -5,9 +5,11 @@
   "scripts": {
     "build": "webpack --mode=production",
     "lint": "eslint source --ext .svelte,.js",
+    "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
     "release": "VER=20$(daily-version) run-s build version release:*",
     "release:amo": "web-ext-submit --source-dir distribution",
     "release:cws": "webstore upload --source=distribution --auto-publish",
+    "start:safari": "open 'safari/build/Release/npmhub.app'",
     "test": "run-p lint build",
     "version": "dot-json distribution/manifest.json version $VER",
     "watch": "webpack --mode=development --watch"
