@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  npmhub
-//
-//  Created by Rico on 22/10/20.
-//
-
 import Cocoa
 import SafariServices.SFSafariApplication
 import SafariServices.SFSafariExtensionManager
@@ -15,7 +8,7 @@ let extensionBundleIdentifier = "org.npmhub.npmhub-Extension"
 class ViewController: NSViewController {
 
     @IBOutlet var appNameLabel: NSTextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.appNameLabel.stringValue = appName
@@ -34,7 +27,7 @@ class ViewController: NSViewController {
             }
         }
     }
-    
+
     @IBAction func openSafariExtensionPreferences(_ sender: AnyObject?) {
         SFSafariApplication.showPreferencesForExtension(withIdentifier: extensionBundleIdentifier) { error in
             guard error == nil else {

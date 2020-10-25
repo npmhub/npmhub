@@ -1,10 +1,3 @@
-//
-//  SafariWebExtensionHandler.swift
-//  npmhub Extension
-//
-//  Created by Rico on 22/10/20.
-//
-
 import SafariServices
 import os.log
 
@@ -22,5 +15,5 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         context.completeRequest(returningItems: [response], completionHandler: nil)
     }
-    
+
 }
