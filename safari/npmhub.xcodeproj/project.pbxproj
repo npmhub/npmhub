@@ -18,7 +18,6 @@
 		1F71F12A254508D70000C6B8 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F122254508D70000C6B8 /* background.js */; };
 		1F71F12B254508D70000C6B8 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F123254508D70000C6B8 /* icons */; };
 		1F71F12C254508D70000C6B8 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F125254508D70000C6B8 /* manifest.json */; };
-		1F71F12D254508D70000C6B8 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F126254508D70000C6B8 /* lib */; };
 		1F71F12E254508D70000C6B8 /* npmhub.css in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F127254508D70000C6B8 /* npmhub.css */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +63,6 @@
 		1F71F123254508D70000C6B8 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../distribution/icons; sourceTree = "<group>"; };
 		1F71F124254508D70000C6B8 /* npmhub.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = npmhub.js.map; path = ../../distribution/npmhub.js.map; sourceTree = "<group>"; };
 		1F71F125254508D70000C6B8 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../distribution/manifest.json; sourceTree = "<group>"; };
-		1F71F126254508D70000C6B8 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../distribution/lib; sourceTree = "<group>"; };
 		1F71F127254508D70000C6B8 /* npmhub.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = npmhub.css; path = ../../distribution/npmhub.css; sourceTree = "<group>"; };
 		1F71F128254508D70000C6B8 /* background.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = background.js.map; path = ../../distribution/background.js.map; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,7 +145,6 @@
 				1F71F123254508D70000C6B8 /* icons */,
 				1F71F124254508D70000C6B8 /* npmhub.js.map */,
 				1F71F125254508D70000C6B8 /* manifest.json */,
-				1F71F126254508D70000C6B8 /* lib */,
 				1F71F127254508D70000C6B8 /* npmhub.css */,
 				1F71F128254508D70000C6B8 /* background.js.map */,
 			);
@@ -245,7 +242,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F71F12C254508D70000C6B8 /* manifest.json in Resources */,
-				1F71F12D254508D70000C6B8 /* lib in Resources */,
 				1F71F12B254508D70000C6B8 /* icons in Resources */,
 				1F71F12A254508D70000C6B8 /* background.js in Resources */,
 				1F71F129254508D70000C6B8 /* npmhub.js in Resources */,

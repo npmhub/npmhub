@@ -35,12 +35,12 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'source',
-          globOptions: {
-            ignore: [
-              '**/*.js'
-            ]
-          }
+          from: 'icons/*',
+          context: 'source'
+        },
+        {
+          from: '*.{json,css}',
+          context: 'source'
         }
       ]
     })
