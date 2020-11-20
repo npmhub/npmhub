@@ -18,11 +18,11 @@
     "doma": "^3.0.1",
     "escape-goat": "^3.0.0",
     "github-injection": "^1.0.1",
-    "hosted-git-info": "^3.0.5",
-    "p-memoize": "^4.0.0",
+    "hosted-git-info": "^3.0.7",
+    "mem": "^8.0.0",
     "select-dom": "^6.0.2",
     "webext-domain-permission-toggle": "^1.0.1",
-    "webext-dynamic-content-scripts": "^6.0.5"
+    "webext-dynamic-content-scripts": "^7.0.0"
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.2.0",
