@@ -8,12 +8,10 @@
     "lint": "eslint source --ext .svelte,.js",
     "fix": "npm run lint -- --fix",
     "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
-    "release": "VER=20$(daily-version) run-s build version release:*",
-    "release:amo": "web-ext-submit --source-dir distribution",
-    "release:cws": "webstore upload --source=distribution --auto-publish",
+    "release:chrome": "cd distribution && webstore upload --auto-publish",
+    "release:firefox": "cd distribution && web-ext-submit",
     "start:safari": "open 'safari/build/Release/npmhub.app'",
     "test": "run-p lint build",
-    "version": "dot-json distribution/manifest.json version $VER",
     "watch": "webpack --mode=development --watch"
   },
   "dependencies": {
