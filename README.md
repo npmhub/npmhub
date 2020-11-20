@@ -3,9 +3,9 @@
 [link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj 'Version published on Chrome Web Store'
 [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ 'Version published on Mozilla Add-ons'
 
-npmhub is a browser extension that lets you explore npm dependencies on GitHub and GitLab repos. When viewing a repository's file list containing a `package.json`, this extension will display links and descriptions for each dependency at the bottom of the page.
+npmhub is a browser extension that lets you explore npm dependencies on GitHub repos. When viewing a repository's file list containing a `package.json`, this extension will display links and descriptions for each dependency at the bottom of the page.
 
-GitHub Enterprise, GitLab Enterprise and Community Edition are also supported by right-clicking on <a href="https://user-images.githubusercontent.com/1402241/32874388-e0c64150-cacc-11e7-9a50-eae3727fd3c2.png" target="_blank">npmhub's icon in the toolbar</a> and selecting <strong>Enable npmhub on this domain</strong>.
+GitHub Enterprise is also supported by right-clicking on <a href="https://user-images.githubusercontent.com/1402241/32874388-e0c64150-cacc-11e7-9a50-eae3727fd3c2.png" target="_blank">npmhub's icon in the toolbar</a> and selecting <strong>Enable npmhub on this domain</strong>.
 
 ## Installation
 

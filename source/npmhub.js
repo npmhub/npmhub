@@ -5,7 +5,6 @@ import App from './components/App.svelte';
 
 function isPackageJson() {
   // Example URLs:
-  // https://gitlab.com/gitlab-org/gitlab-foss/blob/master/package.json
   // https://github.com/npmhub/npmhub/blob/master/package.json
   const pathnameParts = window.location.pathname.split('/');
   return pathnameParts[3] === 'blob' && pathnameParts.pop() === 'package.json';
@@ -18,8 +17,7 @@ function hasPackageJson() {
 function getPackageURL() {
   const packageLink = select([
     '#files ~ div [title="package.json"]', // GitHub
-    '.files [title="package.json"]', // GitHub before "Repository refresh"
-    '.tree-item-file-name [title="package.json"]' // GitLab
+    '.files [title="package.json"]' // GitHub before "Repository refresh"
   ]);
 
   if (packageLink) {
@@ -49,14 +47,9 @@ async function init() {
   new App({
     props: {
       isPackageJson: isPackageJson(),
-      packageURL: getPackageURL(),
-      isGitLab: select.exists('.navbar-gitlab')
+      packageURL: getPackageURL()
     },
-    target: select([
-      '.repository-content', // GitHub
-      '.tree-content-holder', // GitLab
-      '.blob-content-holder' // GitLab package.json page
-    ])
+    target: select('.repository-content')
   });
 }
 

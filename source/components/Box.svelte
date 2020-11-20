@@ -1,9 +1,6 @@
 <script>
-  import select from 'select-dom';
-
   export let type = '';
   export let dependencies;
-  export let isGitLab = select.exists('.navbar-gitlab');
 </script>
 
 
@@ -11,11 +8,7 @@
   <div class="npmhub-header BtnGroup">
     <slot></slot>
   </div>
-  {#if isGitLab}
-    <div class="file-title"><strong>{type} Dependencies</strong></div>
-  {:else}
-    <h3 class="Box-header Box-title px-2">{type} Dependencies</h3>
-  {/if}
+  <h3 class="Box-header Box-title px-2">{type} Dependencies</h3>
   <ol class="npmhub-deps markdown-body">
     {#await dependencies then dependencies}
       {#if dependencies}

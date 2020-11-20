@@ -6,7 +6,6 @@
 
   export let packageURL;
   export let isPackageJson;
-  export let isGitLab;
 
   const errorMessage = 'npmhub: there was an error while';
 
@@ -15,22 +14,8 @@
   }
 
   async function getPackageJson() {
-    // GitLab will return raw JSON so we can use that directly
-    // https://gitlab.com/user/repo/raw/master/package.json
-    if (!isPackageJson && isGitLab) {
-      const url = packageURL.replace(/(gitlab[.]com[/].+[/].+[/])blob/, '$1raw');
-      const response = await fetch(url);
-      return response.json();
-    }
-
-    // If it's a package.json page, use the local dom
     const document_ = isPackageJson ? document : await fetchDom(packageURL);
-
-    const jsonBlobElement = await elementReady([
-      '.blob-wrapper table', // GitHub
-      '.blob-viewer pre' // GitLab, defers content load so it needs `elementReady`
-    ], document_);
-
+    const jsonBlobElement = await elementReady('.blob-wrapper table', document_);
     return JSON.parse(jsonBlobElement.textContent);
   }
 
