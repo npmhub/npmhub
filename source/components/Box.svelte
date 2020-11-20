@@ -20,10 +20,14 @@
         {:else}
           {#each dependencies as {name, info}}
             <li>
-              <a href='https://www.npmjs.com/package/{name}'>
-                {name}
-              </a>
-              {#await info then info}
+              {#await info}
+                <a href='https://www.npmjs.com/package/{name}'>
+                  {name}
+                </a>
+              {:then info}
+                <a href={info.url}>
+                  {name}
+                </a>
                 {#if info.error === 'Not found'}
                   <em>Not published or private.</em>
                 {:else if info.error}

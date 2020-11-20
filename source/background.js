@@ -21,7 +21,7 @@ const fetchPackageJson = mem(async name => {
 
   // Only store/pass the necessary info
   return {
-    url: parseRepoUrl(package_),
+    url: parseRepoUrl(package_) ?? `https://www.npmjs.com/package/${name}`,
     description: package_.description
   };
 }, {
