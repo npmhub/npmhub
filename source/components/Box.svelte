@@ -25,13 +25,13 @@
                   {name}
                 </a>
               {:then info}
-                <a href={info.url}>
+                <a href={info.url ?? `https://www.npmjs.com/package/${name}`}>
                   {name}
                 </a>
                 {#if info.error === 'Not found'}
                   <em>Not published or private.</em>
                 {:else if info.error}
-                  <em>There was a network error.</em>
+                  <em>Error: {info.error}</em>
                 {:else if info.description}
                   {info.description}
                 {:else}

@@ -21,7 +21,7 @@ const fetchPackageJson = mem(async name => {
 
   // Only store/pass the necessary info
   return {
-    url: parseRepoUrl(package_) ?? `https://www.npmjs.com/package/${name}`,
+    url: parseRepoUrl(package_),
     description: package_.description
   };
 }, {
@@ -30,18 +30,19 @@ const fetchPackageJson = mem(async name => {
 
 // `background` fetch required to avoid avoid CORB introduced in Chrome 73 https://chromestatus.com/feature/5629709824032768
 chrome.runtime.onMessage.addListener((
-  {action, payload},
+  message,
   sender,
   sendResponse
 ) => {
-  if (action === 'fetch') {
-    const {name} = payload;
-
-    fetchPackageJson(name)
-      .catch(error => ({
+  if (message?.fetchPackageInfo) {
+    fetchPackageJson(message.fetchPackageInfo).then(sendResponse, error => {
+      sendResponse({
         error: error.message // Make error JSON.stringify-able
-      }))
-      .then(sendResponse);
+      });
+
+      // Throw it again so it appears in the background console
+      throw error;
+    });
 
     return true; // Required to signal intent to respond asynchronously
   }
