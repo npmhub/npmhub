@@ -3,7 +3,7 @@ import SafariServices.SFSafariApplication
 import SafariServices.SFSafariExtensionManager
 
 let appName = "npmhub"
-let extensionBundleIdentifier = "org.npmhub.npmhub-Extension"
+let extensionBundleIdentifier = "org.npmhub.npmhub.Extension"
 
 final class ViewController: NSViewController {
 	@IBOutlet var appNameLabel: NSTextField!

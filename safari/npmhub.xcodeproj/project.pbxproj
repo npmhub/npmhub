@@ -417,7 +417,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.npmhub.npmhub-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.npmhub.npmhub.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -435,7 +435,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.npmhub.npmhub-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.npmhub.npmhub.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
