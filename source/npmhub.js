@@ -1,4 +1,5 @@
 import githubInjection from 'github-injection';
+import elementReady from './lib/element-ready';
 import select from 'select-dom';
 import App from './components/App.svelte';
 
@@ -27,6 +28,17 @@ function getPackageURL() {
 }
 
 async function init() {
+  // If this fragment exists, then the list is deferred.
+  // Adapted from https://github.com/sindresorhus/refined-github/blob/b141596/source/github-events/on-file-list-update.ts
+  const ajaxFiles = await elementReady('#files ~ include-fragment[src*="/file-list/"]');
+  if (ajaxFiles) {
+    await new Promise(resolve => {
+      new MutationObserver(resolve).observe(ajaxFiles.parentNode, {
+        childList: true
+      });
+    });
+  }
+
   if (
     select.exists('.npmhub-header') ||
     !(isPackageJson() || hasPackageJson())
