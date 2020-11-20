@@ -29,11 +29,7 @@ const fetchPackageJson = mem(async name => {
 });
 
 // `background` fetch required to avoid avoid CORB introduced in Chrome 73 https://chromestatus.com/feature/5629709824032768
-chrome.runtime.onMessage.addListener((
-  message,
-  sender,
-  sendResponse
-) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.fetchPackageInfo) {
     fetchPackageJson(message.fetchPackageInfo).then(sendResponse, error => {
       sendResponse({
@@ -47,4 +43,3 @@ chrome.runtime.onMessage.addListener((
     return true; // Required to signal intent to respond asynchronously
   }
 });
-

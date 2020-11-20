@@ -13,11 +13,10 @@ function unknownHostedUrl(url) {
     }
 
     url = new URL(url);
-    const protocol = url.protocol === 'https:' ?
-      'https:' :
-      'http:';
-    return protocol + '//' + (url.host || '') +
-      url.pathname.replace(/\.git$/, '');
+    const protocol = url.protocol === 'https:' ? 'https:' : 'http:';
+    return (
+      protocol + '//' + (url.host || '') + url.pathname.replace(/\.git$/, '')
+    );
   } catch {}
 }
 

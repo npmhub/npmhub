@@ -5,8 +5,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "build:webpack": "npm run build # `build:webpack` is used by CI",
-    "lint": "eslint source --ext .svelte,.js",
     "fix": "npm run lint -- --fix",
+    "lint": "eslint source --ext .svelte,.js",
     "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
     "release:chrome": "cd distribution && webstore upload --auto-publish",
     "release:firefox": "cd distribution && web-ext-submit",
