@@ -24,3 +24,6 @@ export function parse(url) {
     };
   }
 }
+
+const URL = window.URL;
+export {URL};
