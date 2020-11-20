@@ -1,13 +1,49 @@
+env: {}
+
+# DO NOT EDIT BELOW, USE: npx ghat 'sindresorhus/refined-github/.github/workflows/test.yml' --exclude 'jobs.Types' --exclude 'jobs.AVA'
+
 name: Test
-
 on:
-  - pull_request
-  - push
-
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - master
+      - test/*
 jobs:
-  test:
+  Security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npx lockfile-lint --path package-lock.json --validate-https
+  Lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm ci
-      - run: npm test
+      - run: npm run lint
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm ci
+      - run: 'npm run build:webpack'
+      - uses: actions/upload-artifact@v2
+        with:
+          name: refined-github
+          path: distribution
+  Safari:
+    runs-on: macos-latest
+    needs: Build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: refined-github
+          path: distribution
+      - uses: maxim-lobanov/setup-xcode@v1
+      - run: 'npm run pack:safari'
