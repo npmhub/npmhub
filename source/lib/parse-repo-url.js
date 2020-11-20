@@ -7,9 +7,9 @@ import {fromUrl as parseRepo} from 'hosted-git-info';
 
 function unknownHostedUrl(url) {
   try {
-    const idx = url.indexOf('@');
-    if (idx !== -1) {
-      url = url.slice(idx + 1).replace(/:(\D+)/, '/$1');
+    const index = url.indexOf('@');
+    if (index !== -1) {
+      url = url.slice(index + 1).replace(/:(\D+)/, '/$1');
     }
 
     url = new URL(url);
