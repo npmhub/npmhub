@@ -1,6 +1,5 @@
-env: {}
-
-# DO NOT EDIT BELOW, USE: npx ghat fregante/ghatemplates/webext --set 'on.schedule=[{"cron": "3 3 * * 3"}]'
+# GENERATED WITH: npx ghat fregante/ghatemplates/webext --set 'on.schedule=[{"cron": "3 3 * * 3"}]'
+# Unfortunately the `daily-version` step needs to be customized until https://github.com/sindresorhus/dot-prop/issues/71
 
 name: Release
 on:
@@ -22,6 +21,8 @@ jobs:
       - uses: fregante/daily-version-action@v1
         name: Create tag if necessary
         id: daily-version
+        with:
+          prefix: 20
       - uses: notlmn/release-with-changelog@v3
         if: steps.daily-version.outputs.created
         with:
