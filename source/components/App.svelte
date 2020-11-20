@@ -85,19 +85,21 @@
 
 <Box dependencies={packagePromise.then(package_ => package_.dependencies)}>
   {#await packagePromise then package_}
-    {#await isPackagePublic(package_.name) then isPublic}
-      {#if isPublic}
-        {#if !isPackageJson}
-          <HeaderLink href={packageURL} label="package.json"/>
+    {#if package_.name}
+      {#await isPackagePublic(package_.name) then isPublic}
+        {#if isPublic}
+          {#if !isPackageJson}
+            <HeaderLink href={packageURL} label="package.json"/>
+          {/if}
+          <HeaderLink href="https://www.npmjs.com/package/{package_.name}" label="npmjs.com"/>
+          <HeaderLink href="https://npm.runkit.com/{package_.name}" label="RunKit"/>
+          <HeaderLink href="https://www.unpkg.com/browse/{package_.name}@latest/" label="Explore contents"/>
+          {#if package_.dependencies.length}
+            <HeaderLink href="http://npm.broofa.com/?q={package_.name}" label="Visualize full tree"/>
+          {/if}
         {/if}
-        <HeaderLink href="https://www.npmjs.com/package/{package_.name}" label="npmjs.com"/>
-        <HeaderLink href="https://npm.runkit.com/{package_.name}" label="RunKit"/>
-        <HeaderLink href="https://www.unpkg.com/browse/{package_.name}@latest/" label="Explore contents"/>
-        {#if package_.dependencies.length}
-          <HeaderLink href="http://npm.broofa.com/?q={package_.name}" label="Visualize full tree"/>
-        {/if}
-      {/if}
-    {/await}
+      {/await}
+    {/if}
   {/await}
 </Box>
 {#await packagePromise then package_}
