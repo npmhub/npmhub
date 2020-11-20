@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "doma": "^3.0.1",
+    "element-ready": "^4.1.1",
     "escape-goat": "^3.0.0",
     "github-injection": "^1.0.1",
     "hosted-git-info": "^3.0.7",

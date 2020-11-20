@@ -1,5 +1,5 @@
 import githubInjection from 'github-injection';
-import elementReady from './lib/element-ready';
+import elementReady from 'element-ready';
 import select from 'select-dom';
 import App from './components/App.svelte';
 

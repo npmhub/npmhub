@@ -1,5 +1,5 @@
 <script>
-  import elementReady from '../lib/element-ready';
+  import elementReady from 'element-ready';
   import fetchDom from '../lib/fetch-dom';
   import Box from './Box.svelte';
   import HeaderLink from './HeaderLink.svelte';
@@ -15,7 +15,7 @@
 
   async function getPackageJson() {
     const document_ = isPackageJson ? document : await fetchDom(packageURL);
-    const jsonBlobElement = await elementReady('.blob-wrapper table', document_);
+    const jsonBlobElement = await elementReady('.blob-wrapper table', {target: document_});
     return JSON.parse(jsonBlobElement.textContent);
   }
 
