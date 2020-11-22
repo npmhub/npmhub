@@ -22,11 +22,11 @@ final class ViewController: NSViewController {
 				return
 			}
 
-			DispatchQueue.main.async {
+			DispatchQueue.main.async { [self] in
 				if state.isEnabled {
-					self.appNameLabel.stringValue = "\(appName)'s extension is currently on."
+					appNameLabel.stringValue = "\(appName)'s extension is currently on."
 				} else {
-					self.appNameLabel.stringValue = "\(appName)'s extension is currently off. You can turn it on in Safari Extensions preferences."
+					appNameLabel.stringValue = "\(appName)'s extension is currently off. You can turn it on in Safari Extensions preferences."
 				}
 			}
 		}
