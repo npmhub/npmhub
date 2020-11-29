@@ -79,19 +79,27 @@
 </script>
 
 <Box dependencies={packagePromise.then(package_ => package_.dependencies)}>
+  {#if !isPackageJson}
+    <HeaderLink href={packageURL} label="package.json"/>
+  {/if}
   {#await packagePromise then package_}
     {#if package_.name}
       {#await isPackagePublic(package_.name) then isPublic}
         {#if isPublic}
-          {#if !isPackageJson}
-            <HeaderLink href={packageURL} label="package.json"/>
-          {/if}
-          <HeaderLink href="https://www.npmjs.com/package/{package_.name}" label="npmjs.com"/>
+          <HeaderLink href="https://www.npmjs.com/package/{package_.name}" label="npm"/>
           <HeaderLink href="https://npm.runkit.com/{package_.name}" label="RunKit"/>
-          <HeaderLink href="https://www.unpkg.com/browse/{package_.name}@latest/" label="Explore contents"/>
-          {#if package_.dependencies.length}
-            <HeaderLink href="http://npm.broofa.com/?q={package_.name}" label="Visualize full tree"/>
-          {/if}
+          <details class="dropdown details-reset details-overlay d-inline-block BtnGroup-parent">
+            <summary class="btn btn-sm BtnGroup-item" aria-haspopup="true">
+              <div class="dropdown-caret m-0"></div>
+            </summary>
+
+            <ul class="dropdown-menu dropdown-menu-sw">
+              <li><a class="dropdown-item" href="https://www.unpkg.com/browse/{package_.name}@latest/">Contents</a></li>
+              <li><a class="dropdown-item" href="https://bundlephobia.com/result?p={package_.name}">BundlePhobia</a></li>
+              <li><a class="dropdown-item" href="https://bundlephobia.com/result?p={package_.name}">PackagePhobia</a></li>
+              <li><a class="dropdown-item" href="http://npm.broofa.com/?q={package_.name}">Dependency tree</a></li>
+            </ul>
+          </details>
         {/if}
       {/await}
     {/if}
