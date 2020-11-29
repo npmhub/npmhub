@@ -1,7 +1,8 @@
 # <img src="assets/icon.svg" width="45" align="left"> npmhub
 
-[link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj 'Version published on Chrome Web Store'
-[link-amo]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ 'Version published on Mozilla Add-ons'
+[link-chrome]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj 'Version published on Chrome Web Store'
+[link-firefox]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ 'Version published on Mozilla Add-ons'
+[link-safari]: https://apps.apple.com/app/npmhub/id1542090429 'Version published on the Mac App Store'
 
 <!-- HTML tags used so the description can be copy-pasted onto Mozilla Addons -->
 
@@ -23,8 +24,9 @@ GitHub Enterprise is also supported by right-clicking on <a href="https://user-i
 
 ## Installation
 
-- [**Chrome** extension][link-cws] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg?label=%20">][link-cws]
-- [**Firefox** add-on][link-amo] [<img valign="middle" src="https://img.shields.io/amo/v/npm-hub.svg?label=%20">][link-amo]
+- [**Chrome** extension][link-chrome] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/kbbbjimdjbjclaebffknlabpogocablj.svg?label=%20">][link-chrome]
+- [**Firefox** add-on][link-firefox] [<img valign="middle" src="https://img.shields.io/amo/v/npm-hub.svg?label=%20">][link-firefox]
+- [**Safari** extension][link-safari] [<img valign="middle" src="https://img.shields.io/itunes/v/1542090429.svg?label=%20">][link-safari]
 
 The Chrome version also works in Opera (using [this](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/)) and Edge.
 
@@ -32,7 +34,7 @@ The Chrome version also works in Opera (using [this](https://addons.opera.com/en
 
 Here's what npmhub looks like:
 
-![npmhub on Chrome](assets/chrome/window.png)
+![npmhub on Chrome](assets/Chrome/window.png)
 
 ## See Also
 
