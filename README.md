@@ -1,4 +1,4 @@
-# npmhub
+# <img src="assets/icon.svg" width="45" align="left"> npmhub
 
 [link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj 'Version published on Chrome Web Store'
 [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ 'Version published on Mozilla Add-ons'
