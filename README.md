@@ -3,7 +3,21 @@
 [link-cws]: https://chrome.google.com/webstore/detail/npmhub/kbbbjimdjbjclaebffknlabpogocablj 'Version published on Chrome Web Store'
 [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/npm-hub/ 'Version published on Mozilla Add-ons'
 
-npmhub is a browser extension that lets you explore npm dependencies on GitHub repos. When viewing a repository's file list containing a `package.json`, this extension will display links and descriptions for each dependency at the bottom of the page.
+<!-- HTML tags used so the description can be copy-pasted onto Mozilla Addons -->
+
+On every GitHub repository or folder with a <code>package.json</code> file, scroll to the bottom of the page to see a list of its npm dependencies and their descriptions.
+
+npmhub also adds convenient links to:
+
+<ul>
+	<li>the <b>package.json</b> file
+	<li><b>npmjs.com</b>
+	<li><b>RunKit</b> to test the package
+	<li><b>BundlePhobia</b> to see the package size when bundled
+	<li><b>PackagePhobia</b> to see the package size when installed
+	<li><b>NPMGraph</b> to explore the sub-dependencies
+	<li><b>UNPKG</b> to see the exact contents published to npm
+</ul>
 
 GitHub Enterprise is also supported by right-clicking on <a href="https://user-images.githubusercontent.com/1402241/32874388-e0c64150-cacc-11e7-9a50-eae3727fd3c2.png" target="_blank">npmhub's icon in the toolbar</a> and selecting <strong>Enable npmhub on this domain</strong>.
 
@@ -18,7 +32,7 @@ The Chrome version also works in Opera (using [this](https://addons.opera.com/en
 
 Here's what npmhub looks like:
 
-![npmhub on Chrome](assets/npm-hub-screenshot.png)
+![npmhub on Chrome](assets/chrome/window.png)
 
 ## See Also
 
