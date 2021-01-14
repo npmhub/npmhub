@@ -4,7 +4,7 @@
 }
 .npmhub-deps > li {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border-primary, #ddd);
 }
 .npmhub-deps > li:last-child {
   border-bottom: none;
