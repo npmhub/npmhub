@@ -16,31 +16,30 @@
   },
   "dependencies": {
     "doma": "^3.0.1",
-    "element-ready": "^4.1.1",
+    "element-ready": "^5.0.0",
     "escape-goat": "^3.0.0",
     "github-injection": "^1.0.1",
     "hosted-git-info": "^3.0.7",
     "mem": "^8.0.0",
-    "select-dom": "^6.0.2",
-    "webext-domain-permission-toggle": "^1.0.1",
+    "webext-domain-permission-toggle": "^1.1.0",
     "webext-dynamic-content-scripts": "^7.0.0"
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.2.0",
-    "copy-webpack-plugin": "^6.3.2",
+    "copy-webpack-plugin": "^7.0.0",
     "dot-json": "^1.2.1",
-    "eslint": "^7.13.0",
-    "eslint-config-xo-space": "^0.25.0",
-    "eslint-plugin-svelte3": "^2.7.3",
-    "eslint-plugin-unicorn": "^23.0.0",
+    "eslint": "^7.17.0",
+    "eslint-config-xo-space": "^0.26.0",
+    "eslint-plugin-svelte3": "^3.0.0",
+    "eslint-plugin-unicorn": "^26.0.1",
     "npm-run-all": "^4.1.5",
     "size-plugin": "^2.0.1",
-    "svelte": "^3.29.7",
+    "svelte": "^3.31.2",
     "svelte-loader": "^2.13.6",
-    "terser-webpack-plugin": "^5.0.3",
+    "terser-webpack-plugin": "^5.1.1",
     "utc-version": "^2.0.2",
-    "web-ext-submit": "^5.3.0",
-    "webpack": "^5.6.0",
-    "webpack-cli": "^4.2.0"
+    "web-ext-submit": "^5.5.0",
+    "webpack": "^5.14.0",
+    "webpack-cli": "^4.3.1"
   }
 }
