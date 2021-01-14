@@ -48,7 +48,9 @@
 
   async function fetchPackageInfo(name) {
     // Get the data from NPM registry via background.js due to CORB policies introduced in Chrome 73
-    return new Promise(resolve => chrome.runtime.sendMessage({fetchPackageInfo: name}, resolve));
+    return new Promise(resolve => {
+      chrome.runtime.sendMessage({fetchPackageInfo: name}, resolve);
+    });
   }
 
   async function isPackagePublic(name) {
