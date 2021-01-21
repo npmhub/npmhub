@@ -1,7 +1,7 @@
 import 'webext-dynamic-content-scripts';
 import mem from 'mem';
 import addDomainPermissionToggle from 'webext-domain-permission-toggle';
-import parseRepoUrl from './lib/parse-repo-url';
+import parseRepoUrl from './lib/parse-repo-url.js';
 
 // GitHub Enterprise support
 addDomainPermissionToggle();
