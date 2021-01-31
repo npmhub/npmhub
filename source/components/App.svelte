@@ -98,7 +98,7 @@
             <ul class="dropdown-menu dropdown-menu-sw">
               <li><a class="dropdown-item" href="https://www.unpkg.com/browse/{package_.name}@latest/">Contents</a></li>
               <li><a class="dropdown-item" href="https://bundlephobia.com/result?p={package_.name}">BundlePhobia</a></li>
-              <li><a class="dropdown-item" href="https://bundlephobia.com/result?p={package_.name}">PackagePhobia</a></li>
+              <li><a class="dropdown-item" href="https://packagephobia.com/result?p={package_.name}">PackagePhobia</a></li>
               <li><a class="dropdown-item" href="http://npm.broofa.com/?q={package_.name}">Dependency tree</a></li>
             </ul>
           </details>
