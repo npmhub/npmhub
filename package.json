@@ -36,5 +36,8 @@
     "utc-version": "^2.0.2",
     "web-ext-submit": "^5.5.0",
     "xo": "^0.37.1"
+  },
+  "alias": {
+    "url": "./source/lib/reduced-url.js"
   }
 }
