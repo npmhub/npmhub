@@ -19,10 +19,10 @@
     "element-ready": "^5.0.0",
     "escape-goat": "^3.0.0",
     "github-injection": "^1.0.1",
-    "hosted-git-info": "^3.0.7",
+    "hosted-git-info": "^3.0.8",
     "mem": "^8.0.0",
-    "webext-domain-permission-toggle": "^1.1.0",
-    "webext-dynamic-content-scripts": "^7.0.0"
+    "webext-domain-permission-toggle": "^2.0.0",
+    "webext-dynamic-content-scripts": "^7.1.0"
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.2.0",
