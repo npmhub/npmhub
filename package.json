@@ -3,8 +3,7 @@
   "license": "MIT",
   "author": "zeke",
   "scripts": {
-    "build": "webpack --mode=production",
-    "build:webpack": "npm run build # `build:webpack` is used by CI",
+    "build": "parcel build source/manifest.json --no-minify --dist-dir distribution --no-cache --detailed-report 0",
     "fix": "npm run lint -- --fix",
     "lint": "xo",
     "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
@@ -12,7 +11,7 @@
     "release:firefox": "cd distribution && web-ext-submit",
     "start:safari": "open 'safari/build/Release/npmhub.app'",
     "test": "run-p lint build",
-    "watch": "webpack --mode=development --watch"
+    "watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr"
   },
   "dependencies": {
     "doma": "^3.0.1",
@@ -25,19 +24,17 @@
     "webext-dynamic-content-scripts": "^7.1.0"
   },
   "devDependencies": {
+    "@parcel/config-webextension": "^2.0.0-nightly.2164",
+    "@parcel/transformer-webextension": "^2.0.0-nightly.2164",
     "chrome-webstore-upload-cli": "^1.2.0",
-    "copy-webpack-plugin": "^7.0.0",
     "dot-json": "^1.2.1",
     "eslint-plugin-svelte3": "^3.0.0",
     "npm-run-all": "^4.1.5",
-    "size-plugin": "^2.0.1",
+    "parcel": "^2.0.0-nightly.540",
+    "parcel-transformer-svelte": "^1.1.0",
     "svelte": "^3.31.2",
-    "svelte-loader": "^2.13.6",
-    "terser-webpack-plugin": "^5.1.1",
     "utc-version": "^2.0.2",
     "web-ext-submit": "^5.5.0",
-    "webpack": "^5.14.0",
-    "webpack-cli": "^4.3.1",
     "xo": "^0.37.1"
   }
 }

@@ -2,3 +2,4 @@ distribution
 node_modules
 size-plugin.json
 *.map
+.parcel-cache

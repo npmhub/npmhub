@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: 14
       - run: npm ci
-      - run: 'npm run build:webpack'
+      - run: npm run build
       - uses: actions/upload-artifact@v2
         with:
           name: refined-github
