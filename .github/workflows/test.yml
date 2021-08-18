@@ -1,6 +1,8 @@
 env: {}
 
-# DO NOT EDIT BELOW, USE: npx ghat 'sindresorhus/refined-github/.github/workflows/test.yml' --exclude 'jobs.Types' --exclude 'jobs.AVA'
+# FILE GENERATED WITH: npx ghat sindresorhus/refined-github/.github/workflows/test.yml
+# SOURCE: https://github.com/sindresorhus/refined-github
+# OPTIONS: {"exclude":["jobs.Types","jobs.AVA"]}
 
 name: Test
 on:
@@ -9,7 +11,7 @@ on:
       - '*'
   push:
     branches:
-      - master
+      - main
       - test/*
 jobs:
   Security:
@@ -27,11 +29,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
+          cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npm run build:webpack
       - uses: actions/upload-artifact@v2
         with:
           name: npmhub
@@ -46,4 +49,4 @@ jobs:
           name: npmhub
           path: distribution
       - uses: maxim-lobanov/setup-xcode@v1
-      - run: 'npm run pack:safari'
+      - run: npm run pack:safari
