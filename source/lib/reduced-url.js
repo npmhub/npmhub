@@ -20,7 +20,7 @@ export function parse(url) {
       auth: match[2],
       host: match[3],
       path,
-      hash: match[5]
+      hash: match[5],
     };
   }
 }

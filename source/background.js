@@ -22,10 +22,10 @@ const fetchPackageJson = mem(async name => {
   // Only store/pass the necessary info
   return {
     url: parseRepoUrl(package_),
-    description: package_.description
+    description: package_.description,
   };
 }, {
-  maxAge: 1000 * 60 * 60 * 24
+  maxAge: 1000 * 60 * 60 * 24,
 });
 
 // `background` fetch required to avoid avoid CORB introduced in Chrome 73 https://chromestatus.com/feature/5629709824032768
@@ -33,7 +33,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.fetchPackageInfo) {
     fetchPackageJson(message.fetchPackageInfo).then(sendResponse, error => {
       sendResponse({
-        error: error.message // Make error JSON.stringify-able
+        error: error.message, // Make error JSON.stringify-able
       });
 
       // Throw it again so it appears in the background console
