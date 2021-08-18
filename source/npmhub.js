@@ -16,7 +16,7 @@ function hasPackageJson() {
 function getPackageURL() {
   const packageLink = document.querySelector([
     '#files ~ div [title="package.json"]', // GitHub
-    '.files [title="package.json"]' // GitHub before "Repository refresh"
+    '.files [title="package.json"]', // GitHub before "Repository refresh"
   ]);
 
   if (packageLink) {
@@ -31,14 +31,14 @@ async function init() {
   if (ajaxFiles) {
     await new Promise(resolve => {
       new MutationObserver(resolve).observe(ajaxFiles.parentNode, {
-        childList: true
+        childList: true,
       });
     });
   }
 
   if (
-    document.querySelector('.npmhub-header') ||
-    !(isPackageJson() || hasPackageJson())
+    document.querySelector('.npmhub-header')
+    || !(isPackageJson() || hasPackageJson())
   ) {
     return;
   }
@@ -46,9 +46,9 @@ async function init() {
   new App({
     props: {
       isPackageJson: isPackageJson(),
-      packageURL: getPackageURL()
+      packageURL: getPackageURL(),
     },
-    target: document.querySelector('.repository-content')
+    target: document.querySelector('.repository-content'),
   });
 }
 
