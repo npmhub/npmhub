@@ -1,10 +1,14 @@
 <script>
   export let type = '';
   export let dependencies;
+  export let id = 'dependencies';
+  if (type !== '') {
+    id = type.toLowerCase().trim().replace(/\s+/, '-').concat('-', id);
+  }
 </script>
 
 
-<div class="Box Box--condensed mt-5 file-holder">
+<div {id} class="Box Box--condensed mt-5 file-holder">
   <div class="npmhub-header BtnGroup">
     <slot></slot>
   </div>
