@@ -48,7 +48,7 @@ async function init() {
       isPackageJson: isPackageJson(),
       packageURL: getPackageURL(),
     },
-    target: document.querySelector('.repository-content'),
+    target: document.querySelector('.repository-content .gutter-condensed .flex-shrink-0.mb-md-0'),
   });
 }
 
