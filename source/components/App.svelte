@@ -23,6 +23,7 @@
     const packageJson = await getPackageJson();
     const package_ = {
       name: packageJson.name,
+      version: packageJson.version,
       dependencies: Object.keys(packageJson.dependencies || {}).map(name => ({
         name,
         info: fetchPackageInfo(name)
@@ -96,7 +97,7 @@
             </summary>
 
             <ul class="dropdown-menu dropdown-menu-sw">
-              <li><a class="dropdown-item" href="https://www.unpkg.com/browse/{package_.name}@latest/">Contents</a></li>
+              <li><a class="dropdown-item" href="https://www.unpkg.com/browse/{package_.name}@{package_.version}/">Contents</a></li>
               <li><a class="dropdown-item" href="https://bundlephobia.com/package/{package_.name}">BundlePhobia</a></li>
               <li><a class="dropdown-item" href="https://packagephobia.com/result?p={package_.name}">PackagePhobia</a></li>
               <li><a class="dropdown-item" href="https://npmgraph.js.org/?q={package_.name}">Dependency tree</a></li>
