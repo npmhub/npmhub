@@ -80,6 +80,7 @@
   });
 </script>
 
+<span id="dependencies"></span>
 <Box dependencies={packagePromise.then(package_ => package_.dependencies)}>
   {#if !isPackageJson}
     <HeaderLink href={packageURL} label="package.json"/>
