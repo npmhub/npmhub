@@ -1,10 +1,7 @@
 <script>
   export let type = '';
   export let dependencies;
-  export let id = 'dependencies';
-  if (type !== '') {
-    id = type.toLowerCase().trim().replace(/\s+/, '-').concat('-', id);
-  }
+  export let id = type.toLowerCase() + 'dependencies';
 </script>
 
 
