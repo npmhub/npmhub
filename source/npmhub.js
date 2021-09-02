@@ -44,6 +44,7 @@ async function init() {
   }
 
   const target = isPackageJson()
+    || window.location.pathname.split('/')[3] === 'tree'  // sub-directories
     ? document.querySelector('.repository-content')
     : document.querySelector('.repository-content .gutter-condensed .flex-shrink-0.mb-md-0');
 
