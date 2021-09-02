@@ -43,12 +43,16 @@ async function init() {
     return;
   }
 
+  const target = isPackageJson()
+    ? document.querySelector('.repository-content')
+    : document.querySelector('.repository-content .gutter-condensed .flex-shrink-0.mb-md-0');
+
   new App({
     props: {
       isPackageJson: isPackageJson(),
       packageURL: getPackageURL(),
     },
-    target: document.querySelector('.repository-content .gutter-condensed .flex-shrink-0.mb-md-0'),
+    target,
   });
 }
 
