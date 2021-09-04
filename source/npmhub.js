@@ -55,7 +55,6 @@ async function init() {
   new MetaLink({
     target: document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell'),
   });
-
 }
 
 githubInjection(init);
