@@ -44,10 +44,6 @@ async function init() {
     return;
   }
 
-  new MetaLink({
-    target: document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell'),
-  });
-
   new App({
     props: {
       isPackageJson: isPackageJson(),
@@ -55,6 +51,11 @@ async function init() {
     },
     target: document.querySelector('.repository-content'),
   });
+
+  new MetaLink({
+    target: document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell'),
+  });
+
 }
 
 githubInjection(init);
