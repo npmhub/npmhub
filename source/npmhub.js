@@ -52,8 +52,16 @@ async function init() {
     target: document.querySelector('.repository-content'),
   });
 
+  const metaLinkTarget = isPackageJson()
+    || window.location.pathname.split('/')[3] === 'tree' // Sub-directories
+    ? document.querySelector('.hx_commit-tease .d-flex')
+    : document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell')
   new MetaLink({
-    target: document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell'),
+    props: {
+      isPackageJson: isPackageJson(),
+      isTree: window.location.pathname.split('/')[3] === 'tree',
+    },
+    target: metaLinkTarget,
   });
 }
 
