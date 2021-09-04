@@ -1,6 +1,7 @@
 import githubInjection from 'github-injection';
 import elementReady from 'element-ready';
 import App from './components/App.svelte';
+import MetaLink from './components/MetaLink.svelte';
 
 function isPackageJson() {
   // Example URLs:
@@ -42,6 +43,10 @@ async function init() {
   ) {
     return;
   }
+
+  new MetaLink({
+    target: document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell'),
+  });
 
   new App({
     props: {

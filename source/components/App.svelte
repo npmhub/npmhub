@@ -78,25 +78,6 @@
   packagePromise.catch(error => {
     console.warn(`${errorMessage} fetching the current package.json from ${window.location.hostname}`, error);
   });
-
-  const repositoryAbout = document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell');
-  const screenReaderElement = document.createElement('h3');
-  screenReaderElement.className = 'sr-only';
-  screenReaderElement.append(document.createTextNode('Dependency List via N P M Hub'));
-  repositoryAbout.append(screenReaderElement);
-
-  const dependenciesLinkDiv = document.createElement('div');
-  dependenciesLinkDiv.className = 'mt-3';
-
-  const dependenciesLinkAnchor = document.createElement('a');
-  dependenciesLinkAnchor.className = 'Link--muted';
-  dependenciesLinkAnchor.href = '#npmhub';
-
-  // TODO: add npmhub symbolic icon before text
-  dependenciesLinkAnchor.append(document.createTextNode('Dependencies'));
-  dependenciesLinkDiv.append(dependenciesLinkAnchor);
-
-  repositoryAbout.append(dependenciesLinkDiv);
 </script>
 
 <span id="npmhub"></span>
