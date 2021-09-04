@@ -55,7 +55,7 @@ async function init() {
   const metaLinkTarget = isPackageJson()
     || window.location.pathname.split('/')[3] === 'tree' // Sub-directories
     ? document.querySelector('.hx_commit-tease .d-flex')
-    : document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell')
+    : document.querySelector('.BorderGrid .BorderGrid-row.hide-md.hide-sm .BorderGrid-cell');
   new MetaLink({
     props: {
       isPackageJson: isPackageJson(),
