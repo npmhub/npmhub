@@ -1,10 +1,11 @@
 <script>
   export let type = '';
   export let dependencies;
+  export let id = type.toLowerCase() + 'dependencies';
 </script>
 
 
-<div class="Box Box--condensed mt-5 file-holder">
+<div {id} class="Box Box--condensed mt-5 file-holder">
   <div class="npmhub-header BtnGroup">
     <slot></slot>
   </div>
