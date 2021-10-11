@@ -34,3 +34,7 @@ li.npmhub-empty {
     opacity: 0.5;
   }
 }
+
+.padding-8px{
+  padding: 8px;
+}

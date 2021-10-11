@@ -6,10 +6,12 @@
 
 
 <div {id} class="Box Box--condensed mt-5 file-holder">
-  <div class="npmhub-header BtnGroup">
-    <slot></slot>
+  <div class="d-flex js-sticky js-position-sticky top-0 border-top-0 border-bottom p-2 flex-items-center flex-justify-between color-bg-primary rounded-top-2" style="position: sticky; z-index: 30;" >
+    <h3 class="Box-title padding-8px px-2">{type} Dependencies</h3>
+    <div class="npmhub-header BtnGroup">
+      <slot></slot>
+    </div>
   </div>
-  <h3 class="Box-header Box-title px-2">{type} Dependencies</h3>
   <ol class="npmhub-deps markdown-body">
     {#await dependencies then dependencies}
       {#if dependencies}
