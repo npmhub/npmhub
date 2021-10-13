@@ -6,10 +6,12 @@
 
 
 <div {id} class="Box Box--condensed mt-5 file-holder">
-  <div class="npmhub-header BtnGroup">
-    <slot></slot>
+  <div class="d-flex js-position-sticky border-top-0 border-bottom p-2 flex-justify-between color-bg-primary rounded-top-2" style="position: sticky;" >
+    <h3 class="Box-title p-2">{type} Dependencies</h3>
+    <div class="npmhub-header BtnGroup">
+      <slot></slot>
+    </div>
   </div>
-  <h3 class="Box-header Box-title px-2">{type} Dependencies</h3>
   <ol class="npmhub-deps markdown-body">
     {#await dependencies then dependencies}
       {#if dependencies}
@@ -20,7 +22,8 @@
           </li>
         {:else}
           {#each dependencies as {name, info}}
-            <li>
+          <li class="d-flex flex-justify-between">
+            <div>
               {#await info}
                 <a href='https://www.npmjs.com/package/{name}'>
                   {name}
@@ -39,8 +42,26 @@
                   <em>No description.</em>
                 {/if}
               {/await}
-            </li>
-          {/each}
+            </div>
+            <div class="tranparent-code">
+              {#await info}
+                <a href='https://www.npmjs.com/package/{name}'>
+                  {name}
+                </a>
+              {:then info}
+                {#if info.error === 'Not found'}
+                  <em>Not published or private.</em>
+                {:else if info.error}
+                  <em>Error: {info.error}</em>
+                {:else if info.version}
+                  <code>{info.version}</code>
+                {:else}
+                  <em>No version.</em>
+                {/if}
+              {/await}
+            </div>
+          </li>
+        {/each}
         {/if}
       {/if}
     {:catch}

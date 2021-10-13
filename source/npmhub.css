@@ -34,3 +34,7 @@ li.npmhub-empty {
     opacity: 0.5;
   }
 }
+
+li .tranparent-code code{
+  background-color: transparent;
+}

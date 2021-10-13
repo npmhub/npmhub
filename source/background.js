@@ -23,6 +23,7 @@ const fetchPackageJson = mem(async name => {
   return {
     url: parseRepoUrl(package_),
     description: package_.description,
+    version: Object.keys(package_.versions)[Object.keys(package_.versions).length - 1]
   };
 }, {
   maxAge: 1000 * 60 * 60 * 24,
