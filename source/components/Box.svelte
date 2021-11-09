@@ -1,6 +1,6 @@
 <script>
   export let type = '';
-  export let style = undefined;
+  export let style;
   export let dependencies;
   export let id = type.toLowerCase() + 'dependencies';
 </script>
