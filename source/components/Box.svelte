@@ -1,12 +1,13 @@
 <script>
   export let type = '';
+  export let style = undefined;
   export let dependencies;
   export let id = type.toLowerCase() + 'dependencies';
 </script>
 
 
 <div {id} class="Box Box--condensed mt-5 file-holder">
-  <div class="d-flex js-position-sticky border-top-0 border-bottom p-2 flex-justify-between color-bg-primary rounded-top-2" style="position: sticky;" >
+  <div class="d-flex js-position-sticky border-top-0 border-bottom p-2 flex-justify-between color-bg-primary rounded-top-2" style="position: sticky; {style}">
     <h3 class="Box-title p-2">{type} Dependencies</h3>
     <div class="npmhub-header BtnGroup">
       <slot></slot>

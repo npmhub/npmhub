@@ -81,7 +81,8 @@
   });
 </script>
 
-<Box dependencies={packagePromise.then(package_ => package_.dependencies)}>
+<!-- `z-index` due to https://github.com/npmhub/npmhub/issues/147 -->
+<Box dependencies={packagePromise.then(package_ => package_.dependencies)} style="z-index: 1">
   {#if !isPackageJson}
     <HeaderLink href={packageURL} label="package.json"/>
   {/if}
