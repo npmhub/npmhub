@@ -3,7 +3,7 @@
   "license": "MIT",
   "author": "zeke",
   "scripts": {
-    "build": "parcel build source/manifest.json --no-source-maps --no-minify --dist-dir distribution --no-cache --detailed-report 0",
+    "build": "parcel build source/manifest.json --no-source-maps --no-optimize --dist-dir distribution --no-cache --detailed-report 0",
     "fix": "npm run lint -- --fix",
     "lint": "xo",
     "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
@@ -14,26 +14,28 @@
   },
   "dependencies": {
     "doma": "^3.0.1",
-    "element-ready": "^6.0.0",
+    "element-ready": "^6.2.0",
     "escape-goat": "^4.0.0",
     "github-injection": "^1.0.1",
-    "hosted-git-info": "^4.0.2",
-    "mem": "^8.1.1",
-    "webext-domain-permission-toggle": "^2.1.0",
-    "webext-dynamic-content-scripts": "^8.0.0"
+    "hosted-git-info": "^5.0.0",
+    "mem": "^9.0.2",
+    "webext-domain-permission-toggle": "^3.0.0",
+    "webext-dynamic-content-scripts": "^8.1.0"
   },
   "devDependencies": {
-    "@parcel/config-webextension": "^2.0.0-nightly.2182",
-    "@parcel/transformer-image": "^2.0.0-rc.0",
-    "eslint-plugin-svelte3": "^3.2.0",
+    "@parcel/config-webextension": "^2.3.2",
+    "@parcel/transformer-image": "^2.3.2",
+    "eslint-plugin-svelte3": "^3.4.1",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.0.0-nightly.558",
-    "parcel-transformer-svelte": "^1.1.1",
-    "svelte": "^3.42.1",
-    "xo": "^0.44.0"
+    "parcel": "^2.3.2",
+    "parcel-transformer-svelte": "^1.2.3",
+    "process": "^0.11.10",
+    "svelte": "^3.46.4",
+    "xo": "^0.48.0"
   },
   "alias": {
-    "url": "./source/lib/reduced-url.js"
+    "url": "./source/lib/reduced-url.js",
+    "mem": "./node_modules/mem/dist/index.js"
   },
   "webExt": {
     "sourceDir": "distribution",
