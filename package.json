@@ -35,6 +35,11 @@
     "url": "./source/lib/reduced-url.js"
   },
   "webExt": {
-    "sourceDir": "distribution"
+    "sourceDir": "distribution",
+    "run": {
+      "startUrl": [
+        "https://github.com/npmhub/npmhub"
+      ]
+    }
   }
 }

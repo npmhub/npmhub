@@ -81,38 +81,40 @@
   });
 </script>
 
-<!-- `z-index` due to https://github.com/npmhub/npmhub/issues/147 -->
-<Box dependencies={packagePromise.then(package_ => package_.dependencies)} style="z-index: 1">
-  {#if !isPackageJson}
-    <HeaderLink href={packageURL} label="package.json"/>
-  {/if}
-  {#await packagePromise then package_}
-    {#if package_.name}
-      {#await isPackagePublic(package_.name) then isPublic}
-        {#if isPublic}
-          <HeaderLink href="https://www.npmjs.com/package/{package_.name}" label="npm"/>
-          <HeaderLink href="https://npm.runkit.com/{package_.name}" label="RunKit"/>
-          <details class="dropdown details-reset details-overlay d-inline-block BtnGroup-parent">
-            <summary class="btn btn-sm BtnGroup-item" aria-haspopup="true">
-              <div class="dropdown-caret m-0"></div>
-            </summary>
+<div class="clearfix container-xl px-3 px-md-4 px-lg-5 mt-4">
+  <!-- `z-index` due to https://github.com/npmhub/npmhub/issues/147 -->
+  <Box dependencies={packagePromise.then(package_ => package_.dependencies)} style="z-index: 1">
+    {#if !isPackageJson}
+      <HeaderLink href={packageURL} label="package.json"/>
+    {/if}
+    {#await packagePromise then package_}
+      {#if package_.name}
+        {#await isPackagePublic(package_.name) then isPublic}
+          {#if isPublic}
+            <HeaderLink href="https://www.npmjs.com/package/{package_.name}" label="npm"/>
+            <HeaderLink href="https://npm.runkit.com/{package_.name}" label="RunKit"/>
+            <details class="dropdown details-reset details-overlay d-inline-block BtnGroup-parent">
+              <summary class="btn btn-sm BtnGroup-item" aria-haspopup="true">
+                <div class="dropdown-caret m-0"></div>
+              </summary>
 
-            <ul class="dropdown-menu dropdown-menu-sw">
-              <li><a class="dropdown-item" href="https://www.unpkg.com/browse/{package_.name}@{package_.version}/">Contents</a></li>
-              <li><a class="dropdown-item" href="https://bundlephobia.com/package/{package_.name}">BundlePhobia</a></li>
-              <li><a class="dropdown-item" href="https://packagephobia.com/result?p={package_.name}">PackagePhobia</a></li>
-              <li><a class="dropdown-item" href="https://npmgraph.js.org/?q={package_.name}">Dependency tree</a></li>
-            </ul>
-          </details>
-        {/if}
-      {/await}
-    {/if}
+              <ul class="dropdown-menu dropdown-menu-sw">
+                <li><a class="dropdown-item" href="https://www.unpkg.com/browse/{package_.name}@{package_.version}/">Contents</a></li>
+                <li><a class="dropdown-item" href="https://bundlephobia.com/package/{package_.name}">BundlePhobia</a></li>
+                <li><a class="dropdown-item" href="https://packagephobia.com/result?p={package_.name}">PackagePhobia</a></li>
+                <li><a class="dropdown-item" href="https://npmgraph.js.org/?q={package_.name}">Dependency tree</a></li>
+              </ul>
+            </details>
+          {/if}
+        {/await}
+      {/if}
+    {/await}
+  </Box>
+  {#await packagePromise then package_}
+    {#each types as type}
+      {#if package_[getDependencyKey(type)]}
+        <Box {type} dependencies={package_[getDependencyKey(type)]}></Box>
+      {/if}
+    {/each}
   {/await}
-</Box>
-{#await packagePromise then package_}
-  {#each types as type}
-    {#if package_[getDependencyKey(type)]}
-      <Box {type} dependencies={package_[getDependencyKey(type)]}></Box>
-    {/if}
-  {/each}
-{/await}
+</div>
