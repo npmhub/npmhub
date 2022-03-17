@@ -8,6 +8,7 @@
     "lint": "xo",
     "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
     "start:safari": "open 'safari/build/Release/npmhub.app'",
+    "prepare:safari": "bash safari/prepare-release.sh",
     "test": "run-p lint build",
     "watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr"
   },
