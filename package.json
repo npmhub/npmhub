@@ -6,7 +6,7 @@
     "build": "parcel build source/manifest.json --no-source-maps --no-optimize --dist-dir distribution --no-cache --detailed-report 0",
     "fix": "npm run lint -- --fix",
     "lint": "xo",
-    "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
+    "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj' -scheme 'npmhub (macOS)'",
     "prepare:safari": "bash safari/prepare-release.sh",
     "test": "run-p lint build",
     "watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr"
