@@ -21,5 +21,8 @@
       "files": "**/*.svelte",
       "processor": "svelte3/svelte3"
     }
+  ],
+  "ignore": [
+    "Script.js"
   ]
 }
