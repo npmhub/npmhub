@@ -3,42 +3,84 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F71F0FE254508D60000C6B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F71F0FD254508D60000C6B8 /* AppDelegate.swift */; };
-		1F71F101254508D60000C6B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F0FF254508D60000C6B8 /* Main.storyboard */; };
-		1F71F103254508D60000C6B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F71F102254508D60000C6B8 /* ViewController.swift */; };
-		1F71F105254508D60000C6B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F104254508D60000C6B8 /* Assets.xcassets */; };
-		1F71F10C254508D70000C6B8 /* npmhub Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1F71F10B254508D70000C6B8 /* npmhub Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1F71F111254508D70000C6B8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F71F110254508D70000C6B8 /* Cocoa.framework */; };
-		1F71F114254508D70000C6B8 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F71F113254508D70000C6B8 /* SafariWebExtensionHandler.swift */; };
-		1F71F129254508D70000C6B8 /* npmhub.js in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F121254508D70000C6B8 /* npmhub.js */; };
-		1F71F12A254508D70000C6B8 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F122254508D70000C6B8 /* background.js */; };
-		1F71F12B254508D70000C6B8 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F123254508D70000C6B8 /* icons */; };
-		1F71F12C254508D70000C6B8 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F125254508D70000C6B8 /* manifest.json */; };
-		1F71F12E254508D70000C6B8 /* npmhub.css in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F127254508D70000C6B8 /* npmhub.css */; };
+		1F27675C27E457B300EAD803 /* LocalOverrides.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F27675B27E457B300EAD803 /* LocalOverrides.xcconfig */; };
+		1F27675D27E457B300EAD803 /* LocalOverrides.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F27675B27E457B300EAD803 /* LocalOverrides.xcconfig */; };
+		1F27675E27E457B300EAD803 /* LocalOverrides.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F27675B27E457B300EAD803 /* LocalOverrides.xcconfig */; };
+		1F27675F27E457B300EAD803 /* LocalOverrides.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F27675B27E457B300EAD803 /* LocalOverrides.xcconfig */; };
+		1FA81DA627E4521900FC85F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA81DA527E4521900FC85F9 /* AppDelegate.swift */; };
+		1FA81DA827E4521900FC85F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA81DA727E4521900FC85F9 /* SceneDelegate.swift */; };
+		1FA81DAB27E4521900FC85F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DA927E4521900FC85F9 /* LaunchScreen.storyboard */; };
+		1FA81DAE27E4521900FC85F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DAC27E4521900FC85F9 /* Main.storyboard */; };
+		1FA81DB727E4521900FC85F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA81DB627E4521900FC85F9 /* AppDelegate.swift */; };
+		1FA81DBA27E4521900FC85F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DB827E4521900FC85F9 /* Main.storyboard */; };
+		1FA81DC227E4521900FC85F9 /* npmhub Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1FA81DC127E4521900FC85F9 /* npmhub Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1FA81DCC27E4521900FC85F9 /* npmhub Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1FA81DCB27E4521900FC85F9 /* npmhub Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1FA81DD227E4521900FC85F9 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9527E4521700FC85F9 /* Main.html */; };
+		1FA81DD327E4521900FC85F9 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9527E4521700FC85F9 /* Main.html */; };
+		1FA81DD427E4521900FC85F9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9727E4521700FC85F9 /* Icon.png */; };
+		1FA81DD527E4521900FC85F9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9727E4521700FC85F9 /* Icon.png */; };
+		1FA81DD627E4521900FC85F9 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9827E4521700FC85F9 /* Style.css */; };
+		1FA81DD727E4521900FC85F9 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9827E4521700FC85F9 /* Style.css */; };
+		1FA81DD827E4521900FC85F9 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9927E4521700FC85F9 /* Script.js */; };
+		1FA81DD927E4521900FC85F9 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9927E4521700FC85F9 /* Script.js */; };
+		1FA81DDA27E4521900FC85F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA81D9A27E4521700FC85F9 /* ViewController.swift */; };
+		1FA81DDB27E4521900FC85F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA81D9A27E4521700FC85F9 /* ViewController.swift */; };
+		1FA81DDC27E4521900FC85F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9B27E4521900FC85F9 /* Assets.xcassets */; };
+		1FA81DDD27E4521900FC85F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81D9B27E4521900FC85F9 /* Assets.xcassets */; };
+		1FA81DDE27E4521900FC85F9 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA81D9D27E4521900FC85F9 /* SafariWebExtensionHandler.swift */; };
+		1FA81DDF27E4521900FC85F9 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA81D9D27E4521900FC85F9 /* SafariWebExtensionHandler.swift */; };
+		1FA81DF627E4521900FC85F9 /* npmhub.js in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF127E4521900FC85F9 /* npmhub.js */; };
+		1FA81DF727E4521900FC85F9 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF227E4521900FC85F9 /* background.js */; };
+		1FA81DF827E4521900FC85F9 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF327E4521900FC85F9 /* icons */; };
+		1FA81DF927E4521900FC85F9 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF427E4521900FC85F9 /* manifest.json */; };
+		1FA81DFA27E4521900FC85F9 /* npmhub.css in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF527E4521900FC85F9 /* npmhub.css */; };
+		1FA81DFB27E4521900FC85F9 /* npmhub.js in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF127E4521900FC85F9 /* npmhub.js */; };
+		1FA81DFC27E4521900FC85F9 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF227E4521900FC85F9 /* background.js */; };
+		1FA81DFD27E4521900FC85F9 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF327E4521900FC85F9 /* icons */; };
+		1FA81DFE27E4521900FC85F9 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF427E4521900FC85F9 /* manifest.json */; };
+		1FA81DFF27E4521900FC85F9 /* npmhub.css in Resources */ = {isa = PBXBuildFile; fileRef = 1FA81DF527E4521900FC85F9 /* npmhub.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1F71F10D254508D70000C6B8 /* PBXContainerItemProxy */ = {
+		1FA81DC327E4521900FC85F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1F71F0F1254508D60000C6B8 /* Project object */;
+			containerPortal = 1FA81D8F27E4521700FC85F9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1F71F10A254508D70000C6B8;
-			remoteInfo = "npmhub Extension";
+			remoteGlobalIDString = 1FA81DC027E4521900FC85F9;
+			remoteInfo = "npmhub Extension (iOS)";
+		};
+		1FA81DCD27E4521900FC85F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FA81D8F27E4521700FC85F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FA81DCA27E4521900FC85F9;
+			remoteInfo = "npmhub Extension (macOS)";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1F71F11C254508D70000C6B8 /* Embed App Extensions */ = {
+		1FA81DE527E4521900FC85F9 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1F71F10C254508D70000C6B8 /* npmhub Extension.appex in Embed App Extensions */,
+				1FA81DC227E4521900FC85F9 /* npmhub Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA81DEC27E4521900FC85F9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1FA81DCC27E4521900FC85F9 /* npmhub Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,246 +88,435 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1F71F0F9254508D60000C6B8 /* npmhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = npmhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F71F0FC254508D60000C6B8 /* npmhub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = npmhub.entitlements; sourceTree = "<group>"; };
-		1F71F0FD254508D60000C6B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F71F100254508D60000C6B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1F71F102254508D60000C6B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1F71F104254508D60000C6B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1F71F106254508D60000C6B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F71F10B254508D70000C6B8 /* npmhub Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "npmhub Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F71F110254508D70000C6B8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		1F71F113254508D70000C6B8 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
-		1F71F115254508D70000C6B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F71F116254508D70000C6B8 /* npmhub_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = npmhub_Extension.entitlements; sourceTree = "<group>"; };
-		1F71F121254508D70000C6B8 /* npmhub.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = npmhub.js; path = ../../distribution/npmhub.js; sourceTree = "<group>"; };
-		1F71F122254508D70000C6B8 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../distribution/background.js; sourceTree = "<group>"; };
-		1F71F123254508D70000C6B8 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../distribution/icons; sourceTree = "<group>"; };
-		1F71F124254508D70000C6B8 /* npmhub.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = npmhub.js.map; path = ../../distribution/npmhub.js.map; sourceTree = "<group>"; };
-		1F71F125254508D70000C6B8 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../distribution/manifest.json; sourceTree = "<group>"; };
-		1F71F127254508D70000C6B8 /* npmhub.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = npmhub.css; path = ../../distribution/npmhub.css; sourceTree = "<group>"; };
-		1F71F128254508D70000C6B8 /* background.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = background.js.map; path = ../../distribution/background.js.map; sourceTree = "<group>"; };
-		E3CBFDA7256ACBC600AAA778 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		1F27675B27E457B300EAD803 /* LocalOverrides.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = LocalOverrides.xcconfig; sourceTree = "<group>"; };
+		1FA81D9627E4521700FC85F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
+		1FA81D9727E4521700FC85F9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		1FA81D9827E4521700FC85F9 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		1FA81D9927E4521700FC85F9 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		1FA81D9A27E4521700FC85F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1FA81D9B27E4521900FC85F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1FA81D9D27E4521900FC85F9 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		1FA81DA227E4521900FC85F9 /* npmhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = npmhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA81DA527E4521900FC85F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1FA81DA727E4521900FC85F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1FA81DAA27E4521900FC85F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1FA81DAD27E4521900FC85F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1FA81DAF27E4521900FC85F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FA81DB427E4521900FC85F9 /* npmhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = npmhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA81DB627E4521900FC85F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1FA81DB927E4521900FC85F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1FA81DBB27E4521900FC85F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FA81DBC27E4521900FC85F9 /* npmhub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = npmhub.entitlements; sourceTree = "<group>"; };
+		1FA81DC127E4521900FC85F9 /* npmhub Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "npmhub Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA81DC627E4521900FC85F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FA81DCB27E4521900FC85F9 /* npmhub Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "npmhub Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA81DD027E4521900FC85F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FA81DD127E4521900FC85F9 /* npmhub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = npmhub.entitlements; sourceTree = "<group>"; };
+		1FA81DF127E4521900FC85F9 /* npmhub.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = npmhub.js; path = ../../distribution/npmhub.js; sourceTree = "<group>"; };
+		1FA81DF227E4521900FC85F9 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../distribution/background.js; sourceTree = "<group>"; };
+		1FA81DF327E4521900FC85F9 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../distribution/icons; sourceTree = "<group>"; };
+		1FA81DF427E4521900FC85F9 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../distribution/manifest.json; sourceTree = "<group>"; };
+		1FA81DF527E4521900FC85F9 /* npmhub.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = npmhub.css; path = ../../distribution/npmhub.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1F71F0F6254508D60000C6B8 /* Frameworks */ = {
+		1FA81D9F27E4521900FC85F9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F71F108254508D70000C6B8 /* Frameworks */ = {
+		1FA81DB127E4521900FC85F9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F71F111254508D70000C6B8 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA81DBE27E4521900FC85F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA81DC827E4521900FC85F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F71F0F0254508D60000C6B8 = {
+		1FA81D8E27E4521700FC85F9 = {
 			isa = PBXGroup;
 			children = (
-				E3CBFDA7256ACBC600AAA778 /* Shared.xcconfig */,
-				1F71F0FB254508D60000C6B8 /* npmhub */,
-				1F71F112254508D70000C6B8 /* npmhub Extension */,
-				1F71F10F254508D70000C6B8 /* Frameworks */,
-				1F71F0FA254508D60000C6B8 /* Products */,
+				1F27675B27E457B300EAD803 /* LocalOverrides.xcconfig */,
+				1FA81D9327E4521700FC85F9 /* Shared (App) */,
+				1FA81D9C27E4521900FC85F9 /* Shared (Extension) */,
+				1FA81DA427E4521900FC85F9 /* iOS (App) */,
+				1FA81DB527E4521900FC85F9 /* macOS (App) */,
+				1FA81DC527E4521900FC85F9 /* iOS (Extension) */,
+				1FA81DCF27E4521900FC85F9 /* macOS (Extension) */,
+				1FA81DA327E4521900FC85F9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		1F71F0FA254508D60000C6B8 /* Products */ = {
+		1FA81D9327E4521700FC85F9 /* Shared (App) */ = {
 			isa = PBXGroup;
 			children = (
-				1F71F0F9254508D60000C6B8 /* npmhub.app */,
-				1F71F10B254508D70000C6B8 /* npmhub Extension.appex */,
+				1FA81D9A27E4521700FC85F9 /* ViewController.swift */,
+				1FA81D9B27E4521900FC85F9 /* Assets.xcassets */,
+				1FA81D9427E4521700FC85F9 /* Resources */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		1FA81D9427E4521700FC85F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1FA81D9527E4521700FC85F9 /* Main.html */,
+				1FA81D9727E4521700FC85F9 /* Icon.png */,
+				1FA81D9827E4521700FC85F9 /* Style.css */,
+				1FA81D9927E4521700FC85F9 /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1FA81D9C27E4521900FC85F9 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				1FA81DF027E4521900FC85F9 /* Resources */,
+				1FA81D9D27E4521900FC85F9 /* SafariWebExtensionHandler.swift */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		1FA81DA327E4521900FC85F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1FA81DA227E4521900FC85F9 /* npmhub.app */,
+				1FA81DB427E4521900FC85F9 /* npmhub.app */,
+				1FA81DC127E4521900FC85F9 /* npmhub Extension.appex */,
+				1FA81DCB27E4521900FC85F9 /* npmhub Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1F71F0FB254508D60000C6B8 /* npmhub */ = {
+		1FA81DA427E4521900FC85F9 /* iOS (App) */ = {
 			isa = PBXGroup;
 			children = (
-				1F71F0FC254508D60000C6B8 /* npmhub.entitlements */,
-				1F71F0FD254508D60000C6B8 /* AppDelegate.swift */,
-				1F71F0FF254508D60000C6B8 /* Main.storyboard */,
-				1F71F102254508D60000C6B8 /* ViewController.swift */,
-				1F71F104254508D60000C6B8 /* Assets.xcassets */,
-				1F71F106254508D60000C6B8 /* Info.plist */,
+				1FA81DA527E4521900FC85F9 /* AppDelegate.swift */,
+				1FA81DA727E4521900FC85F9 /* SceneDelegate.swift */,
+				1FA81DA927E4521900FC85F9 /* LaunchScreen.storyboard */,
+				1FA81DAC27E4521900FC85F9 /* Main.storyboard */,
+				1FA81DAF27E4521900FC85F9 /* Info.plist */,
 			);
-			path = npmhub;
+			path = "iOS (App)";
 			sourceTree = "<group>";
 		};
-		1F71F10F254508D70000C6B8 /* Frameworks */ = {
+		1FA81DB527E4521900FC85F9 /* macOS (App) */ = {
 			isa = PBXGroup;
 			children = (
-				1F71F110254508D70000C6B8 /* Cocoa.framework */,
+				1FA81DB627E4521900FC85F9 /* AppDelegate.swift */,
+				1FA81DB827E4521900FC85F9 /* Main.storyboard */,
+				1FA81DBB27E4521900FC85F9 /* Info.plist */,
+				1FA81DBC27E4521900FC85F9 /* npmhub.entitlements */,
 			);
-			name = Frameworks;
+			path = "macOS (App)";
 			sourceTree = "<group>";
 		};
-		1F71F112254508D70000C6B8 /* npmhub Extension */ = {
+		1FA81DC527E4521900FC85F9 /* iOS (Extension) */ = {
 			isa = PBXGroup;
 			children = (
-				1F71F120254508D70000C6B8 /* Resources */,
-				1F71F113254508D70000C6B8 /* SafariWebExtensionHandler.swift */,
-				1F71F115254508D70000C6B8 /* Info.plist */,
-				1F71F116254508D70000C6B8 /* npmhub_Extension.entitlements */,
+				1FA81DC627E4521900FC85F9 /* Info.plist */,
 			);
-			path = "npmhub Extension";
+			path = "iOS (Extension)";
 			sourceTree = "<group>";
 		};
-		1F71F120254508D70000C6B8 /* Resources */ = {
+		1FA81DCF27E4521900FC85F9 /* macOS (Extension) */ = {
 			isa = PBXGroup;
 			children = (
-				1F71F121254508D70000C6B8 /* npmhub.js */,
-				1F71F122254508D70000C6B8 /* background.js */,
-				1F71F123254508D70000C6B8 /* icons */,
-				1F71F124254508D70000C6B8 /* npmhub.js.map */,
-				1F71F125254508D70000C6B8 /* manifest.json */,
-				1F71F127254508D70000C6B8 /* npmhub.css */,
-				1F71F128254508D70000C6B8 /* background.js.map */,
+				1FA81DD027E4521900FC85F9 /* Info.plist */,
+				1FA81DD127E4521900FC85F9 /* npmhub.entitlements */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1FA81DF027E4521900FC85F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1FA81DF127E4521900FC85F9 /* npmhub.js */,
+				1FA81DF227E4521900FC85F9 /* background.js */,
+				1FA81DF327E4521900FC85F9 /* icons */,
+				1FA81DF427E4521900FC85F9 /* manifest.json */,
+				1FA81DF527E4521900FC85F9 /* npmhub.css */,
 			);
 			name = Resources;
-			path = "npmhub Extension";
+			path = "Shared (Extension)";
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1F71F0F8254508D60000C6B8 /* npmhub */ = {
+		1FA81DA127E4521900FC85F9 /* npmhub (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F71F11D254508D70000C6B8 /* Build configuration list for PBXNativeTarget "npmhub" */;
+			buildConfigurationList = 1FA81DE627E4521900FC85F9 /* Build configuration list for PBXNativeTarget "npmhub (iOS)" */;
 			buildPhases = (
-				1F71F0F5254508D60000C6B8 /* Sources */,
-				1F71F0F6254508D60000C6B8 /* Frameworks */,
-				1F71F0F7254508D60000C6B8 /* Resources */,
-				1F71F11C254508D70000C6B8 /* Embed App Extensions */,
+				1FA81D9E27E4521900FC85F9 /* Sources */,
+				1FA81D9F27E4521900FC85F9 /* Frameworks */,
+				1FA81DA027E4521900FC85F9 /* Resources */,
+				1FA81DE527E4521900FC85F9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1F71F10E254508D70000C6B8 /* PBXTargetDependency */,
+				1FA81DC427E4521900FC85F9 /* PBXTargetDependency */,
 			);
-			name = npmhub;
-			productName = npmhub;
-			productReference = 1F71F0F9254508D60000C6B8 /* npmhub.app */;
+			name = "npmhub (iOS)";
+			productName = "npmhub (iOS)";
+			productReference = 1FA81DA227E4521900FC85F9 /* npmhub.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1F71F10A254508D70000C6B8 /* npmhub Extension */ = {
+		1FA81DB327E4521900FC85F9 /* npmhub (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F71F119254508D70000C6B8 /* Build configuration list for PBXNativeTarget "npmhub Extension" */;
+			buildConfigurationList = 1FA81DED27E4521900FC85F9 /* Build configuration list for PBXNativeTarget "npmhub (macOS)" */;
 			buildPhases = (
-				1F71F107254508D70000C6B8 /* Sources */,
-				1F71F108254508D70000C6B8 /* Frameworks */,
-				1F71F109254508D70000C6B8 /* Resources */,
+				1FA81DB027E4521900FC85F9 /* Sources */,
+				1FA81DB127E4521900FC85F9 /* Frameworks */,
+				1FA81DB227E4521900FC85F9 /* Resources */,
+				1FA81DEC27E4521900FC85F9 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FA81DCE27E4521900FC85F9 /* PBXTargetDependency */,
+			);
+			name = "npmhub (macOS)";
+			productName = "npmhub (macOS)";
+			productReference = 1FA81DB427E4521900FC85F9 /* npmhub.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1FA81DC027E4521900FC85F9 /* npmhub Extension (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FA81DE227E4521900FC85F9 /* Build configuration list for PBXNativeTarget "npmhub Extension (iOS)" */;
+			buildPhases = (
+				1FA81DBD27E4521900FC85F9 /* Sources */,
+				1FA81DBE27E4521900FC85F9 /* Frameworks */,
+				1FA81DBF27E4521900FC85F9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "npmhub Extension";
-			productName = "npmhub Extension";
-			productReference = 1F71F10B254508D70000C6B8 /* npmhub Extension.appex */;
+			name = "npmhub Extension (iOS)";
+			productName = "npmhub Extension (iOS)";
+			productReference = 1FA81DC127E4521900FC85F9 /* npmhub Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1FA81DCA27E4521900FC85F9 /* npmhub Extension (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FA81DE927E4521900FC85F9 /* Build configuration list for PBXNativeTarget "npmhub Extension (macOS)" */;
+			buildPhases = (
+				1FA81DC727E4521900FC85F9 /* Sources */,
+				1FA81DC827E4521900FC85F9 /* Frameworks */,
+				1FA81DC927E4521900FC85F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "npmhub Extension (macOS)";
+			productName = "npmhub Extension (macOS)";
+			productReference = 1FA81DCB27E4521900FC85F9 /* npmhub Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1F71F0F1254508D60000C6B8 /* Project object */ = {
+		1FA81D8F27E4521700FC85F9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1220;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					1F71F0F8254508D60000C6B8 = {
-						CreatedOnToolsVersion = 12.0.1;
+					1FA81DA127E4521900FC85F9 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
-					1F71F10A254508D70000C6B8 = {
-						CreatedOnToolsVersion = 12.0.1;
+					1FA81DB327E4521900FC85F9 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					1FA81DC027E4521900FC85F9 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					1FA81DCA27E4521900FC85F9 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
-			buildConfigurationList = 1F71F0F4254508D60000C6B8 /* Build configuration list for PBXProject "npmhub" */;
-			compatibilityVersion = "Xcode 12.0";
+			buildConfigurationList = 1FA81D9227E4521700FC85F9 /* Build configuration list for PBXProject "npmhub" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 1F71F0F0254508D60000C6B8;
-			productRefGroup = 1F71F0FA254508D60000C6B8 /* Products */;
+			mainGroup = 1FA81D8E27E4521700FC85F9;
+			productRefGroup = 1FA81DA327E4521900FC85F9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1F71F0F8254508D60000C6B8 /* npmhub */,
-				1F71F10A254508D70000C6B8 /* npmhub Extension */,
+				1FA81DA127E4521900FC85F9 /* npmhub (iOS) */,
+				1FA81DB327E4521900FC85F9 /* npmhub (macOS) */,
+				1FA81DC027E4521900FC85F9 /* npmhub Extension (iOS) */,
+				1FA81DCA27E4521900FC85F9 /* npmhub Extension (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1F71F0F7254508D60000C6B8 /* Resources */ = {
+		1FA81DA027E4521900FC85F9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F71F105254508D60000C6B8 /* Assets.xcassets in Resources */,
-				1F71F101254508D60000C6B8 /* Main.storyboard in Resources */,
+				1FA81DD427E4521900FC85F9 /* Icon.png in Resources */,
+				1FA81DAB27E4521900FC85F9 /* LaunchScreen.storyboard in Resources */,
+				1FA81DD227E4521900FC85F9 /* Main.html in Resources */,
+				1FA81DD827E4521900FC85F9 /* Script.js in Resources */,
+				1FA81DDC27E4521900FC85F9 /* Assets.xcassets in Resources */,
+				1F27675C27E457B300EAD803 /* LocalOverrides.xcconfig in Resources */,
+				1FA81DAE27E4521900FC85F9 /* Main.storyboard in Resources */,
+				1FA81DD627E4521900FC85F9 /* Style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F71F109254508D70000C6B8 /* Resources */ = {
+		1FA81DB227E4521900FC85F9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F71F12C254508D70000C6B8 /* manifest.json in Resources */,
-				1F71F12B254508D70000C6B8 /* icons in Resources */,
-				1F71F12A254508D70000C6B8 /* background.js in Resources */,
-				1F71F129254508D70000C6B8 /* npmhub.js in Resources */,
-				1F71F12E254508D70000C6B8 /* npmhub.css in Resources */,
+				1FA81DD527E4521900FC85F9 /* Icon.png in Resources */,
+				1FA81DD727E4521900FC85F9 /* Style.css in Resources */,
+				1FA81DBA27E4521900FC85F9 /* Main.storyboard in Resources */,
+				1FA81DD927E4521900FC85F9 /* Script.js in Resources */,
+				1F27675D27E457B300EAD803 /* LocalOverrides.xcconfig in Resources */,
+				1FA81DDD27E4521900FC85F9 /* Assets.xcassets in Resources */,
+				1FA81DD327E4521900FC85F9 /* Main.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA81DBF27E4521900FC85F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FA81DFF27E4521900FC85F9 /* npmhub.css in Resources */,
+				1FA81DFE27E4521900FC85F9 /* manifest.json in Resources */,
+				1FA81DFD27E4521900FC85F9 /* icons in Resources */,
+				1FA81DFC27E4521900FC85F9 /* background.js in Resources */,
+				1FA81DFB27E4521900FC85F9 /* npmhub.js in Resources */,
+				1F27675E27E457B300EAD803 /* LocalOverrides.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA81DC927E4521900FC85F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FA81DFA27E4521900FC85F9 /* npmhub.css in Resources */,
+				1FA81DF927E4521900FC85F9 /* manifest.json in Resources */,
+				1FA81DF827E4521900FC85F9 /* icons in Resources */,
+				1FA81DF727E4521900FC85F9 /* background.js in Resources */,
+				1FA81DF627E4521900FC85F9 /* npmhub.js in Resources */,
+				1F27675F27E457B300EAD803 /* LocalOverrides.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1F71F0F5254508D60000C6B8 /* Sources */ = {
+		1FA81D9E27E4521900FC85F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F71F103254508D60000C6B8 /* ViewController.swift in Sources */,
-				1F71F0FE254508D60000C6B8 /* AppDelegate.swift in Sources */,
+				1FA81DDA27E4521900FC85F9 /* ViewController.swift in Sources */,
+				1FA81DA627E4521900FC85F9 /* AppDelegate.swift in Sources */,
+				1FA81DA827E4521900FC85F9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F71F107254508D70000C6B8 /* Sources */ = {
+		1FA81DB027E4521900FC85F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F71F114254508D70000C6B8 /* SafariWebExtensionHandler.swift in Sources */,
+				1FA81DDB27E4521900FC85F9 /* ViewController.swift in Sources */,
+				1FA81DB727E4521900FC85F9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA81DBD27E4521900FC85F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FA81DDE27E4521900FC85F9 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA81DC727E4521900FC85F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FA81DDF27E4521900FC85F9 /* SafariWebExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1F71F10E254508D70000C6B8 /* PBXTargetDependency */ = {
+		1FA81DC427E4521900FC85F9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1F71F10A254508D70000C6B8 /* npmhub Extension */;
-			targetProxy = 1F71F10D254508D70000C6B8 /* PBXContainerItemProxy */;
+			target = 1FA81DC027E4521900FC85F9 /* npmhub Extension (iOS) */;
+			targetProxy = 1FA81DC327E4521900FC85F9 /* PBXContainerItemProxy */;
+		};
+		1FA81DCE27E4521900FC85F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FA81DCA27E4521900FC85F9 /* npmhub Extension (macOS) */;
+			targetProxy = 1FA81DCD27E4521900FC85F9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1F71F0FF254508D60000C6B8 /* Main.storyboard */ = {
+		1FA81D9527E4521700FC85F9 /* Main.html */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1F71F100254508D60000C6B8 /* Base */,
+				1FA81D9627E4521700FC85F9 /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		1FA81DA927E4521900FC85F9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FA81DAA27E4521900FC85F9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1FA81DAC27E4521900FC85F9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FA81DAD27E4521900FC85F9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1FA81DB827E4521900FC85F9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FA81DB927E4521900FC85F9 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -293,14 +524,14 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1F71F117254508D70000C6B8 /* Debug */ = {
+		1FA81DE027E4521900FC85F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3CBFDA7256ACBC600AAA778 /* Shared.xcconfig */;
+			baseConfigurationReference = 1F27675B27E457B300EAD803 /* LocalOverrides.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -345,25 +576,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		1F71F118254508D70000C6B8 /* Release */ = {
+		1FA81DE127E4521900FC85F9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3CBFDA7256ACBC600AAA778 /* Shared.xcconfig */;
+			baseConfigurationReference = 1F27675B27E457B300EAD803 /* LocalOverrides.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -402,123 +630,314 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		1FA81DE327E4521900FC85F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "npmhub Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub.Extension;
+				PRODUCT_NAME = "npmhub Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1FA81DE427E4521900FC85F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "npmhub Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub.Extension;
+				PRODUCT_NAME = "npmhub Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1FA81DE727E4521900FC85F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = npmhub;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub;
+				PRODUCT_NAME = npmhub;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1FA81DE827E4521900FC85F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = npmhub;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub;
+				PRODUCT_NAME = npmhub;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1FA81DEA27E4521900FC85F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "macOS (Extension)/npmhub.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "npmhub Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub.Extension;
+				PRODUCT_NAME = "npmhub Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1FA81DEB27E4521900FC85F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "macOS (Extension)/npmhub.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "npmhub Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub.Extension;
+				PRODUCT_NAME = "npmhub Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		1F71F11A254508D70000C6B8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "npmhub Extension/npmhub_Extension.entitlements";
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "npmhub Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub.Extension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		1F71F11B254508D70000C6B8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "npmhub Extension/npmhub_Extension.entitlements";
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "npmhub Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub.Extension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		1F71F11E254508D70000C6B8 /* Debug */ = {
+		1FA81DEE27E4521900FC85F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = npmhub/npmhub.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = "macOS (App)/npmhub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = npmhub/Info.plist;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = npmhub;
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = npmhub;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		1F71F11F254508D70000C6B8 /* Release */ = {
+		1FA81DEF27E4521900FC85F9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = npmhub/npmhub.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = "macOS (App)/npmhub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = npmhub/Info.plist;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = npmhub;
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.npmhub.npmhub;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = npmhub;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1F71F0F4254508D60000C6B8 /* Build configuration list for PBXProject "npmhub" */ = {
+		1FA81D9227E4521700FC85F9 /* Build configuration list for PBXProject "npmhub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1F71F117254508D70000C6B8 /* Debug */,
-				1F71F118254508D70000C6B8 /* Release */,
+				1FA81DE027E4521900FC85F9 /* Debug */,
+				1FA81DE127E4521900FC85F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F71F119254508D70000C6B8 /* Build configuration list for PBXNativeTarget "npmhub Extension" */ = {
+		1FA81DE227E4521900FC85F9 /* Build configuration list for PBXNativeTarget "npmhub Extension (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1F71F11A254508D70000C6B8 /* Debug */,
-				1F71F11B254508D70000C6B8 /* Release */,
+				1FA81DE327E4521900FC85F9 /* Debug */,
+				1FA81DE427E4521900FC85F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F71F11D254508D70000C6B8 /* Build configuration list for PBXNativeTarget "npmhub" */ = {
+		1FA81DE627E4521900FC85F9 /* Build configuration list for PBXNativeTarget "npmhub (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1F71F11E254508D70000C6B8 /* Debug */,
-				1F71F11F254508D70000C6B8 /* Release */,
+				1FA81DE727E4521900FC85F9 /* Debug */,
+				1FA81DE827E4521900FC85F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FA81DE927E4521900FC85F9 /* Build configuration list for PBXNativeTarget "npmhub Extension (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FA81DEA27E4521900FC85F9 /* Debug */,
+				1FA81DEB27E4521900FC85F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FA81DED27E4521900FC85F9 /* Build configuration list for PBXNativeTarget "npmhub (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FA81DEE27E4521900FC85F9 /* Debug */,
+				1FA81DEF27E4521900FC85F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1F71F0F1254508D60000C6B8 /* Project object */;
+	rootObject = 1FA81D8F27E4521700FC85F9 /* Project object */;
 }
