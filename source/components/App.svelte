@@ -13,14 +13,51 @@
     return type.toLowerCase() + 'Dependencies';
   }
 
-  async function getPackageJson() {
+  async function getBlobContentFromDOM(document_) {
+    
+    const fileSourceElementSelectors = [
+      'main main table[data-tab-size]',
+      'table[data-tab-size]',
+      'main table'
+    ];
+
+    let jsonBlobElement;
+    while (!jsonBlobElement && fileSourceElementSelectors.length) {
+      jsonBlobElement = await elementReady(fileSourceElementSelectors.shift(), {target: document_, timeout: 1000});
+    }
+    if (!jsonBlobElement) {
+      // Cannot find the content of the package.json in the DOM
+      return undefined;
+    }
+  }
+
+  /**
+   * The blob content can be found within:
+   *   <script type="application/json" data-target="react-app.embeddedData"
+   *           {"payload":{ ...
+   *   </script
+   */
+  async function getBlobContentFromEmbeddedData(document_) {
+    const embeddedDataElement = await elementReady('script[data-target="react-app.embeddedData"]', {target: document_, timeout: 1000});
+    const embeddedData = JSON.parse(embeddedDataElement.textContent);
+    return embeddedData?.payload?.blob?.rawBlob;
+  }
+
+  // The November 2022 new deployment does a client-side render of blob pages, making the DOM approach fail.
+  async function getPackageJsonContent() {
+    // Pull text out of the /blob/ page HTML, as the /raw/ is a diff origin without CORS.
     const document_ = isPackageJson ? document : await fetchDom(packageURL);
-    const jsonBlobElement = await elementReady('.blob-wrapper table', {target: document_});
-    return JSON.parse(jsonBlobElement.textContent);
+
+    let jsonStr = await getBlobContentFromDOM(document_);
+    if (!jsonStr) {
+      jsonStr = await getBlobContentFromEmbeddedData(document_);
+    }
+
+    return JSON.parse(jsonStr);
   }
 
   async function getLocalPackage() {
-    const packageJson = await getPackageJson();
+    const packageJson = await getPackageJsonContent();
     const package_ = {
       name: packageJson.name,
       version: packageJson.version,
