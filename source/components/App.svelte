@@ -97,8 +97,8 @@
       return true;
     }
 
-    if (error.message !== 'Not found') {
-      console.warn(`${errorMessage} pinging the current package on npmjs.org`, error);
+    if (error !== 'Not found') {
+      console.warn(`${errorMessage} pinging the (${name}) package on npmjs.org:`, error);
     }
 
     return false;

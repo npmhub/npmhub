@@ -16,6 +16,7 @@ const fetchPackageJson = mem(async name => {
   const package_ = await response.json();
 
   if (package_.error) {
+    console.error(name, package_);
     throw new Error(package_.error);
   }
 
