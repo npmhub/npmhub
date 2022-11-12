@@ -44,7 +44,8 @@
     "https://*/*"
   ],
   "web_accessible_resources": [
-    "*"
+    "*",
+    "icons/*"
   ],
   "content_scripts":[
     {
