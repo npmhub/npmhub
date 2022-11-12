@@ -45,7 +45,7 @@
   ],
   "web_accessible_resources": [
     "npmhub.js",
-    "npmhub.css
+    "npmhub.css"
   ],
   "content_scripts":[
     {
