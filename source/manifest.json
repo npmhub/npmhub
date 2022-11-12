@@ -44,8 +44,7 @@
     "https://*/*"
   ],
   "web_accessible_resources": [
-    "npmhub.js",
-    "npmhub.css"
+    "*"
   ],
   "content_scripts":[
     {
