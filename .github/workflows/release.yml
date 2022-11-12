@@ -1,5 +1,6 @@
 env:
   DIRECTORY: distribution
+  PROJECT_NAME: npmhub
 
 # FILE GENERATED WITH: npx ghat fregante/ghatemplates/webext
 # SOURCE: https://github.com/fregante/ghatemplates
@@ -15,22 +16,32 @@ jobs:
       version: ${{ steps.daily-version.outputs.version }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 20
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
       - name: install
         run: npm ci || npm install
       - run: npm test
-      - uses: fregante/daily-version-action@v1
+      - uses: fregante/daily-version-action@v2
         name: Create tag if necessary
         id: daily-version
         with:
           prefix: 20
-      - uses: fregante/release-with-changelog@v3
-        if: steps.daily-version.outputs.created
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          exclude: true
+      - if: steps.daily-version.outputs.created
+        name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          cd $DIRECTORY
+
+          zip -r "$PROJECT_NAME-local-install.zip" *
+
+          gh release create "${{ steps.daily-version.outputs.version }}"
+          --generate-notes "$PROJECT_NAME.zip"
   Submit:
     needs: Version
     if: github.event_name == 'workflow_dispatch' || needs.Version.outputs.created
@@ -42,7 +53,11 @@ jobs:
           - chrome
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
       - name: install
         run: npm ci || npm install
       - run: npm run build --if-present
@@ -57,12 +72,13 @@ jobs:
               cd $DIRECTORY && npx chrome-webstore-upload-cli@2 upload --auto-publish
               ;;
             firefox)
-              cd $DIRECTORY && npx web-ext-submit@6
+              cd $DIRECTORY && npx web-ext-submit@7
               ;;
           esac
         env:
           EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
           WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
