@@ -41,7 +41,7 @@ jobs:
           zip -r "$PROJECT_NAME-local-install.zip" *
 
           gh release create "${{ steps.daily-version.outputs.version }}"
-          --generate-notes "$PROJECT_NAME.zip"
+          --generate-notes "$PROJECT_NAME-local-install.zip"
   Submit:
     needs: Version
     if: github.event_name == 'workflow_dispatch' || needs.Version.outputs.created
