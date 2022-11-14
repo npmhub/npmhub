@@ -27,8 +27,8 @@
       version: packageJson.version,
       dependencies: Object.keys(packageJson.dependencies || {}).map(name => ({
         name,
-        info: fetchPackageInfo(name)
-      }))
+        info: fetchPackageInfo(name),
+      })),
     };
     for (const type of types) {
       const key = getDependencyKey(type);
@@ -40,7 +40,7 @@
       if (list.length > 0) {
         package_[key] = list.map(name => ({
           name,
-          info: fetchPackageInfo(name)
+          info: fetchPackageInfo(name),
         }));
       }
     }
@@ -72,7 +72,7 @@
     'Peer',
     'Bundled',
     'Optional',
-    'Dev'
+    'Dev',
   ];
 
   // TODO: also show error in the UI

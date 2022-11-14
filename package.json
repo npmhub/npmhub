@@ -5,7 +5,7 @@
   "scripts": {
     "build": "parcel build source/manifest.json --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
     "fix": "npm run lint -- --fix",
-    "lint": "xo",
+    "lint": "eslint source --ext .svelte,.js",
     "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
     "start:safari": "open 'safari/build/Release/npmhub.app'",
     "prepare:safari": "bash safari/prepare-release.sh",
@@ -23,13 +23,15 @@
   "devDependencies": {
     "@parcel/config-webextension": "^2.8.0",
     "@parcel/transformer-image": "^2.8.0",
+    "eslint": "^8.27.0",
+    "eslint-config-xo-space": "^0.34.0",
     "eslint-plugin-svelte3": "^4.0.0",
+    "eslint-plugin-unicorn": "^44.0.2",
     "npm-run-all": "^4.1.5",
     "parcel": "^2.8.0",
     "parcel-transformer-svelte": "^1.2.3",
     "process": "^0.11.10",
-    "svelte": "^3.53.1",
-    "xo": "^0.52.4"
+    "svelte": "^3.53.1"
   },
   "alias": {
     "url": "./source/lib/reduced-url.js",

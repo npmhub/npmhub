@@ -25,5 +25,4 @@ export function parse(url) {
   }
 }
 
-const URL = window.URL;
-export {URL};
+export const {URL} = window;
