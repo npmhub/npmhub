@@ -1,6 +1,4 @@
 <script>
-  import elementReady from 'element-ready';
-  import fetchDom from '../lib/fetch-dom';
   import Box from './Box.svelte';
   import HeaderLink from './HeaderLink.svelte';
 
@@ -14,9 +12,12 @@
   }
 
   async function getPackageJson() {
-    const document_ = isPackageJson ? document : await fetchDom(packageURL);
-    const jsonBlobElement = await elementReady('.blob-wrapper table', {target: document_});
-    return JSON.parse(jsonBlobElement.textContent);
+    const urlParts = packageURL.split('/');
+    urlParts[5] = 'raw';
+    const rawUrl = urlParts.join('/');
+    const request = await fetch(rawUrl);
+    const packageJson = await request.text();
+    return JSON.parse(packageJson);
   }
 
   async function getLocalPackage() {
