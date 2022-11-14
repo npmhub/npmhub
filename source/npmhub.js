@@ -4,7 +4,7 @@ import App from './components/App.svelte';
 
 function isPackageJson() {
   // Example URLs:
-  // https://github.com/npmhub/npmhub/blob/master/package.json
+  // https://github.com/npmhub/npmhub/blob/main/package.json
   const pathnameParts = window.location.pathname.split('/');
   return pathnameParts[3] === 'blob' && pathnameParts.pop() === 'package.json';
 }
@@ -14,14 +14,17 @@ function hasPackageJson() {
 }
 
 function getPackageURL() {
-  const packageLink = document.querySelector([
-    '#files ~ div [title="package.json"]', // GitHub
-    '.files [title="package.json"]', // GitHub before "Repository refresh"
-  ]);
-
-  if (packageLink) {
-    return packageLink.href;
+  if (isPackageJson()) {
+    return location.origin + location.pathname;
   }
+
+  // Example URLs:
+  // https://github.com/npmhub/npmhub
+  // https://github.com/eslint/eslint/tree/main/packages/eslint-config-eslint
+  return document.querySelector([
+    '.react-directory-filename-column [title="package.json"] a',
+    '#files ~ div [title="package.json"]', // GitHub pre-2022 refresh
+  ])?.href;
 }
 
 async function init() {
@@ -38,7 +41,7 @@ async function init() {
 
   if (
     document.querySelector('.npmhub-header')
-    || !(isPackageJson() || hasPackageJson())
+    || !hasPackageJson()
   ) {
     return;
   }
