@@ -8,16 +8,23 @@
 		"unicorn"
 	],
 	"extends": [
-		"xo",
-		"plugin:unicorn/recommended",
-		"prettier"
+		"xo-space",
+		"plugin:unicorn/recommended"
 	],
 	"rules": {
 		"no-new": "off",
 		"import/no-unassigned-import": "off",
-		"unicorn/prefer-top-level-await": "off",
 		"unicorn/better-regex": "off",
-		"unicorn/filename-case": "off"
+		"unicorn/filename-case": "off",
+		"unicorn/prefer-top-level-await": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 2,
+        "maxEOF": 1
+      }
+    ]
 	},
 	"overrides": [
 		{
