@@ -51,7 +51,10 @@ async function init() {
       isPackageJson: isPackageJson(),
       packageURL: getPackageURL(),
     },
-    target: document.querySelector('.repository-content'),
+    target: document.querySelector([
+      '#repo-content-turbo-frame',
+      '.repository-content', // Old container https://github.com/refined-github/refined-github/issues/5751
+    ]),
   });
 }
 
