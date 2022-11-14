@@ -13,9 +13,7 @@
     "watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr"
   },
   "dependencies": {
-    "doma": "^3.0.2",
     "element-ready": "^6.2.1",
-    "escape-goat": "^4.0.0",
     "github-injection": "^1.1.0",
     "hosted-git-info": "^6.1.1",
     "mem": "^9.0.2",
