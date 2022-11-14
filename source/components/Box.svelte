@@ -6,7 +6,7 @@
 </script>
 
 
-<div {id} class="Box Box--condensed mt-5 file-holder">
+<div {id} class="Box Box--condensed my-5 file-holder">
   <div class="d-flex js-position-sticky border-top-0 border-bottom p-2 flex-justify-between color-bg-default rounded-top-2" style="position: sticky; {style}">
     <h3 class="Box-title p-2">{type} Dependencies</h3>
     <div class="npmhub-header BtnGroup">

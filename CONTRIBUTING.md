@@ -37,10 +37,10 @@ To run the extension locally while developing:
 1. Enable "Developer Mode".
 1. Click "Load Unpacked Extension".
 1. Browse to the `/distribution` directory of your checked-out project.
-1. Visit a [Javascripty repo with dependencies](https://github.com/VictorBjelkholm/trymodule) and you should see dependencies listed below the README.
+1. Visit a [Javascripty repo with dependencies](https://github.com/fregante/GhostText) and you should see dependencies listed below the README.
 
 ## Deployment
 
-Changes to the master branch are deployed automatically to the Chrome web store.
+Changes to the main branch are deployed automatically to the Chrome web store.
 Once your PR is merged, the updates should be live after a few minutes but it
 can sometimes take up to an hour for the Chrome web store to update.
