@@ -1,0 +1,30 @@
+{
+	"env": {
+		"browser": true,
+		"webextensions": true
+	},
+	"plugins": [
+		"svelte3",
+		"unicorn"
+	],
+	"extends": [
+		"xo",
+		"plugin:unicorn/recommended",
+		"prettier"
+	],
+	"rules": {
+		"no-new": "off",
+		"import/no-unassigned-import": "off",
+		"unicorn/prefer-top-level-await": "off",
+		"unicorn/better-regex": "off",
+		"unicorn/filename-case": "off"
+	},
+	"overrides": [
+		{
+			"files": [
+				"**/*.svelte"
+			],
+			"processor": "svelte3/svelte3"
+		}
+	]
+}
