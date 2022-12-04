@@ -36,6 +36,7 @@
   },
   "permissions": [
     "https://registry.npmjs.org/",
+    "https://raw.githubusercontent.com/",
     "contextMenus",
     "activeTab"
   ],

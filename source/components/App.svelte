@@ -11,10 +11,18 @@
     return type.toLowerCase() + 'Dependencies';
   }
 
+  /**
+   * Transform urls like: https://github.com/sindresorhus/delay/blob/main/package.json
+   * into urls like:      https://raw.githubusercontent.com/sindresorhus/delay/main/package.json
+   * to be able to download package.json's contents as JSON.
+   */
   async function getPackageJson() {
-    const urlParts = packageURL.split('/');
-    urlParts[5] = 'raw';
-    const rawUrl = urlParts.join('/');
+    const parsedUrl = new URL(packageURL);
+    parsedUrl.hostname = 'raw.githubusercontent.com';
+    const pathParts = parsedUrl.pathname.split('/');
+    pathParts.splice(3, 1);
+    parsedUrl.pathname = pathParts.join('/');
+    const rawUrl = parsedUrl.toString();
     const request = await fetch(rawUrl);
     const packageJson = await request.text();
     return JSON.parse(packageJson);
