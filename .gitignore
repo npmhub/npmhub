@@ -2,3 +2,4 @@ distribution
 node_modules
 *.map
 .parcel-cache
+LocalOverrides.xcconfig
