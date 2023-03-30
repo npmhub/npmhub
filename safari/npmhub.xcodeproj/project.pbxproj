@@ -417,6 +417,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "npmhub Extension/npmhub_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "npmhub Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -456,6 +457,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = npmhub/npmhub.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = npmhub/Info.plist;
