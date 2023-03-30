@@ -11,7 +11,7 @@
 		1F71F101254508D60000C6B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F0FF254508D60000C6B8 /* Main.storyboard */; };
 		1F71F103254508D60000C6B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F71F102254508D60000C6B8 /* ViewController.swift */; };
 		1F71F105254508D60000C6B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F104254508D60000C6B8 /* Assets.xcassets */; };
-		1F71F10C254508D70000C6B8 /* npmhub Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1F71F10B254508D70000C6B8 /* npmhub Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1F71F10C254508D70000C6B8 /* npmhub Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1F71F10B254508D70000C6B8 /* npmhub Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1F71F111254508D70000C6B8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F71F110254508D70000C6B8 /* Cocoa.framework */; };
 		1F71F114254508D70000C6B8 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F71F113254508D70000C6B8 /* SafariWebExtensionHandler.swift */; };
 		1F71F129254508D70000C6B8 /* npmhub.js in Resources */ = {isa = PBXBuildFile; fileRef = 1F71F121254508D70000C6B8 /* npmhub.js */; };
@@ -32,15 +32,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1F71F11C254508D70000C6B8 /* Embed App Extensions */ = {
+		1F71F11C254508D70000C6B8 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1F71F10C254508D70000C6B8 /* npmhub Extension.appex in Embed App Extensions */,
+				1F71F10C254508D70000C6B8 /* npmhub Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -164,7 +164,7 @@
 				1F71F0F5254508D60000C6B8 /* Sources */,
 				1F71F0F6254508D60000C6B8 /* Frameworks */,
 				1F71F0F7254508D60000C6B8 /* Resources */,
-				1F71F11C254508D70000C6B8 /* Embed App Extensions */,
+				1F71F11C254508D70000C6B8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -200,7 +200,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					1F71F0F8254508D60000C6B8 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -328,6 +328,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -391,6 +392,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -419,6 +421,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "npmhub Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -437,6 +440,7 @@
 				CODE_SIGN_ENTITLEMENTS = "npmhub Extension/npmhub_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "npmhub Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -460,6 +464,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = npmhub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -480,6 +485,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = npmhub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
