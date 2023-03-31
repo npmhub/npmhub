@@ -35,7 +35,8 @@
   },
   "alias": {
     "url": "./source/lib/reduced-url.js",
-    "mem": "./node_modules/mem/dist/index.js"
+    "mem": "./node_modules/mem/dist/index.js",
+    "lru-cache": "./node_modules/lru-cache/index.js"
   },
   "webExt": {
     "sourceDir": "distribution",
