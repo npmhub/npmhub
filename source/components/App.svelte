@@ -22,9 +22,10 @@
     const urlParts = packageURL.split('/');
     urlParts[5] = 'raw';
     const rawUrl = urlParts.join('/');
+    // Fetching from the content script enables support for private repos.
+    // Do not change this to use `raw.githubusercontent.com` for the same reason.
     const request = await localFetch(rawUrl);
-    const packageJson = await request.text();
-    return JSON.parse(packageJson);
+    return request.json();
   }
 
   async function getLocalPackage() {
