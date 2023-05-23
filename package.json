@@ -3,38 +3,40 @@
   "license": "MIT",
   "author": "zeke",
   "scripts": {
-    "build": "parcel build source/manifest.json --no-source-maps --no-optimize --dist-dir distribution --no-cache --detailed-report 0",
+    "build": "parcel build source/manifest.json --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
     "fix": "npm run lint -- --fix",
-    "lint": "xo",
-    "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj' -scheme 'npmhub (macOS)'",
+    "lint": "eslint source --ext .svelte,.js",
+    "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
+    "start:safari": "open 'safari/build/Release/npmhub.app'",
     "prepare:safari": "bash safari/prepare-release.sh",
     "test": "run-p lint build",
     "watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr"
   },
   "dependencies": {
-    "doma": "^3.0.1",
-    "element-ready": "^6.2.0",
-    "escape-goat": "^4.0.0",
-    "github-injection": "^1.0.1",
-    "hosted-git-info": "^5.0.0",
+    "element-ready": "^6.2.1",
+    "github-injection": "^1.1.0",
+    "hosted-git-info": "^6.1.1",
     "mem": "^9.0.2",
     "webext-domain-permission-toggle": "^3.0.0",
-    "webext-dynamic-content-scripts": "^8.1.0"
+    "webext-dynamic-content-scripts": "^9.2.2"
   },
   "devDependencies": {
-    "@parcel/config-webextension": "^2.3.2",
-    "@parcel/transformer-image": "^2.3.2",
-    "eslint-plugin-svelte3": "^3.4.1",
+    "@parcel/config-webextension": "^2.8.3",
+    "@parcel/transformer-image": "^2.8.3",
+    "eslint": "^8.37.0",
+    "eslint-config-xo-space": "^0.34.0",
+    "eslint-plugin-svelte3": "^4.0.0",
+    "eslint-plugin-unicorn": "^46.0.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.3.2",
+    "parcel": "^2.8.3",
     "parcel-transformer-svelte": "^1.2.3",
     "process": "^0.11.10",
-    "svelte": "^3.46.4",
-    "xo": "^0.48.0"
+    "svelte": "^3.57.0"
   },
   "alias": {
     "url": "./source/lib/reduced-url.js",
-    "mem": "./node_modules/mem/dist/index.js"
+    "mem": "./node_modules/mem/dist/index.js",
+    "lru-cache": "./node_modules/lru-cache/index.js"
   },
   "webExt": {
     "sourceDir": "distribution",

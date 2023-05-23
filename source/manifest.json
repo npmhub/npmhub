@@ -44,11 +44,14 @@
     "http://*/*",
     "https://*/*"
   ],
+  "web_accessible_resources": [
+    "*",
+    "icons/*"
+  ],
   "content_scripts":[
     {
       "matches": [
-        "https://github.com/*",
-        "https://gitlab.com/*"
+        "https://github.com/*"
       ],
       "js": [
         "npmhub.js"
