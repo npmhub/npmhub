@@ -112,6 +112,7 @@
                 <li><a class="dropdown-item" href="https://bundlephobia.com/package/{package_.name}">BundlePhobia</a></li>
                 <li><a class="dropdown-item" href="https://packagephobia.com/result?p={package_.name}">PackagePhobia</a></li>
                 <li><a class="dropdown-item" href="https://npmgraph.js.org/?q={package_.name}">Dependency tree</a></li>
+                <li><a class="dropdown-item" href="https://paka.dev/npm/{package_.name}">Types (if any)</a></li>
               </ul>
             </details>
           {/if}
