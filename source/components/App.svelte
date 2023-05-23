@@ -24,8 +24,12 @@
     const rawUrl = urlParts.join('/');
     // Fetching from the content script enables support for private repos.
     // Do not change this to use `raw.githubusercontent.com` for the same reason.
-    const request = await localFetch(rawUrl);
-    return request.json();
+    const response = await localFetch(rawUrl);
+    if (!response.ok) {
+      throw new Error('Request failed while fetching the current package.json');
+    }
+  
+    return response.json();
   }
 
   async function getLocalPackage() {
@@ -83,7 +87,6 @@
     'Dev',
   ];
 
-  // TODO: also show error in the UI
   const packagePromise = getLocalPackage();
   packagePromise.catch(error => {
     console.warn(`${errorMessage} fetching the current package.json from ${window.location.hostname}`, error);

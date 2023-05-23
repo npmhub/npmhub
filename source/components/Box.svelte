@@ -46,9 +46,9 @@
           {/each}
         {/if}
       {/if}
-    {:catch}
+    {:catch error}
       <li class="npmhub-empty">
-        <em>There was a network error.</em>
+        <em>{error}</em>
       </li>
     {/await}
   </ol>
