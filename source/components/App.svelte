@@ -5,6 +5,13 @@
   export let packageURL;
   export let isPackageJson;
 
+  // `content.fetch` is Firefox’s way to make fetches from the page instead of from a different context
+  // This will set the correct `origin` header
+  // https://github.com/npmhub/npmhub/pull/164
+  // https://stackoverflow.com/questions/47356375/firefox-fetch-api-how-to-omit-the-origin-header-in-the-request
+  // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts#XHR_and_Fetch
+  const localFetch = globalThis.content?.fetch ?? globalThis.fetch;
+
   const errorMessage = 'npmhub: there was an error while';
 
   function getDependencyKey(type) {
@@ -15,9 +22,10 @@
     const urlParts = packageURL.split('/');
     urlParts[5] = 'raw';
     const rawUrl = urlParts.join('/');
-    const request = await fetch(rawUrl);
-    const packageJson = await request.text();
-    return JSON.parse(packageJson);
+    // Fetching from the content script enables support for private repos.
+    // Do not change this to use `raw.githubusercontent.com` for the same reason.
+    const request = await localFetch(rawUrl);
+    return request.json();
   }
 
   async function getLocalPackage() {
