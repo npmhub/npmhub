@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Shared (App)
 //
-//  Created by Rico on 3/18/22.
+//  Created by Rico on 5/23/23.
 //
 
 import WebKit
@@ -49,7 +49,11 @@ class ViewController: PlatformViewController, WKNavigationDelegate, WKScriptMess
             }
 
             DispatchQueue.main.async {
-                webView.evaluateJavaScript("show('mac', \(state.isEnabled))")
+                if #available(macOS 13, *) {
+                    webView.evaluateJavaScript("show('mac', \(state.isEnabled), true)")
+                } else {
+                    webView.evaluateJavaScript("show('mac', \(state.isEnabled), false)")
+                }
             }
         }
 #endif
