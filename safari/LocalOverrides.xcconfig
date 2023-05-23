@@ -1,2 +1,4 @@
-MARKETING_VERSION = 0.0.0
-CURRENT_PROJECT_VERSION = 1
+// You can customize this file or delete the following lines, it's gitignored
+DEVELOPMENT_TEAM = DQZRJJ39H3;
+MARKETING_VERSION = 2023.3.31
+CURRENT_PROJECT_VERSION = 12
