@@ -28,6 +28,7 @@
     if (!response.ok) {
       throw new Error('Request failed while fetching the current package.json');
     }
+  
     return response.json();
   }
 
