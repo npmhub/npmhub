@@ -39,6 +39,10 @@
 		1F0D750C2A1C873800DA26C6 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 1F0D75022A1C873800DA26C6 /* icons */; };
 		1F0D750D2A1C873800DA26C6 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F0D75032A1C873800DA26C6 /* manifest.json */; };
 		1F0D750E2A1C873800DA26C6 /* npmhub.css in Resources */ = {isa = PBXBuildFile; fileRef = 1F0D75042A1C873800DA26C6 /* npmhub.css */; };
+		1F68FBAE2A1C8B6F0014160E /* LocalOverrides.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F68FBA92A1C8B6F0014160E /* LocalOverrides.xcconfig */; };
+		1F68FBAF2A1C8B6F0014160E /* LocalOverrides.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F68FBA92A1C8B6F0014160E /* LocalOverrides.xcconfig */; };
+		1F68FBB02A1C8B6F0014160E /* LocalOverrides.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F68FBA92A1C8B6F0014160E /* LocalOverrides.xcconfig */; };
+		1F68FBB12A1C8B6F0014160E /* LocalOverrides.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1F68FBA92A1C8B6F0014160E /* LocalOverrides.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +116,7 @@
 		1F0D75022A1C873800DA26C6 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../distribution/icons; sourceTree = "<group>"; };
 		1F0D75032A1C873800DA26C6 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../distribution/manifest.json; sourceTree = "<group>"; };
 		1F0D75042A1C873800DA26C6 /* npmhub.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = npmhub.css; path = ../../distribution/npmhub.css; sourceTree = "<group>"; };
+		1F68FBA92A1C8B6F0014160E /* LocalOverrides.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = LocalOverrides.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +154,7 @@
 		1F0D749D2A1C873500DA26C6 = {
 			isa = PBXGroup;
 			children = (
+				1F68FBA92A1C8B6F0014160E /* LocalOverrides.xcconfig */,
 				1F0D74A22A1C873500DA26C6 /* Shared (App) */,
 				1F0D74AB2A1C873700DA26C6 /* Shared (Extension) */,
 				1F0D74B32A1C873700DA26C6 /* iOS (App) */,
@@ -384,6 +390,7 @@
 				1F0D74E72A1C873800DA26C6 /* Script.js in Resources */,
 				1F0D74EB2A1C873800DA26C6 /* Assets.xcassets in Resources */,
 				1F0D74BD2A1C873700DA26C6 /* Main.storyboard in Resources */,
+				1F68FBAE2A1C8B6F0014160E /* LocalOverrides.xcconfig in Resources */,
 				1F0D74E52A1C873800DA26C6 /* Style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +403,7 @@
 				1F0D74E62A1C873800DA26C6 /* Style.css in Resources */,
 				1F0D74C92A1C873700DA26C6 /* Main.storyboard in Resources */,
 				1F0D74E82A1C873800DA26C6 /* Script.js in Resources */,
+				1F68FBAF2A1C8B6F0014160E /* LocalOverrides.xcconfig in Resources */,
 				1F0D74EC2A1C873800DA26C6 /* Assets.xcassets in Resources */,
 				1F0D74E22A1C873800DA26C6 /* Main.html in Resources */,
 			);
@@ -407,6 +415,7 @@
 			files = (
 				1F0D750E2A1C873800DA26C6 /* npmhub.css in Resources */,
 				1F0D750D2A1C873800DA26C6 /* manifest.json in Resources */,
+				1F68FBB02A1C8B6F0014160E /* LocalOverrides.xcconfig in Resources */,
 				1F0D750C2A1C873800DA26C6 /* icons in Resources */,
 				1F0D750B2A1C873800DA26C6 /* background.js in Resources */,
 				1F0D750A2A1C873800DA26C6 /* npmhub.js in Resources */,
@@ -419,6 +428,7 @@
 			files = (
 				1F0D75092A1C873800DA26C6 /* npmhub.css in Resources */,
 				1F0D75082A1C873800DA26C6 /* manifest.json in Resources */,
+				1F68FBB12A1C8B6F0014160E /* LocalOverrides.xcconfig in Resources */,
 				1F0D75072A1C873800DA26C6 /* icons in Resources */,
 				1F0D75062A1C873800DA26C6 /* background.js in Resources */,
 				1F0D75052A1C873800DA26C6 /* npmhub.js in Resources */,
@@ -516,6 +526,7 @@
 /* Begin XCBuildConfiguration section */
 		1F0D74EF2A1C873800DA26C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F68FBA92A1C8B6F0014160E /* LocalOverrides.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -574,6 +585,7 @@
 		};
 		1F0D74F02A1C873800DA26C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F68FBA92A1C8B6F0014160E /* LocalOverrides.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -835,6 +847,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -869,6 +882,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
