@@ -6,8 +6,7 @@
     "build": "parcel build source/manifest.json --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
     "fix": "npm run lint -- --fix",
     "lint": "eslint source --ext .svelte,.js",
-    "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj'",
-    "start:safari": "open 'safari/build/Release/npmhub.app'",
+    "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj' -scheme 'npmhub (macOS)'",
     "prepare:safari": "bash safari/prepare-release.sh",
     "test": "run-p lint build",
     "watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr"
@@ -17,7 +16,7 @@
     "github-injection": "^1.1.0",
     "hosted-git-info": "^6.1.1",
     "mem": "^9.0.2",
-    "webext-domain-permission-toggle": "^3.0.0",
+    "webext-domain-permission-toggle": "^4.0.1",
     "webext-dynamic-content-scripts": "^9.2.2"
   },
   "devDependencies": {
