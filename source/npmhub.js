@@ -1,6 +1,7 @@
 import githubInjection from 'github-injection';
 import elementReady from 'element-ready';
 import App from './components/App.svelte';
+import ScrollButton from './components/ScrollButton.svelte';
 
 function isPackageJson() {
   // Example URLs:
@@ -56,6 +57,13 @@ async function init() {
       '.repository-content', // Old container https://github.com/refined-github/refined-github/issues/5751
     ]),
   });
+
+  const buttonTarget = document.querySelector(['.BorderGrid-cell [href=\'#readme\']']).parentNode;
+  const frag = document.createDocumentFragment();
+
+  new ScrollButton({target: frag});
+
+  buttonTarget.before(frag);
 }
 
 githubInjection(init);
