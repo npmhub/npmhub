@@ -58,12 +58,15 @@ async function init() {
     ]),
   });
 
-  const buttonTarget = document.querySelector(['.BorderGrid-cell [href=\'#readme\']']).parentNode;
-  const frag = document.createDocumentFragment();
+  const position = document.querySelector(['.BorderGrid-cell [href=\'#readme\']']).parentNode;
 
-  new ScrollButton({target: frag});
+  if (position) {
+    const frag = document.createDocumentFragment();
 
-  buttonTarget.before(frag);
+    new ScrollButton({target: frag});
+
+    position.before(frag);
+  }
 }
 
 githubInjection(init);
