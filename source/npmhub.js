@@ -58,14 +58,14 @@ async function init() {
     ]),
   });
 
-  const position = document.querySelector(['.BorderGrid-cell [href*=\'report-content\']'])?.parentElement;
+  const position = document.querySelector(['.BorderGrid-cell [href$=\'/forks\']'])?.parentElement;
 
   if (position) {
     const frag = document.createDocumentFragment();
 
     new ScrollButton({target: frag});
 
-    position.before(frag);
+    position.after(frag);
   }
 }
 
