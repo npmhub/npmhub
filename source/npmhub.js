@@ -1,6 +1,7 @@
 import githubInjection from 'github-injection';
 import elementReady from 'element-ready';
 import App from './components/App.svelte';
+import ScrollButton from './components/ScrollButton.svelte';
 
 function isPackageJson() {
   // Example URLs:
@@ -56,6 +57,16 @@ async function init() {
       '.repository-content', // Old container https://github.com/refined-github/refined-github/issues/5751
     ]),
   });
+
+  const position = document.querySelector(['.BorderGrid-cell [href$=\'/forks\']'])?.parentElement;
+
+  if (position) {
+    const frag = document.createDocumentFragment();
+
+    new ScrollButton({target: frag});
+
+    position.after(frag);
+  }
 }
 
 githubInjection(init);
