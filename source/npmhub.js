@@ -58,7 +58,7 @@ async function init() {
     ]),
   });
 
-  const position = document.querySelector(['.BorderGrid-cell [href=\'#readme\']']).parentNode;
+  const position = document.querySelector(['.BorderGrid-cell [href*=\'report-content\']'])?.parentElement;
 
   if (position) {
     const frag = document.createDocumentFragment();
