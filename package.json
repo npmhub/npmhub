@@ -12,7 +12,6 @@
     "watch": "parcel watch --no-cache --no-content-hash --no-hmr"
   },
   "dependencies": {
-    "element-ready": "^7.0.0",
     "github-injection": "^1.1.0",
     "hosted-git-info": "^7.0.1",
     "mem": "^9.0.2",
