@@ -1,7 +1,8 @@
 <script>
+  import chromeP from 'webext-polyfill-kinda';
   import Box from './Box.svelte';
   import HeaderLink from './HeaderLink.svelte';
-  import chromeP from 'webext-polyfill-kinda';
+  import HeaderLinkNpmGraph from './HeaderLinkNpmGraph.svelte';
 
   export let packageURL;
   export let isPackageJson;
@@ -123,8 +124,14 @@
                 <li><a class="dropdown-item" href="https://paka.dev/npm/{package_.name}">Types (if any)</a></li>
               </ul>
             </details>
+          {:else}
+            <!-- Has name but not public -->
+            <HeaderLinkNpmGraph packageJson={package_}/>
           {/if}
         {/await}
+      {:else}
+        <!-- No name at all -->
+        <HeaderLinkNpmGraph packageJson={package_}/>
       {/if}
     {/await}
   </Box>
