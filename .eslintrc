@@ -16,15 +16,7 @@
     "import/no-unassigned-import": "off",
     "unicorn/better-regex": "off",
     "unicorn/filename-case": "off",
-    "unicorn/prefer-top-level-await": "off",
-    "no-multiple-empty-lines": [
-      "error",
-      {
-        "max": 1,
-        "maxBOF": 2,
-        "maxEOF": 1
-      }
-    ]
+    "unicorn/prefer-top-level-await": "off"
   },
   "overrides": [
     {
