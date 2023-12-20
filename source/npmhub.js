@@ -23,7 +23,7 @@ function getPackageURL() {
   // https://github.com/npmhub/npmhub
   // https://github.com/eslint/eslint/tree/main/packages/eslint-config-eslint
   return document.querySelector([
-    '.react-directory-filename-column [title="package.json"] a',
+    '.react-directory-filename-column :is(a[title="package.json"], [title="package.json"] a)',
     '#files ~ div [title="package.json"]', // GitHub pre-2022 refresh
   ])?.href;
 }
