@@ -2,5 +2,12 @@
 	"extends": "@parcel/config-webextension",
 	"transformers": {
 		"*.svelte": ["parcel-transformer-svelte"]
+	},
+	"reporters": [
+		"...",
+		"parcel-reporter-clean-dist"
+	],
+	"optimizers": {
+		"*.js": ["@parcel/optimizer-terser"]
 	}
 }
