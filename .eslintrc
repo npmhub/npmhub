@@ -4,11 +4,11 @@
     "webextensions": true
   },
   "plugins": [
-    "svelte3",
     "unicorn"
   ],
   "extends": [
     "xo-space",
+    "plugin:svelte/recommended",
     "plugin:unicorn/recommended"
   ],
   "rules": {
@@ -29,9 +29,9 @@
   "overrides": [
     {
       "files": [
-        "**/*.svelte"
+        "*.svelte"
       ],
-      "processor": "svelte3/svelte3"
+      "parser": "svelte-eslint-parser"
     }
   ],
   "ignorePatterns": [

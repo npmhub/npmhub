@@ -16,6 +16,8 @@ on:
 jobs:
   Security:
     runs-on: ubuntu-latest
+    # TODO: Remove after https://github.com/orlov-vo/parcel-transformer-svelte/pull/41
+    if: false
     steps:
       - uses: actions/checkout@v3
       - run: npx lockfile-lint --path package-lock.json --validate-https
