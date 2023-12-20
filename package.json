@@ -12,25 +12,25 @@
     "watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr"
   },
   "dependencies": {
-    "element-ready": "^6.2.1",
+    "element-ready": "^7.0.0",
     "github-injection": "^1.1.0",
-    "hosted-git-info": "^6.1.1",
+    "hosted-git-info": "^7.0.1",
     "mem": "^9.0.2",
     "webext-domain-permission-toggle": "^4.0.1",
-    "webext-dynamic-content-scripts": "^9.2.2"
+    "webext-dynamic-content-scripts": "^10.0.0"
   },
   "devDependencies": {
-    "@parcel/config-webextension": "^2.8.3",
-    "@parcel/transformer-image": "^2.8.3",
-    "eslint": "^8.41.0",
+    "@parcel/config-webextension": "^2.10.3",
+    "@parcel/transformer-image": "^2.10.3",
+    "eslint": "^8.56.0",
     "eslint-config-xo-space": "^0.34.0",
-    "eslint-plugin-svelte3": "^4.0.0",
-    "eslint-plugin-unicorn": "^47.0.0",
+    "eslint-plugin-svelte": "^2.35.1",
+    "eslint-plugin-unicorn": "^49.0.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.8.3",
+    "parcel": "^2.10.3",
     "parcel-transformer-svelte": "^1.2.3",
     "process": "^0.11.10",
-    "svelte": "^3.59.1"
+    "svelte": "^4.2.8"
   },
   "alias": {
     "url": "./source/lib/reduced-url.js",
