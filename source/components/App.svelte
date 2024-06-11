@@ -37,6 +37,7 @@
   async function getLocalPackage() {
     const packageJson = await getPackageJson();
     const package_ = {
+      rawPackageJson: packageJson,
       name: packageJson.name,
       version: packageJson.version,
       dependencies: Object.keys(packageJson.dependencies || {}).map(name => ({
@@ -126,12 +127,12 @@
             </details>
           {:else}
             <!-- Has name but not public -->
-            <HeaderLinkNpmGraph packageJson={package_}/>
+            <HeaderLinkNpmGraph packageJson={package_.rawPackageJson}/>
           {/if}
         {/await}
       {:else}
         <!-- No name at all -->
-        <HeaderLinkNpmGraph packageJson={package_}/>
+        <HeaderLinkNpmGraph packageJson={package_.rawPackageJson}/>
       {/if}
     {/await}
   </Box>

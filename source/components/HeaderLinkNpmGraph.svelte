@@ -5,7 +5,7 @@
   function getInlinePackageUrl({name = 'noname', dependencies, devDependencies, peerDependencies, bundledDependencies}) {
     const trimmedPackage = {name, dependencies, devDependencies, peerDependencies, bundledDependencies};
     const parameters = new URLSearchParams([['packages', JSON.stringify([trimmedPackage])]]);
-    return `https://npmgraph.js.org/#${parameters}`;
+    return `https://npmgraph.js.org/?q=${name}#${parameters}`;
   }
 </script>
 
