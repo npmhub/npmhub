@@ -1,7 +1,7 @@
 // This can't be replaced with `new URL()` because browsers don't support git+http urls
 
 const protocol = '(?:([^:]+:)?(?://)?)?';
-const auth = '(?:(\\S+(?::\\S*)?)@)?';
+const auth = String.raw`(?:(\S+(?::\S*)?)@)?`;
 const host = '([^/:]*)';
 const path = '([/]?[^#]*)';
 const hash = '(#.+)?';

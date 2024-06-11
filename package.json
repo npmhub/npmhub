@@ -13,32 +13,32 @@
   },
   "dependencies": {
     "github-injection": "^1.1.0",
-    "hosted-git-info": "^7.0.1",
+    "hosted-git-info": "^7.0.2",
     "mem": "^9.0.2",
-    "webext-domain-permission-toggle": "^4.0.1",
-    "webext-dynamic-content-scripts": "^10.0.0",
+    "webext-dynamic-content-scripts": "^10.0.1",
+    "webext-permission-toggle": "^5.0.0",
     "webext-polyfill-kinda": "^1.0.2"
   },
   "devDependencies": {
-    "@parcel/config-webextension": "^2.10.3",
-    "@parcel/optimizer-terser": "^2.10.3",
-    "@parcel/transformer-image": "^2.10.3",
+    "@parcel/config-webextension": "^2.12.0",
+    "@parcel/optimizer-terser": "^2.12.0",
+    "@parcel/transformer-image": "^2.12.0",
     "eslint": "^8.56.0",
-    "eslint-config-xo-space": "^0.34.0",
-    "eslint-plugin-svelte": "^2.35.1",
-    "eslint-plugin-unicorn": "^49.0.0",
+    "eslint-config-xo-space": "^0.35.0",
+    "eslint-plugin-svelte": "^2.39.3",
+    "eslint-plugin-unicorn": "^53.0.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.10.3",
+    "parcel": "^2.12.0",
     "parcel-reporter-clean-dist": "^1.0.4",
-    "parcel-transformer-svelte": "github:fregante/parcel-transformer-svelte#patch-1",
+    "parcel-transformer-svelte-v4": "^1.2.3",
     "process": "^0.11.10",
-    "svelte": "^4.2.8"
-  },
-  "alias": {
-    "url": "./source/lib/reduced-url.js"
+    "svelte": "^4.2.18"
   },
   "@parcel/resolver-default": {
     "packageExports": true
+  },
+  "alias": {
+    "url": "./source/lib/reduced-url.js"
   },
   "targets": {
     "main": false,
