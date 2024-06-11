@@ -16,15 +16,13 @@ on:
 jobs:
   Security:
     runs-on: ubuntu-latest
-    # TODO: Remove after https://github.com/orlov-vo/parcel-transformer-svelte/pull/41
-    if: false
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: npx lockfile-lint --path package-lock.json --validate-https
   Lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: package.json
@@ -34,27 +32,28 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: package.json
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: npmhub
           path: distribution
   Safari:
-    needs: Build
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          name: npmhub
-          path: distribution
+          node-version-file: package.json
+          cache: npm
+      - run: npm ci
+      - run: npm run build
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest
+          xcode-version: 15.0.1
       - run: npm run pack:safari
