@@ -16,7 +16,7 @@ npmhub also adds convenient links to:
 	<li><b>UNPKG</b> to see the exact contents published to npm
 </ul>
 
-GitHub Enterprise is also supported by right-clicking on <a href="https://user-images.githubusercontent.com/1402241/32874388-e0c64150-cacc-11e7-9a50-eae3727fd3c2.png" target="_blank">npmhub's icon in the toolbar</a> and selecting <strong>Enable npmhub on this domain</strong>.
+GitHub Enterprise is also supported, see the [guide](https://fregante.github.io/webext-permission-toggle/?name=npmhub&icon=https%3A%2F%2Fraw.githubusercontent.com%2Fnpmhub%2Fnpmhub%2Fmain%2Fassets%2Ficon.svg).
 
 ## Installation
 
