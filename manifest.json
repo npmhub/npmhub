@@ -29,7 +29,7 @@
       "strict_min_version": "121.0"
     },
     "gecko_android": {
-      "strict_min_version": "121.0"
+      "strict_min_version": "127.0"
     }
   },
   "minimum_chrome_version": "121.0",
