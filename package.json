@@ -8,13 +8,13 @@
     "lint": "eslint source --ext .svelte,.js",
     "pack:safari": "xcodebuild -project 'safari/npmhub.xcodeproj' -scheme 'npmhub (macOS)'",
     "prepare:safari": "bash safari/prepare-release.sh",
-    "test": "run-p lint build",
+    "test": "npm run lint && npm run build",
     "watch": "parcel watch --no-cache --no-hmr"
   },
   "dependencies": {
     "github-injection": "^1.1.0",
     "hosted-git-info": "^7.0.2",
-    "mem": "^9.0.2",
+    "memoize": "^10.0.0",
     "webext-dynamic-content-scripts": "^10.0.4",
     "webext-permission-toggle": "^5.1.0"
   },
@@ -25,14 +25,16 @@
     "@parcel/transformer-image": "^2.12.0",
     "eslint": "^8.57.0",
     "eslint-config-xo-space": "^0.35.0",
-    "eslint-plugin-svelte": "^2.39.3",
-    "eslint-plugin-unicorn": "^53.0.0",
-    "npm-run-all": "^4.1.5",
+    "eslint-plugin-svelte": "^2.43.0",
+    "eslint-plugin-unicorn": "^54.0.0",
     "parcel": "^2.0.0-canary.1686",
     "parcel-reporter-clean-dist": "^1.0.4",
     "parcel-transformer-svelte-v4": "^1.2.3",
     "process": "^0.11.10",
     "svelte": "^4.2.18"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "@parcel/resolver-default": {
     "packageExports": true

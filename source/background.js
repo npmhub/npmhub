@@ -1,12 +1,12 @@
 import 'webext-dynamic-content-scripts';
-import mem from 'mem';
+import memoize from 'memoize';
 import addPermissionToggle from 'webext-permission-toggle';
 import parseRepoUrl from './lib/parse-repo-url.js';
 
 // GitHub Enterprise support
 addPermissionToggle();
 
-const fetchPackageJson = mem(async name => {
+const fetchPackageJson = memoize(async name => {
   console.log('fetching', name);
   // Scoped repositories contain an escaped slash and a regular at-sign
   // Example: https://registry.npmjs.org/@shinnn%2Feslint-config-node
