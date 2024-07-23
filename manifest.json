@@ -42,9 +42,12 @@
     ]
   },
   "permissions": [
-    "https://registry.npmjs.org/",
     "contextMenus",
+    "storage",
     "activeTab"
+  ],
+  "host_permissions": [
+    "https://registry.npmjs.org/"
   ],
   "optional_permissions": [
     "*://*/*"
