@@ -16,11 +16,10 @@
     "hosted-git-info": "^7.0.2",
     "mem": "^9.0.2",
     "webext-dynamic-content-scripts": "^10.0.2",
-    "webext-permission-toggle": "^5.0.1",
-    "webext-polyfill-kinda": "^1.0.2"
+    "webext-permission-toggle": "^5.0.1"
   },
   "devDependencies": {
-    "@parcel/config-webextension": "^2.12.0",
+    "@parcel/config-webextension": "^2.12.1-canary.3311",
     "@parcel/optimizer-terser": "^2.12.0",
     "@parcel/transformer-image": "^2.12.0",
     "eslint": "^8.57.0",
@@ -28,7 +27,7 @@
     "eslint-plugin-svelte": "^2.39.3",
     "eslint-plugin-unicorn": "^53.0.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.12.0",
+    "parcel": "^2.0.0-canary.1686",
     "parcel-reporter-clean-dist": "^1.0.4",
     "parcel-transformer-svelte-v4": "^1.2.3",
     "process": "^0.11.10",
