@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest",
+  "name": "npmhub",
+  "version": "0.0.0",
+  "manifest_version": 3,
+  "description": "Explore npm dependencies on GitHub repos",
+  "author": "Zeke Sikelianos, Federico Brigante",
+  "icons": {
+    "16": "source/icons/icon16.png",
+    "32": "source/icons/icon32.png",
+    "48": "source/icons/icon48.png",
+    "64": "source/icons/icon64.png",
+    "128": "source/icons/icon128.png",
+    "256": "source/icons/icon256.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "source/icons/icon16.png",
+      "32": "source/icons/icon32.png",
+      "48": "source/icons/icon48.png",
+      "64": "source/icons/icon64.png",
+      "128": "source/icons/icon128.png",
+      "256": "source/icons/icon256.png"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "npm-hub@sikelianos.com",
+      "strict_min_version": "121.0"
+    },
+    "gecko_android": {
+      "strict_min_version": "127.0"
+    }
+  },
+  "minimum_chrome_version": "121.0",
+  "background": {
+    "type": "module",
+    "service_worker": "source/background.js",
+    "scripts": [
+      "source/background.js"
+    ]
+  },
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://registry.npmjs.org/"
+  ],
+  "optional_permissions": [
+    "*://*/*"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
+  ],
+  "content_scripts":[
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": [
+        "source/npmhub.js"
+      ],
+      "css": [
+        "source/npmhub.css"
+      ]
+    }
+  ]
+}

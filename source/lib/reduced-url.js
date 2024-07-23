@@ -25,4 +25,4 @@ export function parse(url) {
   }
 }
 
-export const {URL} = window;
+export const {URL} = globalThis;
