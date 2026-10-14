@@ -12,9 +12,9 @@
     "watch": "parcel watch --no-cache --no-hmr"
   },
   "dependencies": {
-    "github-injection": "^1.1.0",
     "hosted-git-info": "^7.0.2",
     "memoize": "^10.0.0",
+    "select-dom": "^10.1.0",
     "webext-dynamic-content-scripts": "^10.0.4",
     "webext-permission-toggle": "^5.1.0"
   },
